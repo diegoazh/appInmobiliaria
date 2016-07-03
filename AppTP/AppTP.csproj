@@ -81,14 +81,17 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,11 +174,21 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\ElTrebolDB.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ElTrebolDB.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -266,7 +279,15 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="images\avatars\avatar1.png" />
+    <Content Include="images\avatars\avatar2.png" />
+    <Content Include="images\avatars\avatar3.png" />
+    <Content Include="images\avatars\avatar4.png" />
     <Content Include="images\inmobiliaria.jpg" />
+    <Content Include="images\logos\logo_el_trebol.png" />
+    <Content Include="images\logos\logo_el_trebol_md.png" />
+    <Content Include="images\logos\logo_el_trebol_sm.png" />
+    <Content Include="images\logos\logo_el_trebol_xs.png" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -278,6 +299,15 @@
     <Content Include="Content\Site.css.map">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
+    <Content Include="Models\ElTrebolDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ElTrebolDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -309,17 +339,25 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Front_end\Headers\header.cshtml" />
     <Content Include="Views\Shared\Front_end\Footers\footer.cshtml" />
-    <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Index\index.cshtml" />
     <Content Include="Views\Shared\Front_end\Modals\LoginForm.cshtml" />
     <Content Include="Views\Shared\Front_end\Sections\MisScriptsJs.cshtml" />
     <Content Include="Views\Shared\_Admin_Layout.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\index.cshtml" />
     <Content Include="Views\Shared\Back_end\Headers\Header_admin.cshtml" />
     <Content Include="Views\Shared\Back_end\Footers\Footer_admin.cshtml" />
     <Content Include="Views\Shared\Front_end\Menus\menu_front.cshtml" />
     <Content Include="Views\Shared\Back_end\Sections\adminScripts.cshtml" />
     <Content Include="Views\Shared\Back_end\Menus\menu_back.cshtml" />
     <Content Include="Views\Shared\Back_end\Menus\menu_lateral_back.cshtml" />
+    <Content Include="Views\Admin\Listados\listado_productos.cshtml" />
+    <Content Include="Views\Admin\Altas\alta_producto.cshtml" />
+    <Content Include="Views\Productos\Carrusel\carrusel.cshtml" />
+    <Content Include="Views\Productos\Comentario\modalComentario.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Index\ListadoProductos\listadoProductos.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Admin\Listados\negocios_cerrados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -328,6 +366,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\ElTrebolDB.dbml.layout">
+      <DependentUpon>ElTrebolDB.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,23 +1,15 @@
-﻿<ul class="menu-lateral">
-    <li>
-        <a class="text-center">Items</a>
-    </li>
-    <li>
-        <a class="text-center">Items</a>
-    </li>
-    <li>
-        <a class="text-center">Items</a>
-    </li>
-    <li>
-        <a class="text-center">Items</a>
-    </li>
-    <li>
-        <a class="text-center">Items</a>
-    </li>
-    <li>
-        <a class="text-center">Items</a>
-    </li>
-    <li>
-        <a class="text-center">Items</a>
-    </li>
-</ul>
+﻿<div class="list-group">
+    <div href="" type="button" class="list-group-item active"><h4><i class="fa fa-comments-o" aria-hidden="true"></i> Comentarios:</h4></div>
+    <a href="" type="button" class="list-group-item"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios <span class="badge">@ViewBag.cantComent</span></a>
+</div>
+<div class="list-group">
+    <div type="button" class="list-group-item active"><h4><i class="fa fa-cubes" aria-hidden="true"></i> Productos:</h4></div>
+    <a href="@Url.Action("index", "admin")" type="button" class="list-group-item"><i class="fa fa-cubes" aria-hidden="true"></i> Listado de productos<span class="badge">@ViewBag.cantPubli</span></a>
+    <a href="@Url.Action("negocios_cerrados", "admin")"  type="button" class="list-group-item"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Negocios Cerrados<span class="badge">@ViewBag.cantClosed</span></a>
+    <a href="@Url.Action("alta_producto", "admin")" type="button" class="list-group-item"><i class="fa fa-cart-plus" aria-hidden="true"></i> Nuevo producto</a>
+</div>
+<div class="list-group">
+    <div type="button" class="list-group-item active"><h4><i class="fa fa-users" aria-hidden="true"></i> Usuarios:</h4></div>
+    <a href="" type="button" class="list-group-item"><i class="fa fa-users" aria-hidden="true"></i> Listado de usuarios <span class="badge">@ViewBag.cantUsers</span></a>
+    <a href="" type="button" class="list-group-item"><i class="fa fa-user-plus" aria-hidden="true"></i> Alta usuarios</a>
+</div>

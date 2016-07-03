@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14, 18.375" name="ElTrebolDB">
+  <DataContextMoniker Name="/ElTrebolDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3ee4965d-5833-4f86-ab2c-8ced396ff225" absoluteBounds="6.25, 13, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Avatar" />
+      <nestedChildShapes>
+        <elementListCompartment Id="85253b7b-9767-44e7-904e-cdf7075f9358" absoluteBounds="6.2650000005960464, 13.46000000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="98f9f7b8-12ae-4e9b-9877-c7cb97a89c21" absoluteBounds="9, 14.25, 2, 2.5401025390624969">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Usuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="602fa657-044e-497e-ab02-0f0d69fed585" absoluteBounds="9.0150000005960464, 14.71000000089407, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5d4afba5-e353-44c0-866a-5b1b18f4d68e" absoluteBounds="11.75, 1.25, 2, 3.1170068359375005">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Comentario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="13bd08a9-7767-4ac4-9d57-2f5165535049" absoluteBounds="11.765000000596046, 1.7100000008940697, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="06f7a664-8b5d-4cde-a7e3-6c622fe5d201" absoluteBounds="3.5, 2, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Departamento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="01068d1d-f191-48db-95ae-77bf5a27cbf8" absoluteBounds="3.5150000005960464, 2.4600000008940697, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="95666ccc-d2a8-4342-8b4d-f35529deba67" absoluteBounds="6.25, 4.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Estado" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad584e56-3ebb-4df2-b6e4-8388ba5fe339" absoluteBounds="6.2650000005960464, 5.21000000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a627abeb-9341-411e-9a21-92befd4ae710" absoluteBounds="6.25, 6.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/FormaPago" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7c5127b4-a030-417e-8b7b-c8f6b19f2938" absoluteBounds="6.2650000005960464, 7.08500000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="392f2c93-d7e7-4ce8-9bb4-c545452a0632" absoluteBounds="6.25, 15, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Foto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="153d000e-10eb-43c7-b742-d5bfbee93faa" absoluteBounds="6.2650000005960464, 15.46000000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b6b125b8-aa60-4919-8ce6-cd7ec7a35dc1" absoluteBounds="6.25, 2, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Localidad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bdd630a8-54e3-405d-be68-fe3892fbfa31" absoluteBounds="6.2650000005960464, 2.4600000008940697, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d9046900-71c4-472c-9af7-f938a0ea469a" absoluteBounds="6.25, 8.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Producto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="60bf0141-4b36-459b-867a-be1ec1be9050" absoluteBounds="6.2650000005960464, 9.08500000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bd9b831f-4588-4238-a711-9fc423ab421d" absoluteBounds="0.75, 2.125, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Provincia" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f2753226-c2a9-4a7f-b5d1-7f8b83225b3a" absoluteBounds="0.76500000059604645, 2.5850000008940697, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eb03fce2-f7f4-42ef-afd4-cada6ba9cc34" absoluteBounds="9, 1, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Publicacion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dca701ae-e283-4a22-952f-b9a9227bda90" absoluteBounds="9.0150000005960464, 1.4600000008940697, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8ceb010b-bc2f-4645-9777-f692e66583ed" absoluteBounds="6.25, 16.875, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/Rules" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d7ca8f5c-2173-4247-a463-72b56f659d2f" absoluteBounds="6.2650000005960464, 17.33500000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="31340b09-7826-4074-831d-c68d2a9adc75" absoluteBounds="6.25, 10.5, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ElTrebolDBDataContext/TipoNegocio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9c4a123-c322-4da4-bbac-92d8ba2d9322" absoluteBounds="6.2650000005960464, 10.96000000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.25 : 13.5969962565104); (10 : 13.5969962565104); (10 : 14.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Avatar/Avatar_Usuario" />
+      <nodes>
+        <classShapeMoniker Id="3ee4965d-5833-4f86-ab2c-8ced396ff225" />
+        <classShapeMoniker Id="98f9f7b8-12ae-4e9b-9877-c7cb97a89c21" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 15.5200512695312); (12.75 : 15.5200512695312); (12.75 : 4.3670068359375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Usuario/Usuario_Comentario" />
+      <nodes>
+        <classShapeMoniker Id="98f9f7b8-12ae-4e9b-9877-c7cb97a89c21" />
+        <classShapeMoniker Id="5d4afba5-e353-44c0-866a-5b1b18f4d68e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 15.5969962565104); (9 : 15.5969962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Foto/Foto_Usuario" />
+      <nodes>
+        <classShapeMoniker Id="392f2c93-d7e7-4ce8-9bb4-c545452a0632" />
+        <classShapeMoniker Id="98f9f7b8-12ae-4e9b-9877-c7cb97a89c21" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 2.69314697265625); (6.25 : 2.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Departamento/Departamento_Localidad" />
+      <nodes>
+        <classShapeMoniker Id="06f7a664-8b5d-4cde-a7e3-6c622fe5d201" />
+        <classShapeMoniker Id="b6b125b8-aa60-4919-8ce6-cd7ec7a35dc1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 2.72199625651042); (3.5 : 2.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Provincia/Provincia_Departamento" />
+      <nodes>
+        <classShapeMoniker Id="bd9b831f-4588-4238-a711-9fc423ab421d" />
+        <classShapeMoniker Id="06f7a664-8b5d-4cde-a7e3-6c622fe5d201" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 2.80850341796875); (11.75 : 2.80850341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Publicacion/Publicacion_Comentario" />
+      <nodes>
+        <classShapeMoniker Id="eb03fce2-f7f4-42ef-afd4-cada6ba9cc34" />
+        <classShapeMoniker Id="5d4afba5-e353-44c0-866a-5b1b18f4d68e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 5.34699625651042); (9.11978791666666 : 5.34699625651042 : JumpStart); (9.28645458333333 : 5.34699625651042 : JumpEnd); (9.38541416666667 : 5.34699625651042 : JumpStart); (9.55208083333333 : 5.34699625651042 : JumpEnd); (10 : 5.34699625651042); (10 : 4.50160970052083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Estado/Estado_Publicacion" />
+      <nodes>
+        <classShapeMoniker Id="95666ccc-d2a8-4342-8b4d-f35529deba67" />
+        <classShapeMoniker Id="eb03fce2-f7f4-42ef-afd4-cada6ba9cc34" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 7.22199625651042); (9.11978791666666 : 7.22199625651042 : JumpStart); (9.28645458333333 : 7.22199625651042 : JumpEnd); (9.4687475 : 7.22199625651042); (9.4687475 : 4.50160970052083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/FormaPago/FormaPago_Publicacion" />
+      <nodes>
+        <classShapeMoniker Id="a627abeb-9341-411e-9a21-92befd4ae710" />
+        <classShapeMoniker Id="eb03fce2-f7f4-42ef-afd4-cada6ba9cc34" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 2.69314697265625); (9 : 2.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Localidad/Localidad_Publicacion" />
+      <nodes>
+        <classShapeMoniker Id="b6b125b8-aa60-4919-8ce6-cd7ec7a35dc1" />
+        <classShapeMoniker Id="eb03fce2-f7f4-42ef-afd4-cada6ba9cc34" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 9.22199625651042); (9.11978791666666 : 9.22199625651042 : JumpStart); (9.28645458333333 : 9.22199625651042 : JumpEnd); (10.5312525 : 9.22199625651042); (10.5312525 : 4.50160970052083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Producto/Producto_Publicacion" />
+      <nodes>
+        <classShapeMoniker Id="d9046900-71c4-472c-9af7-f938a0ea469a" />
+        <classShapeMoniker Id="eb03fce2-f7f4-42ef-afd4-cada6ba9cc34" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 17.4719962565104); (10 : 17.4719962565104); (10 : 16.7901025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/Rules/Rules_Usuario" />
+      <nodes>
+        <classShapeMoniker Id="8ceb010b-bc2f-4645-9777-f692e66583ed" />
+        <classShapeMoniker Id="98f9f7b8-12ae-4e9b-9877-c7cb97a89c21" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 11.0969962565104); (9.20312125 : 11.0969962565104); (9.20312125 : 4.50160970052083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ElTrebolDBDataContext/TipoNegocio/TipoNegocio_Publicacion" />
+      <nodes>
+        <classShapeMoniker Id="31340b09-7826-4074-831d-c68d2a9adc75" />
+        <classShapeMoniker Id="eb03fce2-f7f4-42ef-afd4-cada6ba9cc34" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

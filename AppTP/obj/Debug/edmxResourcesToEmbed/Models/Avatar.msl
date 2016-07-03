@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="elTrebolModel1StoreContainer" CdmEntityContainer="AvatarEntities">
+    <EntitySetMapping Name="Avatars">
+      <EntityTypeMapping TypeName="elTrebolModel1.Avatar">
+        <MappingFragment StoreEntitySet="Avatars">
+          <ScalarProperty Name="id_avatar" ColumnName="id_avatar" />
+          <ScalarProperty Name="avatar1" ColumnName="avatar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

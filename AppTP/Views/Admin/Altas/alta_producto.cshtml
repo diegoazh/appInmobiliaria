@@ -1,0 +1,177 @@
+﻿<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <h1><i class="fa fa-cart-plus" aria-hidden="true"></i> Nuevo Producto</h1>
+        <form>
+            <div class="form-group">
+                <label for="" class="sr-only"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Titulo:</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;Titulo: </div>
+                    <input type="text" value="" id="titulo" name="titulo" class="form-control" placeholder="Ingrese el titulo de la publicación"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="sr-only"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Descripción:</label>
+                <div class="input-group">
+                    <div class="input-group-addon">Descripción:<br /><br /><i class="fa fa-keyboard-o" aria-hidden="true"></i></div>
+                    <textarea rows="8" id="descripcion" name="descripcion" class="form-control" placeholder="Ingrese la descripción de la publicación..."></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="sr-only"><i class="fa fa-usd" aria-hidden="true"></i>&nbsp;<i class="fa fa-money" aria-hidden="true"></i>Precio:</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i>&nbsp;<i class="fa fa-money" aria-hidden="true"></i></div>
+                    <input type="number" value="" id="precio" name="precio" class="form-control" placeholder="Ingrese el precio de la publicación" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-credit-card" aria-hidden="true"></i> Forma de pago:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-credit-card" aria-hidden="true"></i><br /> Forma de pago: </div>
+                            <select id="forma_pago" name="forma_pago" class="form-control" multiple="multiple">
+                                @foreach (var fp in ViewBag.formaPagos)
+                                {
+                                    <option value="@fp.id_formaPago">@fp.formaPago1</option>
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Tipo de negocio:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Tipo de negocio: </div>
+                            <select id="tipo_negocio" name="tipo_negocio" class="form-control">
+                                @foreach (var tn in ViewBag.tipoNegocio)
+                                {
+                                    <option value="@tn.id_tipoNegocio">@tn.tipo</option>
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-power-off" aria-hidden="true"></i> Estado:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-power-off" aria-hidden="true"></i> Estado: </div>
+                            <select id="estado" name="estado" class="form-control">
+                                @foreach (var est in ViewBag.estados)
+                                {
+                                    <option value="@est.id_estado">@est.estado1</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Provincia:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Provincia: </div>
+                            <select id="provincia" name="provincia" class="form-control">
+                                @foreach (var prov in ViewBag.provincias)
+                                {
+                                    <option value="@prov.ID">@prov.Nombre</option>
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Departamento:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Departamento: </div>
+                            <select id="departamento" name="departamento" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Localidad:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Localidad: </div>
+                            <select id="localidad" name="localidad" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Barrio:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Barrio: </div>
+                            <input type="text" value="" id="barrio" name="barrio" class="form-control" placeholder="Ingrese el barrio" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen principal:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen principal: </div>
+                            <input type="file" value="" id="imagen_1" name="imagen_1" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 2:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 2: </div>
+                            <input type="file" value="" id="imagen_2" name="imagen_2" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 3:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 3: </div>
+                            <input type="file" value="" id="imagen_3" name="imagen_3" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 4:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 4: </div>
+                            <input type="file" value="" id="imagen_4" name="imagen_4" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 5:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 5: </div>
+                            <input type="file" value="" id="imagen_5" name="imagen_5" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 6:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 6: </div>
+                            <input type="file" value="" id="imagen_6" name="imagen_6" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-6 col-lg-6"></div>
+</div>

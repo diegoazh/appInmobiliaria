@@ -1,0 +1,46 @@
+﻿<h1><i class="fa fa-cubes" aria-hidden="true"></i> Productos publicados</h1>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Tipo de Negocio</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.cantPubli > 0)
+        {
+            foreach (var publicacion in ViewBag.publicaciones)
+            {
+                <tr>
+                    <td>@publicacion.ID</td>
+                    <td>@publicacion.titulo</td>
+                    <td>@publicacion.producto</td>
+                    <td>@publicacion.precio</td>
+                    <td>@publicacion.tipoNegocio</td>
+                    <td>@publicacion.estado</td>
+                    <td>
+                        <button class="btn btn-info">Ver</button>&nbsp;
+                        <button class="btn btn-warning">Estado</button>&nbsp;
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">No hay productos publicados a la fecha</td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="7" class="text-right">Productos el Trebol.</td>
+        </tr>
+    </tfoot>
+</table>

@@ -1,31 +1,48 @@
-﻿body {
+﻿/*
+    Clases genericas
+*/
+@gris: #9f9f9f;
+@blanco: #ffffff;
+
+body {
     h1, h2, h3, h4, h5, h6 {
-       font-family: 'Seymour One', sans-serif;
+        font-family: 'Patua One', cursive;
     }
+
     p, ul, ol, li {
         font-family: 'Michroma', sans-serif;
     }
+
     a {
         font-family: 'Allerta Stencil', sans-serif;
     }
 
     #header_page {
-        min-height: 180px;
+        min-height: 215px;
+        padding-top: 30px;
         background-image: url('../images/inmobiliaria.jpg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        
+
+        img.logo-header{
+            display: inline-block;
+            width: 10%;
+            border-radius: 10px;
+            background-color: rgba(215,215,215,0.7);
+        }
         h1 {
             color: #ffffff;
             text-shadow: 1px 2px 5px #000000;
-
+            display: inline-block;
+            
             small {
                 color: #e9e9e9;
                 text-shadow: 1px 2px 5px #000000;
             }
         }
     }
+
     #main_menu {
         div {
             padding: 0;
@@ -33,12 +50,69 @@
             nav {
                 border-radius: 0;
                 margin-bottom: 0;
+
+                div{
+                    div.navbar-header{
+                        a{
+                            .logo-chico{
+                                display: inline-block;
+                                width: 20%;
+                                background-color: @blanco;
+                                position: relative;
+                                top: -5px;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
+
     #body_page {
         min-height: 980px;
+
+        div {
+            .panelAlinear {
+                margin-right: 20px;
+                margin-top: 20px;
+                border: 2px solid #b7b7b7;
+                box-shadow: 1px 2px 5px #808080;
+
+                div.panel-body {
+                    div.row {
+                        div {
+                            img {
+                                margin-bottom: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            div.row {
+                margin-bottom: 15px;
+
+                div {
+                    #carousel_example_generic {
+                        margin-bottom: 15px;
+
+                        div {
+                            div {
+                                img {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+
+                    p {
+                        text-align: justify;
+                    }
+                }
+            }
+        }
     }
+
     #footer_page {
         min-height: 100px;
         padding-top: 18px;

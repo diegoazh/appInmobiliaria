@@ -1,6 +1,15 @@
 ﻿/*
     Clases genericas
 */
+/*
+    Clases
+*/
+.element-inline-block {
+  display: inline-block;
+}
+/*
+    Estilos del front-end
+*/
 body h1,
 body h2,
 body h3,

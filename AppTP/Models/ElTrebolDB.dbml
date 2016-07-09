@@ -10,10 +10,11 @@
   <Table Name="dbo.Usuario" Member="Usuario">
     <Type Name="Usuario">
       <Column Name="id_usuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="mail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="pass" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="pass" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
       <Column Name="telefono" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="id_avatar" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="id_rules" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -68,7 +69,7 @@
   <Table Name="dbo.Foto" Member="Foto">
     <Type Name="Foto">
       <Column Name="id_foto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="foto" Member="foto1" Type="System.String" DbType="VarChar(3000)" CanBeNull="true" />
+      <Column Name="foto" Member="foto1" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="Foto_Usuario" Member="Usuario" ThisKey="id_foto" OtherKey="id_foto" Type="Usuario" />
     </Type>
   </Table>
@@ -98,13 +99,16 @@
   <Table Name="dbo.Publicacion" Member="Publicacion">
     <Type Name="Publicacion">
       <Column Name="id_publicacion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="titulo" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="titulo" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="fotos" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Column Name="descripcion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="barrio" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="fecha_publicacion" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="fecha_baja" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="motivo_baja" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="fecha_publicacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_baja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="motivo_baja" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="votante" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="valoracion" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
       <Column Name="id_producto" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="id_estado" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="id_formaPago" Type="System.Int32" DbType="Int" CanBeNull="true" />

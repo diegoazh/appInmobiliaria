@@ -1,6 +1,12 @@
 ﻿/*
-    Clases genericas
+    colores
 */
+/*
+    Clases
+*/
+.element-inline-block {
+  display: inline-block;
+}
 /*
     Estilos de la pagina
 */
@@ -45,7 +51,24 @@ body .container-fluid #menu_lateral_admin h3 {
 body .container-fluid #content_admin {
   padding-top: 15px;
 }
+body .container-fluid #content_admin table tbody tr td img.img-back-user {
+  width: 22%;
+  display: inline-block;
+  z-index: 100;
+}
+body .container-fluid #content_admin div.row div form div.row div div div.clonar-inputs-fotos {
+  position: absolute;
+  width: 30px;
+}
+body .container-fluid #content_admin div.row div form div.row div div div.clonar-inputs-fotos button {
+  opacity: 0.35;
+  margin: 1px;
+}
+body .container-fluid #content_admin div.row div form div.row div div div.clonar-inputs-fotos button:hover {
+  opacity: 1;
+}
 body .container-fluid #footer_admin {
+  margin-top: 20px;
   background-color: #e4e4e4;
   min-height: 120px;
   max-height: 150px;

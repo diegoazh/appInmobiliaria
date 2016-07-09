@@ -17,12 +17,12 @@
             foreach (var cerrados in ViewBag.negociosCerrados)
             {
                 <tr>
-                    <td>@cerrados.ID</td>
+                    <td>@cerrados.id_publicacion</td>
                     <td>@cerrados.titulo</td>
-                    <td>@cerrados.producto</td>
+                    <td>@cerrados.Producto.nombre</td>
                     <td>@cerrados.precio</td>
-                    <td>@cerrados.tipoNegocio</td>
-                    <td>@cerrados.estado</td>
+                    <td>@cerrados.TipoNegocio.tipo</td>
+                    <td>@cerrados.Estado.estado1</td>
                     <td>
                         <button class="btn btn-info">Ver</button>&nbsp;
                         <button class="btn btn-warning">Estado</button>&nbsp;

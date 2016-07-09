@@ -6180,7 +6180,7 @@ Values('Admin');
 go
 create table Foto(
 id_foto int identity(1,1),
-foto varchar(3000),
+foto varchar(100),
 constraint pk_foto primary key (id_foto)
 )
 go
@@ -6190,12 +6190,18 @@ avatar varchar(300),
 constraint pk_avatar primary key (id_avatar)
 )
 go
+insert into Avatar values('avatar1.png');
+insert into Avatar values('avatar2.png');
+insert into Avatar values('avatar3.png');
+insert into Avatar values('avatar4.png');
+go
 create table Usuario(
 id_usuario int identity (1,1),
+username varchar(50) not null,
 nombre varchar (50)not null,
 apellido varchar (50)not null,
 mail varchar (50)not null,
-pass nvarchar (400) not null,
+pass varchar (64) not null,
 telefono bigint not null,
 id_avatar int,
 id_rules int not null,
@@ -6209,9 +6215,9 @@ constraint fk_avatar foreign key (id_avatar)
 references Avatar(id_avatar),
 )
 go
- insert into Usuario(nombre,apellido,mail,pass,telefono,id_rules)
- values('admin','admin','admin@admin.com.ar','admin',0,1);
- go
+ insert into Usuario(username, nombre,apellido,mail,pass,telefono, id_avatar, id_rules)
+ values('admin','admin','admin','admin@admin.com.ar','admin',0,1,1);
+go
 create table TipoNegocio(
 id_tipoNegocio int identity(1,1),
 tipo varchar (20) not null,
@@ -6261,13 +6267,16 @@ insert into Producto values('Otros');
 go
  create table Publicacion (
  id_publicacion int identity (1,1),
- titulo varchar (30) not null,
+ titulo varchar (70) not null,
+ fotos varchar (MAX) not null,
  precio money,
- descripcion varchar (200) not null,
+ descripcion varchar (1000) not null,
  barrio varchar(150) not null,
- fecha_publicacion date not null,
- fecha_baja date,
- motivo_baja varchar (200),
+ fecha_publicacion datetime not null,
+ fecha_baja datetime,
+ motivo_baja varchar (300),
+ votante int,
+ valoracion decimal(20,2),
  id_producto int,
  id_estado int,
  id_formaPago int,
@@ -6306,3 +6315,17 @@ go
  constraint fk_usuario foreign key (id_usuario)
  references Usuario(id_usuario)
  )
+
+--update Usuario
+--set pass = 'admin'
+
+-- alter table Usuario
+-- alter column pass varchar (64) not null
+
+ --select * from Usuario
+
+-- select * from Publicacion
+-- delete from Publicacion;
+--DBCC CHECKIDENT (Publicacion, RESEED, 1)
+-- insert into Publicacion( titulo,fotos,precio,descripcion,barrio,fecha_publicacion)
+-- values('añlksdjfñlasjdfñlkajsdf','C\\:fackas\inmobiliaria.jpg,C\\:fackas\javascript.js',865486.85,'sfajsdkfja jlkasjf lñkasjfskdjf lkasjdflkjaslkdjfñlka sdlajsdlfka slkfjlaks jfas jdfklajs dfjasfj asjdfñlk asjd flkaj lñkfjalksd jflkñajs dl fkj aslk fjlkasjfñlkasjf klaj sdfjalksjf lkasj f jlk fjlka ajflk jlfjasñlk fjlasj faslk fasd flkasjflkj asdlk','S/N','2016-07-08 17:16:15');

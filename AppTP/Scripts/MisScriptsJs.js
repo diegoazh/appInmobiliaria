@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
+    // Menu pegajoso
     var altura = $('#main_menu').offset().top;
-
     $(window).on('scroll', function () {
         if ($(window).scrollTop() > altura) {
             $('#main_menu').addClass('navbar-fixed-top');
@@ -9,7 +9,8 @@
         }
     });
 
-    $("a").click(function () {
-        $('#login_form').modal("show");
+    // Modal login
+    $("#btn_login").click(function () {
+        $('#modal_login_form').modal("show");
     });
 });

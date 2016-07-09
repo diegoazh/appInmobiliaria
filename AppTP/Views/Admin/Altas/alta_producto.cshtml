@@ -1,26 +1,52 @@
-﻿<div class="row">
+﻿@model AppTP.Models.Publicacion
+<div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        @RenderPage("~/Views/Shared/Back_end/Alert/alert_usuario.cshtml")
         <h1><i class="fa fa-cart-plus" aria-hidden="true"></i> Nuevo Producto</h1>
-        <form>
+        @using (@Html.BeginForm("alta_producto", "admin", FormMethod.Post, new { id = "frm_alta_producto", name = "frm_alta_producto", enctype = "multipart/form-data" }))
+        {
             <div class="form-group">
+                @Html.Hidden("id_admin", Request.Cookies["idUsuario"].Value)
                 <label for="" class="sr-only"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Titulo:</label>
                 <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;Titulo: </div>
-                    <input type="text" value="" id="titulo" name="titulo" class="form-control" placeholder="Ingrese el titulo de la publicación"/>
+                    @Html.TextBoxFor(x => x.titulo, new { id = "titulo", name = "titulo", @class = "form-control", placeholder = "Ingrese el titulo de la publicación" })
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="sr-only"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Descripción:</label>
                 <div class="input-group">
                     <div class="input-group-addon">Descripción:<br /><br /><i class="fa fa-keyboard-o" aria-hidden="true"></i></div>
-                    <textarea rows="8" id="descripcion" name="descripcion" class="form-control" placeholder="Ingrese la descripción de la publicación..."></textarea>
+                    @Html.TextAreaFor(x => x.descripcion, new { rows = "8", id = "descripcion", name = "descripcion", @class = "form-control", placeholder = "Ingrese la descripción de la publicación..." })
                 </div>
             </div>
-            <div class="form-group">
-                <label for="" class="sr-only"><i class="fa fa-usd" aria-hidden="true"></i>&nbsp;<i class="fa fa-money" aria-hidden="true"></i>Precio:</label>
-                <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i>&nbsp;<i class="fa fa-money" aria-hidden="true"></i></div>
-                    <input type="number" value="" id="precio" name="precio" class="form-control" placeholder="Ingrese el precio de la publicación" />
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-usd" aria-hidden="true"></i>&nbsp;<i class="fa fa-money" aria-hidden="true"></i> Precio:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i>&nbsp;<i class="fa fa-money" aria-hidden="true"></i> Precio:</div>
+                            @Html.TextBox("precio", "", new { type = "number", step = "0.01", min = "0", id = "precio", name = "precio", @class = "form-control", placeholder = "Ingrese el precio de la publicación" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="" class="sr-only"><i class="fa fa-home" aria-hidden="true"></i> Producto:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i> Producto:</div>
+                            @{List<SelectListItem> prd = new List<SelectListItem>();
+                              foreach (var prod in ViewBag.productos)
+                              {
+                                  prd.Add(new SelectListItem
+                                  {
+                                      Text = prod.nombre,
+                                      Value = prod.id_producto.ToString()
+                                  });
+                              }}
+                            @Html.DropDownListFor(x => x.id_producto, selectList: prd, htmlAttributes: new { id = "producto", name = "producto", @class = "form-control" })
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -28,14 +54,17 @@
                     <div class="form-group">
                         <label for="" class="sr-only"><i class="fa fa-credit-card" aria-hidden="true"></i> Forma de pago:</label>
                         <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-credit-card" aria-hidden="true"></i><br /> Forma de pago: </div>
-                            <select id="forma_pago" name="forma_pago" class="form-control" multiple="multiple">
-                                @foreach (var fp in ViewBag.formaPagos)
-                                {
-                                    <option value="@fp.id_formaPago">@fp.formaPago1</option>
-                                }
-                            </select>
-
+                            <div class="input-group-addon">Forma de pago:<br /><br /><i class="fa fa-credit-card" aria-hidden="true"></i></div>
+                            @{List<SelectListItem> fpago = new List<SelectListItem>();
+                              foreach (var fp in ViewBag.formaPagos)
+                              {
+                                  fpago.Add(new SelectListItem
+                                  {
+                                      Text = fp.formaPago1,
+                                      Value = fp.id_formaPago.ToString()
+                                  });
+                              }}
+                            @Html.DropDownListFor(x => x.id_formaPago, selectList: fpago, htmlAttributes: new { id = "forma_pago", name = "forma_pago", @class = "form-control", multiple = "multiple" })
                         </div>
                     </div>
                 </div>
@@ -44,25 +73,24 @@
                         <label for="" class="sr-only"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Tipo de negocio:</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Tipo de negocio: </div>
-                            <select id="tipo_negocio" name="tipo_negocio" class="form-control">
-                                @foreach (var tn in ViewBag.tipoNegocio)
-                                {
-                                    <option value="@tn.id_tipoNegocio">@tn.tipo</option>
-                                }
-                            </select>
-
+                            @{List<SelectListItem> tNeg = new List<SelectListItem>();
+                              foreach (var tn in ViewBag.tipoNegocio)
+                              {
+                                  tNeg.Add(new SelectListItem { Text = tn.tipo, Value = tn.id_tipoNegocio.ToString() });
+                              }}
+                            @Html.DropDownListFor(x => x.id_tipoNegocio, selectList: tNeg, htmlAttributes: new { id = "tipo_negocio", name = "tipo_negocio", @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="" class="sr-only"><i class="fa fa-power-off" aria-hidden="true"></i> Estado:</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-power-off" aria-hidden="true"></i> Estado: </div>
-                            <select id="estado" name="estado" class="form-control">
-                                @foreach (var est in ViewBag.estados)
-                                {
-                                    <option value="@est.id_estado">@est.estado1</option>
-                                }
-                            </select>
+                            @{List<SelectListItem> es = new List<SelectListItem>();
+                              foreach (var est in ViewBag.estados)
+                              {
+                                  es.Add(new SelectListItem { Text = est.estado1, Value = est.id_estado.ToString() });
+                              }}
+                            @Html.DropDownListFor(x => x.id_estado, selectList: es, htmlAttributes: new { id = "estado", name = "estado", @class = "form-control" })
                         </div>
                     </div>
                 </div>
@@ -73,13 +101,12 @@
                         <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Provincia:</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Provincia: </div>
-                            <select id="provincia" name="provincia" class="form-control">
-                                @foreach (var prov in ViewBag.provincias)
-                                {
-                                    <option value="@prov.ID">@prov.Nombre</option>
-                                }
-                            </select>
-
+                            @{List<SelectListItem> prv = new List<SelectListItem>();
+                              foreach (var prov in ViewBag.provincias)
+                              {
+                                  prv.Add(new SelectListItem { Text = prov.Nombre, Value = prov.ID.ToString() });
+                              }}
+                            @Html.DropDownList(name: "provincia", selectList: prv, htmlAttributes: new { id = "provincia", name = "provincia", @class = "form-control" })
                         </div>
                     </div>
                 </div>
@@ -88,8 +115,8 @@
                         <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Departamento:</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Departamento: </div>
-                            <select id="departamento" name="departamento" class="form-control">
-                            </select>
+                            @{var item = new SelectListItem[] { new SelectListItem { Text = "Cargando...", Value = "1" } }; }
+                            @Html.DropDownList(name: "departamento", selectList: item, htmlAttributes: new { id = "departamento", name = "departamento", @class = "form-control" })
                         </div>
                     </div>
                 </div>
@@ -100,8 +127,7 @@
                         <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Localidad:</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Localidad: </div>
-                            <select id="localidad" name="localidad" class="form-control">
-                            </select>
+                            @Html.DropDownListFor(x => x.id_localidad, selectList: item, htmlAttributes: new { id = "localidad", name = "localidad", @class = "form-control" })
                         </div>
                     </div>
                 </div>
@@ -110,7 +136,7 @@
                         <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Barrio:</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Barrio: </div>
-                            <input type="text" value="" id="barrio" name="barrio" class="form-control" placeholder="Ingrese el barrio" />
+                            @Html.TextBoxFor(x => x.barrio, new { id = "barrio", name = "barrio", @class = "form-control", placeholder = "Ingrese el barrio" })
                         </div>
                     </div>
                 </div>
@@ -120,58 +146,26 @@
                     <div class="form-group">
                         <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen principal:</label>
                         <div class="input-group">
+                            @Html.HiddenFor(x => x.fotos)
                             <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen principal: </div>
                             <input type="file" value="" id="imagen_1" name="imagen_1" class="form-control" />
                         </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="form-group">
-                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 2:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 2: </div>
-                            <input type="file" value="" id="imagen_2" name="imagen_2" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="form-group">
-                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 3:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 3: </div>
-                            <input type="file" value="" id="imagen_3" name="imagen_3" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="form-group">
-                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 4:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 4: </div>
-                            <input type="file" value="" id="imagen_4" name="imagen_4" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="form-group">
-                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 5:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 5: </div>
-                            <input type="file" value="" id="imagen_5" name="imagen_5" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="form-group">
-                        <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 6:</label>
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen 6: </div>
-                            <input type="file" value="" id="imagen_6" name="imagen_6" class="form-control" />
+                        <div class="clonar-inputs-fotos">
+                            <button id="" class="btn btn-danger btn-xs hidden"><i class="fa fa-minus-square" aria-hidden="true"></i></button>
+                            <button id="" class="btn btn-success btn-xs"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col md-6 col-lg-6 text-left">
+                    <input type="reset" value="Limpiar campos" class="btn btn-warning" />
+                </div>
+                <div class="col-xs-12 col-sm-12 col md-6 col-lg-6 text-right">
+                    <input id="enviar_publicacion" name="enviar_publicacion" type="submit" value="Crear publicacion" class="btn btn-primary" accept="image/*" />
+                </div>
+            </div>
+        }
     </div>
     <div class="hidden-xs hidden-sm col-md-6 col-lg-6"></div>
 </div>

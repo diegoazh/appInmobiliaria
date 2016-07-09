@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AppTP.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AppTP.Models;
 using System.Web.Script.Serialization;
-using Newtonsoft.Json;
 
 namespace AppTP.Controllers
 {
@@ -13,25 +14,14 @@ namespace AppTP.Controllers
     {
         private ElTrebolDBDataContext db = new ElTrebolDBDataContext();
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public ActionResult index()
         {
             var publi =
                 from pub in db.Publicacion
-                join prod in db.Producto on pub.id_producto equals prod.id_producto
-                join est in db.Estado on pub.id_estado equals est.id_estado
-                join tip in db.TipoNegocio on pub.id_tipoNegocio equals tip.id_tipoNegocio
                 where pub.fecha_baja == null
                 orderby pub.fecha_publicacion descending
-                select new
-                {
-                    ID = pub.id_publicacion,
-                    titulo = pub.titulo,
-                    precio = pub.precio,
-                    producto = prod.nombre,
-                    tipoNegocio = tip.tipo,
-                    estado = est.estado1,
-                };
+                select pub;
             
             ViewBag.publicaciones = publi;
             cantidades();
@@ -39,7 +29,7 @@ namespace AppTP.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public ActionResult alta_producto()
         {
             var neg =
@@ -62,41 +52,105 @@ namespace AppTP.Controllers
                 orderby p.Nombre
                 select p;
 
+            var prod =
+                from pr in db.Producto
+                orderby pr.nombre
+                select pr;
+
             ViewBag.tipoNegocio = neg;
             ViewBag.formaPagos = fpago;
             ViewBag.estados = est;
             ViewBag.provincias = prov;
+            ViewBag.productos = prod;
             cantidades();
 
             return View("Index");
         }
 
-        [HttpPost]
-        public ActionResult alta_producto(string titulo, string descripcion, decimal precio, int forma_pago, int tipo_negocio, int localidad, string barrio, string imagenes)
+        [HttpPost, Authorize]
+        public ActionResult alta_producto(Publicacion publicacion, string precio, string id_admin, string fotos)
         {
+            int count = 0;
+            if (System.Web.HttpContext.Current.Request.Files != null)
+            {
+                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
+                {
+                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
+                        file.SaveAs(path);
+                        count++;
+                    }
+                }
+            }
 
-            return View();
+            string[] f = fotos.Split('*');
+            f = f.Except(new string[] { "" }).ToArray();
+
+            string nombreFotos = "";
+
+            for (int i = 0; i < f.Length; i++)
+            {
+                nombreFotos += f[i];
+                if (i != (f.Length - 1))
+                {
+                    nombreFotos += ",";
+                }
+                
+            }
+
+            Publicacion p = new Publicacion();
+            p.titulo = publicacion.titulo;
+            p.fotos = nombreFotos;
+            p.precio = Convert.ToDecimal(precio.Replace(".", ","));
+            p.descripcion = publicacion.descripcion;
+            p.barrio = publicacion.barrio;
+            p.fecha_publicacion = DateTime.Now;
+            p.id_producto = publicacion.id_producto;
+            p.id_estado = publicacion.id_estado;
+            p.id_formaPago = publicacion.id_formaPago;
+            p.id_tipoNegocio = publicacion.id_tipoNegocio;
+            p.id_admin = Int32.Parse(id_admin);
+            p.id_localidad = publicacion.id_localidad;
+
+            db.Publicacion.InsertOnSubmit(p);
+            db.SubmitChanges();
+
+            return RedirectToAction("alta_producto", );
         }
 
-        [HttpGet]
+        [HttpPost, Authorize]
+        public ActionResult carga_imagenes()
+        {
+            int count = 0;
+            if (System.Web.HttpContext.Current.Request.Files != null)
+            {
+                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
+                {
+                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName) + Path.GetExtension(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
+                        file.SaveAs(path);
+                        count++;
+                    }
+                }
+            }
+
+            return new JsonResult { Data = "Se cargaron correctamente " + count + " imagen(es)" };
+        }
+
+        [HttpGet, Authorize]
         public ActionResult negocios_cerrados()
         {
             var cerrados =
                 from pub in db.Publicacion
-                join prod in db.Producto on pub.id_producto equals prod.id_producto
-                join est in db.Estado on pub.id_estado equals est.id_estado
-                join tip in db.TipoNegocio on pub.id_tipoNegocio equals tip.id_tipoNegocio
                 where pub.fecha_baja != null
                 orderby pub.fecha_publicacion descending
-                select new
-                {
-                    ID = pub.id_publicacion,
-                    titulo = pub.titulo,
-                    precio = pub.precio,
-                    producto = prod.nombre,
-                    tipoNegocio = tip.tipo,
-                    estado = est.estado1,
-                };
+                select pub;
 
             ViewBag.negociosCerrados = cerrados;
             cantidades();

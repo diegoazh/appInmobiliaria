@@ -175,6 +175,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -325,6 +326,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\MisScriptsJs.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\users.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -333,7 +335,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -356,13 +360,18 @@
     <Content Include="Views\Productos\Comentario\modalComentario.cshtml" />
     <Content Include="Views\Productos\Index.cshtml" />
     <Content Include="Views\Index\ListadoProductos\listadoProductos.cshtml" />
-    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Admin\Listados\negocios_cerrados.cshtml" />
+    <Content Include="Views\Usuario\Create\modal_create.cshtml" />
+    <Content Include="Views\Shared\Front_end\Errors\error_danger.cshtml" />
+    <Content Include="Views\Usuario\Update\modal_update.cshtml" />
+    <Content Include="Views\Shared\Back_end\Alert\alert_usuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\foto\" />
+    <Folder Include="images\uploads\" />
     <Folder Include="Views\Shared\Front_end\Alerts\" />
-    <Folder Include="Views\Shared\Front_end\Errors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

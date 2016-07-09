@@ -328,6 +328,8 @@ namespace AppTP.Models
 		
 		private int _id_usuario;
 		
+		private string _username;
+		
 		private string _nombre;
 		
 		private string _apellido;
@@ -358,6 +360,8 @@ namespace AppTP.Models
     partial void OnCreated();
     partial void Onid_usuarioChanging(int value);
     partial void Onid_usuarioChanged();
+    partial void OnusernameChanging(string value);
+    partial void OnusernameChanged();
     partial void OnnombreChanging(string value);
     partial void OnnombreChanged();
     partial void OnapellidoChanging(string value);
@@ -401,6 +405,26 @@ namespace AppTP.Models
 					this._id_usuario = value;
 					this.SendPropertyChanged("id_usuario");
 					this.Onid_usuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string username
+		{
+			get
+			{
+				return this._username;
+			}
+			set
+			{
+				if ((this._username != value))
+				{
+					this.OnusernameChanging(value);
+					this.SendPropertyChanging();
+					this._username = value;
+					this.SendPropertyChanged("username");
+					this.OnusernameChanged();
 				}
 			}
 		}
@@ -465,7 +489,7 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass", DbType="NVarChar(400) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass", DbType="VarChar(64) NOT NULL", CanBeNull=false)]
 		public string pass
 		{
 			get
@@ -1588,7 +1612,7 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="foto", Storage="_foto1", DbType="VarChar(3000)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="foto", Storage="_foto1", DbType="VarChar(100)")]
 		public string foto1
 		{
 			get
@@ -2071,6 +2095,8 @@ namespace AppTP.Models
 		
 		private string _titulo;
 		
+		private string _fotos;
+		
 		private System.Nullable<decimal> _precio;
 		
 		private string _descripcion;
@@ -2082,6 +2108,10 @@ namespace AppTP.Models
 		private System.Nullable<System.DateTime> _fecha_baja;
 		
 		private string _motivo_baja;
+		
+		private System.Nullable<int> _votante;
+		
+		private System.Nullable<decimal> _valoracion;
 		
 		private System.Nullable<int> _id_producto;
 		
@@ -2115,6 +2145,8 @@ namespace AppTP.Models
     partial void Onid_publicacionChanged();
     partial void OntituloChanging(string value);
     partial void OntituloChanged();
+    partial void OnfotosChanging(string value);
+    partial void OnfotosChanged();
     partial void OnprecioChanging(System.Nullable<decimal> value);
     partial void OnprecioChanged();
     partial void OndescripcionChanging(string value);
@@ -2127,6 +2159,10 @@ namespace AppTP.Models
     partial void Onfecha_bajaChanged();
     partial void Onmotivo_bajaChanging(string value);
     partial void Onmotivo_bajaChanged();
+    partial void OnvotanteChanging(System.Nullable<int> value);
+    partial void OnvotanteChanged();
+    partial void OnvaloracionChanging(System.Nullable<decimal> value);
+    partial void OnvaloracionChanged();
     partial void Onid_productoChanging(System.Nullable<int> value);
     partial void Onid_productoChanged();
     partial void Onid_estadoChanging(System.Nullable<int> value);
@@ -2172,7 +2208,7 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_titulo", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_titulo", DbType="VarChar(70) NOT NULL", CanBeNull=false)]
 		public string titulo
 		{
 			get
@@ -2188,6 +2224,26 @@ namespace AppTP.Models
 					this._titulo = value;
 					this.SendPropertyChanged("titulo");
 					this.OntituloChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fotos", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string fotos
+		{
+			get
+			{
+				return this._fotos;
+			}
+			set
+			{
+				if ((this._fotos != value))
+				{
+					this.OnfotosChanging(value);
+					this.SendPropertyChanging();
+					this._fotos = value;
+					this.SendPropertyChanged("fotos");
+					this.OnfotosChanged();
 				}
 			}
 		}
@@ -2212,7 +2268,7 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
 		public string descripcion
 		{
 			get
@@ -2252,7 +2308,7 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_publicacion", DbType="Date NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_publicacion", DbType="DateTime NOT NULL")]
 		public System.DateTime fecha_publicacion
 		{
 			get
@@ -2272,7 +2328,7 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_baja", DbType="Date")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_baja", DbType="DateTime")]
 		public System.Nullable<System.DateTime> fecha_baja
 		{
 			get
@@ -2292,7 +2348,7 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_motivo_baja", DbType="VarChar(200)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_motivo_baja", DbType="VarChar(300)")]
 		public string motivo_baja
 		{
 			get
@@ -2308,6 +2364,46 @@ namespace AppTP.Models
 					this._motivo_baja = value;
 					this.SendPropertyChanged("motivo_baja");
 					this.Onmotivo_bajaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_votante", DbType="Int")]
+		public System.Nullable<int> votante
+		{
+			get
+			{
+				return this._votante;
+			}
+			set
+			{
+				if ((this._votante != value))
+				{
+					this.OnvotanteChanging(value);
+					this.SendPropertyChanging();
+					this._votante = value;
+					this.SendPropertyChanged("votante");
+					this.OnvotanteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_valoracion", DbType="Decimal(20,2)")]
+		public System.Nullable<decimal> valoracion
+		{
+			get
+			{
+				return this._valoracion;
+			}
+			set
+			{
+				if ((this._valoracion != value))
+				{
+					this.OnvaloracionChanging(value);
+					this.SendPropertyChanging();
+					this._valoracion = value;
+					this.SendPropertyChanged("valoracion");
+					this.OnvaloracionChanged();
 				}
 			}
 		}

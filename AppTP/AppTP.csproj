@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ComentariosController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -372,6 +373,9 @@
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Shared\Front_end\Alerts\alert_producto.cshtml" />
     <Content Include="Views\Producto\Comentario\comentario.cshtml" />
+    <Content Include="Views\Admin\Listados\Eliminar\modal_eliminar.cshtml" />
+    <Content Include="Views\Shared\Front_end\Alerts\alert_comentario.cshtml" />
+    <Content Include="Views\Comentarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -224,6 +224,17 @@ namespace AppTP.Controllers
         }
 
         [HttpPost, Authorize]
+        public ActionResult eliminar_producto(int id_publicacion)
+        {
+            var registro = from r in db.Publicacion where r.id_publicacion == id_publicacion select r;
+            var reg = registro.ToArray();
+            reg[0].fecha_baja = DateTime.UtcNow;
+            db.SubmitChanges();
+
+            return RedirectToAction("index", "admin");
+        }
+
+        [HttpPost, Authorize]
         public ActionResult carga_imagenes()
         {
             int count = 0;

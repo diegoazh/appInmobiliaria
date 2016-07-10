@@ -41,9 +41,11 @@ namespace AppTP.Controllers
             try
             {
                 db.SubmitChanges();
-                return new JsonResult { Data = "El comentario se registró correctamente." };
+                return RedirectToAction("index", "Producto", new { id_publicacion = comentario.id_publicacion });
+                //return new JsonResult { Data = "El comentario se registró correctamente." };
             } catch(Exception ex) {
-                return new JsonResult { Data = "Ocurrio algún problema intentando registrar el comentario, por favor intentelo nuevamente más tarde. Si el error persiste por favor contacte al administrador del sitio. Error: " + ex.ToString() };
+                //return new JsonResult { Data = "Ocurrio algún problema intentando registrar el comentario, por favor intentelo nuevamente más tarde. Si el error persiste por favor contacte al administrador del sitio. Error: " + ex.ToString() };
+                return RedirectToAction("index", "Producto", new { id_publicacion = comentario.id_publicacion });
             }
         }
     }

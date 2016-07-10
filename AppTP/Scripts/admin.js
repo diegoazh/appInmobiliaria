@@ -93,6 +93,25 @@
             $('#texto_alert_usuarios').text(data);
         });
     }
+
+    if (window.location.pathname === '/admin' || window.location.pathname === '/Admin') {
+        $('a.eliminar_prod').on('click', function (event) {
+            event.preventDefault();
+            var id = $(this).attr('id');
+            id = id.split('_');
+            id = id[id.length - 1];
+            $('#modal_eliminar_producto').modal('show');
+
+            var tt = $('h4.modal-title').html();
+            $('h4.modal-title').html(tt + ' Eliminar producto: ' + $('#tt_publi').text());
+            $('#titulo_publicacion').attr('value', $('#tt_publi').text());
+            $('#id_publicacion').attr('value', parseInt(id));
+
+            $('#btn_eliminar_producto').on('click', function () {
+                $('#frm_eliminar_producto').submit();
+            });
+        });
+    }
     
     if (window.location.pathname === '/admin/alta_producto' || window.location.pathname === '/admin/editar_producto') {
         var numFotos = 1;

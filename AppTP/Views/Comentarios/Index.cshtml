@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Comentarios | El Trébol";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div id="content_admin" class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+    <h1 class="element-inline-block"><i class="fa fa-comments-o" aria-hidden="true"></i> Comentarios publicados</h1>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Id comentario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Tel&eacute;fono</th>
+                <th scope="col">Email</th>
+                <th scope="col">Fecha de comentario</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.cantPubli > 0)
+            {
+                foreach (var comentario in ViewBag.comentarios)
+                {
+                    <tr>
+                        <td>@comentario.id_publicacion</td>
+                        <td id="nombre_usuario">@comentario.nombre</td>
+                        <td>@comentario.apellido</td>
+                        <td>@comentario.telefono<br />@comentario.celular</td>
+                        <td>@comentario.mail</td>
+                        <td>@comentario.fecha_pregunta</td>
+                        <td>
+                            <a href="@Url.Action("Index", "Producto", new { id_publicacion = @comentario.id_publicacion })" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>&nbsp;
+                            <a href="" class="btn btn-warning">Estado</a>&nbsp;<a href="" class="btn btn-info">Responder</a>&nbsp;<a href="" id="btn_eliminar_@comentario.id_publicacion" class="btn btn-danger eliminar_prod">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center">No hay comentarios publicados a la fecha</td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="7" class="text-right">Comentarios de el Tr&eacute;bol.</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

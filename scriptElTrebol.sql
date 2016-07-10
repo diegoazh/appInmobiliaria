@@ -6321,8 +6321,12 @@ go
 
 -- alter table Usuario
 -- alter column pass varchar (64) not null
+select * from Publicacion
 
---select * from Publicacion
+update Publicacion
+set fecha_baja = null
+where id_publicacion = 2
+
 -- delete from Publicacion;
 --DBCC CHECKIDENT (Publicacion, RESEED, 1)
 -- insert into Publicacion( titulo,fotos,precio,descripcion,barrio,fecha_publicacion)

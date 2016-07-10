@@ -74,6 +74,8 @@ body #body_page div .panelAlinear {
   box-shadow: 1px 2px 5px #808080;
 }
 body #body_page div .panelAlinear div.panel-body div.row div img {
+  width: 100%;
+  height: 350px;
   margin-bottom: 10px;
 }
 body #body_page div div.row {
@@ -88,7 +90,15 @@ body #body_page div div.row div #carousel_example_generic div div img {
 body #body_page div div.row div p {
   text-align: justify;
 }
+body #single_product div div#carousel-example-generic div.carousel-inner div.item img {
+  width: 100%;
+  height: 450px;
+}
+body #single_product div p {
+  text-align: justify;
+}
 body #footer_page {
+  margin-top: 25px;
   min-height: 100px;
   padding-top: 18px;
   background-color: #b7b7b7;

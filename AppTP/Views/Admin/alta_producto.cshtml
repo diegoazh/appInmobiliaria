@@ -1,0 +1,309 @@
+﻿@model AppTP.Models.Publicacion
+@{
+    ViewBag.Title = "Alta de Productos";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<div id="content_admin" class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+            @RenderPage("~/Views/Shared/Back_end/Alert/alert_usuario.cshtml")
+            <h1><i class="fa fa-cart-plus" aria-hidden="true"></i> Nuevo Producto</h1>
+            @using (@Html.BeginForm("alta_producto", "admin", FormMethod.Post, new { id = "frm_alta_producto", name = "frm_alta_producto", enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    @Html.Hidden("id_admin", Request.Cookies["idUsuario"].Value)
+                    <label for="" class="sr-only"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Titulo:</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;Titulo: </div>
+                        @Html.TextBoxFor(x => x.titulo, new { id = "titulo", name = "titulo", @class = "form-control", placeholder = "Ingrese el titulo de la publicación", maxlength = "70" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="sr-only"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Descripción:</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">Descripción:<br /><br /><i class="fa fa-keyboard-o" aria-hidden="true"></i></div>
+                        @Html.TextAreaFor(x => x.descripcion, new { rows = "8", id = "descripcion", name = "descripcion", @class = "form-control", placeholder = "Ingrese la descripción de la publicación...", maxlength = "1000" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-usd" aria-hidden="true"></i>&nbsp;<i class="fa fa-money" aria-hidden="true"></i> Precio:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i>&nbsp;<i class="fa fa-money" aria-hidden="true"></i> Precio:</div>
+                                @Html.TextBox("precio", "", new { type = "number", step = "0.01", min = "0", id = "precio", name = "precio", @class = "form-control", placeholder = "Ingrese el precio de la publicación" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-home" aria-hidden="true"></i> Producto:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i> Producto:</div>
+                                @{List<SelectListItem> prd = new List<SelectListItem>();
+                                foreach (var prod in ViewBag.productos)
+                                {
+                                    if (ViewBag.publiEditar != null && ViewBag.publiEditar[0].id_producto == prod.id_producto)
+                                    {
+                                        prd.Add(new SelectListItem
+                                        {
+                                            Text = prod.nombre,
+                                            Value = prod.id_producto.ToString(),
+                                            Selected = true
+                                        });
+                                    }
+                                    else
+                                    {
+                                        prd.Add(new SelectListItem
+                                        {
+                                            Text = prod.nombre,
+                                            Value = prod.id_producto.ToString()
+                                        });
+                                    }
+                                }}
+                                @Html.DropDownListFor(x => x.id_producto, selectList: prd, htmlAttributes: new { id = "producto", name = "producto", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-credit-card" aria-hidden="true"></i> Forma de pago:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">Forma de pago:<br /><br /><i class="fa fa-credit-card" aria-hidden="true"></i></div>
+                                @{List<SelectListItem> fpago = new List<SelectListItem>();
+                                foreach (var fp in ViewBag.formaPagos)
+                                {
+                                    if (ViewBag.publiEditar != null && ViewBag.publiEditar[0].id_formaPago == fp.id_formaPago)
+                                    {
+                                        fpago.Add(new SelectListItem
+                                        {
+                                            Text = fp.formaPago1,
+                                            Value = fp.id_formaPago.ToString(),
+                                            Selected = true
+                                        });
+                                    }
+                                    else
+                                    {
+                                        fpago.Add(new SelectListItem
+                                        {
+                                            Text = fp.formaPago1,
+                                            Value = fp.id_formaPago.ToString()
+                                        });
+                                    }
+                                }}
+                                @Html.DropDownListFor(x => x.id_formaPago, selectList: fpago, htmlAttributes: new { id = "forma_pago", name = "forma_pago", @class = "form-control", multiple = "multiple" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Tipo de negocio:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Tipo de negocio: </div>
+                                @{List<SelectListItem> tNeg = new List<SelectListItem>();
+                                foreach (var tn in ViewBag.tipoNegocio)
+                                {
+                                    if (ViewBag.publiEditar != null && ViewBag.publiEditar[0].id_tipoNegocio == tn.id_tipoNegocio)
+                                    {
+                                        tNeg.Add(new SelectListItem { Text = tn.tipo, Value = tn.id_tipoNegocio.ToString(), Selected = true });
+                                    }
+                                    else
+                                    {
+                                        tNeg.Add(new SelectListItem { Text = tn.tipo, Value = tn.id_tipoNegocio.ToString() });
+                                    }
+                                }}
+                                @Html.DropDownListFor(x => x.id_tipoNegocio, selectList: tNeg, htmlAttributes: new { id = "tipo_negocio", name = "tipo_negocio", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-power-off" aria-hidden="true"></i> Estado:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-power-off" aria-hidden="true"></i> Estado: </div>
+                                @{List<SelectListItem> es = new List<SelectListItem>();
+                                foreach (var est in ViewBag.estados)
+                                {
+                                    if (ViewBag.publiEditar != null && ViewBag.publiEditar[0].id_estado == est.id_estado)
+                                    {
+                                        es.Add(new SelectListItem { Text = est.estado1, Value = est.id_estado.ToString(), Selected = true });
+                                    }
+                                    else
+                                    {
+                                        es.Add(new SelectListItem { Text = est.estado1, Value = est.id_estado.ToString() });
+                                    }
+                                }}
+                                @Html.DropDownListFor(x => x.id_estado, selectList: es, htmlAttributes: new { id = "estado", name = "estado", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Provincia:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Provincia: </div>
+                                @{List<SelectListItem> prv = new List<SelectListItem>();
+                                foreach (var prov in ViewBag.provincias)
+                                {
+                                    if (ViewBag.publiEditar != null && ViewBag.publiEditar[0].Localidad.Departamento.Provincia.ID == prov.ID)
+                                    {
+                                        prv.Add(new SelectListItem { Text = prov.Nombre, Value = prov.ID.ToString(), Selected = true });
+                                    }
+                                    else
+                                    {
+                                        prv.Add(new SelectListItem { Text = prov.Nombre, Value = prov.ID.ToString() });
+                                    }
+                                }}
+                                @Html.DropDownList(name: "provincia", selectList: prv, htmlAttributes: new { id = "provincia", name = "provincia", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Departamento:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Departamento: </div>
+                                @{var item = new SelectListItem[] { new SelectListItem { Text = "Cargando...", Value = "1" } }; }
+                                @Html.DropDownList(name: "departamento", selectList: item, htmlAttributes: new { id = "departamento", name = "departamento", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Localidad:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Localidad: </div>
+                                @Html.DropDownListFor(x => x.id_localidad, selectList: item, htmlAttributes: new { id = "localidad", name = "localidad", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-map-o" aria-hidden="true"></i> Barrio:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i> Barrio: </div>
+                                @Html.TextBoxFor(x => x.barrio, new { id = "barrio", name = "barrio", @class = "form-control", placeholder = "Ingrese el barrio" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label for="" class="sr-only"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen principal:</label>
+                            <div class="input-group">
+                                @Html.HiddenFor(x => x.fotos)
+                                @if (ViewBag.publiEditar != null)
+                                {
+                                    @Html.Hidden("id_publicacion", "ViewBag.publiEditar[0].id_publicacion");
+                                }
+                                <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen principal: </div>
+                                <input type="file" value="" id="imagen_1" name="imagen_1" class="form-control" />
+                            </div>
+                            <div class="clonar-inputs-fotos">
+                                <button id="" class="btn btn-danger btn-xs hidden"><i class="fa fa-minus-square" aria-hidden="true"></i></button>
+                                <button id="" class="btn btn-success btn-xs"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                if (ViewBag.publiEditar != null)
+                {
+                    string[] fotos = @ViewBag.publiEditar[0].fotos.Split(',');
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">¿Eliminar?</th>
+                                <th scope="col">Imagen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 0; i < fotos.Length; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" value="" />Eliminar
+                                    </td>
+                                    <td>
+                                        <img class="img-responsive img-thumbnail" src="~/images/uploads/@fotos[i]" alt="@fotos[i]" id="img_@fotos[i]" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" class="text-right">Imagenes a eliminar.</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                }
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col md-6 col-lg-6 text-left">
+                        <input type="reset" value="Limpiar campos" class="btn btn-warning" />
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col md-6 col-lg-6 text-right">
+                        <input id="enviar_publicacion" name="enviar_publicacion" type="submit" value="Crear publicacion" class="btn btn-primary" accept="image/*" />
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5"></div>
+    </div>
+</div>
+@section scripts_admin {
+    @RenderPage("~/Views/Shared/Back_end/Sections/adminScripts.cshtml")
+
+    @if (ViewBag.publiEditar != null)
+    {
+        string cadena = ViewBag.publiEditar[0].descripcion.Replace(Environment.NewLine, ".*");
+        decimal precio = ViewBag.publiEditar[0].precio;
+        string barrio = ViewBag.publiEditar[0].barrio;
+        string titulo = ViewBag.publiEditar[0].titulo;
+        int dpto = ViewBag.publiEditar[0].Localidad.Departamento.ID;
+        int ldad = ViewBag.publiEditar[0].Localidad.ID;
+
+        <script type="text/javascript">
+            $('#frm_alta_producto').attr('action', '/admin/editar_producto');
+            $('#enviar_publicacion').val('Editar publicacion');
+
+            var text = '@(cadena)';
+            text = text.split('.*');
+            text = text.join('\n');
+            $('#descripcion').val(text);
+
+            var pre = '@(precio)';
+            pre = pre.split(',');
+            pre = pre.join('.');
+            pre = pre.split('');
+            pre.pop();
+            pre.pop();
+            pre = pre.join('');
+            $('#precio').val(pre);
+
+            var bar = '@barrio';
+            $('#barrio').val(bar);
+
+            var tit = '@titulo';
+            tit = $('<textarea />').html(tit).text();
+            $('#titulo').val(tit);
+
+            function selectedDpto() {
+                var value = '@dpto';
+                $('#departamento option[value=' + value + ']').attr('selected', 'selected');
+                $('#departamento').change();
+                setTimeout(selectedLdad, 1000);
+            }
+            function selectedLdad() {
+                var value2 = '@ldad';
+                $('#localidad option[value=' + value2 + ']').attr('selected', 'selected');
+            }
+            setTimeout(selectedDpto, 2500);
+
+        </script>
+    }
+}

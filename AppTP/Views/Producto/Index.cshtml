@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="single_product" class="row">
+    <div class="xs-hidden sm-hidden col-md-3 col-lg-3"></div>
+    <div class="xs-hidden sm-hidden col-md-6 col-lg-6">
+        @RenderPage("~/Views/Producto/Comentario/comentario.cshtml")
+        @RenderPage("~/Views/Shared/Front_end/Alerts/alert_producto.cshtml")
+        <h1>@ViewBag.publicacion[0].titulo | <small><i class="fa fa-calendar-check-o" aria-hidden="true"></i> @ViewBag.publicacion[0].fecha_publicacion</small></h1>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            @{
+                string[] fotos = @ViewBag.publicacion[0].fotos.Split(',');
+            }
+            <ol class="carousel-indicators">
+                @for (var i = 0; i < fotos.Length; i++)
+                {
+                    string active = "";
+                    if (i == 0) { active = "active"; }
+                    <li data-target="#carousel-example-generic" data-slide-to="@(i + 1)" class="@active"></li>
+                }
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                @for (var i = 0; i < fotos.Length; i++)
+                {
+                    string active = "";
+                    if (i == 0) { active = "active"; }
+                    <div class="item @active">
+                        <img class="img-responsive img-thumbnail" src="~/images/uploads/@fotos[i]" alt="fotos[i]">
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <h3>Caracter&iacute;stica</h3>
+                    </th>
+                    <th scope ="col">
+                        <h3>Detalle</h3>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Tipo de producto</th>
+                    <td><span class="label label-success"><i class="fa fa-home" aria-hidden="true"></i> @ViewBag.publicacion[0].Producto.nombre</span></td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class="fa fa-money" aria-hidden="true"></i> Forma de pago</th>
+                    <td><span class="label label-danger"><i class="fa fa-money" aria-hidden="true"></i> @ViewBag.publicacion[0].FormaPago.formaPago1</span></td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class=" fa fa-usd" aria-hidden="true"></i> Precio</th>
+                    <td><span class="label label-primary"><i class="fa fa-usd" aria-hidden="true"></i> @ViewBag.publicacion[0].precio</span></td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class="fa fa-map-o" aria-hidden="true"></i> Ubicaci&oacute;n</th>
+                    <td><span class="label label-info"><i class="fa fa-map-marker" aria-hidden="true"></i> @ViewBag.publicacion[0].barrio</span>&nbsp;<span class="label label-info"><i class="fa fa-map-marker" aria-hidden="true"></i> @ViewBag.publicacion[0].Localidad.Nombre</span>&nbsp;<span class="label label-info"><i class="fa fa-map-marker" aria-hidden="true"></i> @ViewBag.publicacion[0].Localidad.Departamento.Nombre</span>&nbsp;<span class="label label-info"><i class="fa fa-map-marker" aria-hidden="true"></i> @ViewBag.publicacion[0].Localidad.Departamento.Provincia.Nombre</span></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" class="text-right">Detalles de la publicación El Tr&eacute;bol.</td>
+                </tr>
+            </tfoot>
+        </table>
+        <p>@ViewBag.publicacion[0].descripcion</p>
+        <div class="row">
+            <div class="hidden-xs hidden-sm col-md-4 col-lg-4"></div>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
+                <button id="publicacion_@ViewBag.publicacion[0].id_publicacion" class="btn btn-success btn-lg"><i class="fa fa-envelope-o" aria-hidden="true"></i> Consultar publicaci&oacute;n</button>
+            </div>
+            <div class="hidden-xs hidden-sm col-md-4 col-lg-4"></div>
+        </div>
+    </div>
+    <div class="xs-hidden sm-hidden col-md-3 col-lg-3"></div>
+</div>
+
+@section scripts {
+    @RenderPage("~/Views/Shared/Front_end/Sections/misScriptsJs.cshtml")    
+}

@@ -94,7 +94,7 @@
         });
     }
     
-    if (window.location.href === 'http://' + window.location.host + '/admin/alta_producto') {
+    if (window.location.pathname === '/admin/alta_producto' || window.location.pathname === '/admin/editar_producto') {
         var numFotos = 1;
         posicionBtns();
 

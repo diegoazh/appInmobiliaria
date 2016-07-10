@@ -174,7 +174,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
-    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -328,6 +328,7 @@
     <Content Include="Scripts\MisScriptsJs.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\singleProduct.js" />
     <Content Include="Scripts\users.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -357,7 +358,7 @@
     <Content Include="Views\Shared\Back_end\Menus\menu_back.cshtml" />
     <Content Include="Views\Shared\Back_end\Menus\menu_lateral_back.cshtml" />
     <Content Include="Views\Admin\Listados\listado_productos.cshtml" />
-    <Content Include="Views\Admin\Altas\alta_producto.cshtml" />
+    <Content Include="Views\Admin\alta_producto.cshtml" />
     <Content Include="Views\Productos\Carrusel\carrusel.cshtml" />
     <Content Include="Views\Productos\Comentario\modalComentario.cshtml" />
     <Content Include="Views\Productos\Index.cshtml" />
@@ -368,12 +369,14 @@
     <Content Include="Views\Shared\Front_end\Errors\error_danger.cshtml" />
     <Content Include="Views\Usuario\Update\modal_update.cshtml" />
     <Content Include="Views\Shared\Back_end\Alert\alert_usuario.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Shared\Front_end\Alerts\alert_producto.cshtml" />
+    <Content Include="Views\Producto\Comentario\comentario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\foto_usuarios\" />
     <Folder Include="images\uploads\" />
-    <Folder Include="Views\Shared\Front_end\Alerts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

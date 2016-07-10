@@ -8,10 +8,6 @@
         {
             @RenderPage("~/Views/Admin/Listados/listado_productos.cshtml")
         }
-        else if (@Request.Url.AbsolutePath == "/admin/alta_producto" || @Request.Url.AbsolutePath == "/admin/alta_producto/")
-        {
-            @RenderPage("~/Views/Admin/Altas/alta_producto.cshtml")
-        }
         else if (@Request.Url.AbsolutePath == "/admin/negocios_cerrados" || @Request.Url.AbsolutePath == "/admin/negocios_cerrados/")
         {
             @RenderPage("~/Views/Admin/Listados/negocios_cerrados.cshtml")

@@ -64,7 +64,7 @@ namespace AppTP.Controllers
             ViewBag.productos = prod;
             cantidades();
 
-            return View("Index");
+            return View("alta_producto");
         }
 
         [HttpPost, Authorize]
@@ -120,7 +120,107 @@ namespace AppTP.Controllers
 
             TempData["uploads"] = "Subidas correctamente " + count + " imagenes.";
 
-            return RedirectToAction("alta_producto", "Admin");
+            return RedirectToAction("alta_producto", "admin");
+        }
+
+        public ActionResult editar_producto(int id_publicacion)
+        {
+            var editProd =
+                from p in db.Publicacion
+                where p.id_publicacion == id_publicacion
+                select p;
+
+            var neg =
+                from n in db.TipoNegocio
+                orderby n.tipo
+                select n;
+
+            var fpago =
+                from f in db.FormaPago
+                orderby f.formaPago1
+                select f;
+
+            var est =
+                from e in db.Estado
+                orderby e.estado1
+                select e;
+
+            var prov =
+                from p in db.Provincia
+                orderby p.Nombre
+                select p;
+
+            var prod =
+                from pr in db.Producto
+                orderby pr.nombre
+                select pr;
+
+            ViewBag.tipoNegocio = neg;
+            ViewBag.formaPagos = fpago;
+            ViewBag.estados = est;
+            ViewBag.provincias = prov;
+            ViewBag.productos = prod;
+            cantidades();
+
+            ViewBag.publiEditar = editProd.ToArray();
+
+            return View("alta_producto");
+        }
+
+        [HttpPost, Authorize]
+        public ActionResult editar_producto(Publicacion publicacion, string precio, string id_admin, string fotos, int id_publicacion)
+        {
+            int count = 0;
+            if (System.Web.HttpContext.Current.Request.Files != null)
+            {
+                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
+                {
+                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
+                        file.SaveAs(path);
+                        count++;
+                    }
+                }
+            }
+
+            string[] f = fotos.Split('*');
+            f = f.Except(new string[] { "" }).ToArray();
+
+            string nombreFotos = "";
+
+            for (int i = 0; i < f.Length; i++)
+            {
+                nombreFotos += f[i];
+                if (i != (f.Length - 1))
+                {
+                    nombreFotos += ",";
+                }
+
+            }
+
+            var publi = from pub in db.Publicacion where pub.id_publicacion == id_publicacion select pub;
+            var p = publi.ToArray();
+            p[0].titulo = publicacion.titulo;
+            p[0].fotos = nombreFotos;
+            p[0].precio = Convert.ToDecimal(precio.Replace(".", ","));
+            p[0].descripcion = publicacion.descripcion;
+            p[0].barrio = publicacion.barrio;
+            p[0].fecha_publicacion = DateTime.Now;
+            p[0].id_producto = publicacion.id_producto;
+            p[0].id_estado = publicacion.id_estado;
+            p[0].id_formaPago = publicacion.id_formaPago;
+            p[0].id_tipoNegocio = publicacion.id_tipoNegocio;
+            p[0].id_admin = Int32.Parse(id_admin);
+            p[0].id_localidad = publicacion.id_localidad;
+
+            db.SubmitChanges();
+
+            TempData["uploads"] = "Subidas correctamente " + count + " imagenes.";
+
+            return RedirectToAction("index", "admin");
         }
 
         [HttpPost, Authorize]

@@ -6249,7 +6249,7 @@ constraint pk_estado primary key (id_estado)
 )
 go
 insert into Estado(estado) values ('Publicado');
-insert into Estado(estado) values ('Borrado');
+insert into Estado(estado) values ('Borrador');
 go
 create table Producto(
 id_producto int identity(1,1),
@@ -6275,7 +6275,7 @@ go
  fecha_publicacion datetime not null,
  fecha_baja datetime,
  motivo_baja varchar (300),
- votante int,
+ votantes int,
  valoracion decimal(20,2),
  id_producto int,
  id_estado int,
@@ -6321,8 +6321,6 @@ go
 
 -- alter table Usuario
 -- alter column pass varchar (64) not null
-
- --select * from Usuario
 
 -- select * from Publicacion
 -- delete from Publicacion;

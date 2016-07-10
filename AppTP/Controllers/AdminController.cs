@@ -118,7 +118,9 @@ namespace AppTP.Controllers
             db.Publicacion.InsertOnSubmit(p);
             db.SubmitChanges();
 
-            return RedirectToAction("alta_producto", );
+            TempData["uploads"] = "Subidas correctamente " + count + " imagenes.";
+
+            return RedirectToAction("alta_producto", "Admin");
         }
 
         [HttpPost, Authorize]

@@ -2109,7 +2109,7 @@ namespace AppTP.Models
 		
 		private string _motivo_baja;
 		
-		private System.Nullable<int> _votante;
+		private System.Nullable<int> _votantes;
 		
 		private System.Nullable<decimal> _valoracion;
 		
@@ -2159,8 +2159,8 @@ namespace AppTP.Models
     partial void Onfecha_bajaChanged();
     partial void Onmotivo_bajaChanging(string value);
     partial void Onmotivo_bajaChanged();
-    partial void OnvotanteChanging(System.Nullable<int> value);
-    partial void OnvotanteChanged();
+    partial void OnvotantesChanging(System.Nullable<int> value);
+    partial void OnvotantesChanged();
     partial void OnvaloracionChanging(System.Nullable<decimal> value);
     partial void OnvaloracionChanged();
     partial void Onid_productoChanging(System.Nullable<int> value);
@@ -2368,22 +2368,22 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_votante", DbType="Int")]
-		public System.Nullable<int> votante
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_votantes", DbType="Int")]
+		public System.Nullable<int> votantes
 		{
 			get
 			{
-				return this._votante;
+				return this._votantes;
 			}
 			set
 			{
-				if ((this._votante != value))
+				if ((this._votantes != value))
 				{
-					this.OnvotanteChanging(value);
+					this.OnvotantesChanging(value);
 					this.SendPropertyChanging();
-					this._votante = value;
-					this.SendPropertyChanged("votante");
-					this.OnvotanteChanged();
+					this._votantes = value;
+					this.SendPropertyChanged("votantes");
+					this.OnvotantesChanged();
 				}
 			}
 		}

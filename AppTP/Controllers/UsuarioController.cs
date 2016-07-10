@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AppTP.Models;
 using System.Security.Cryptography;
 using System.Web.Security;
+using System.IO;
 
 namespace AppTP.Controllers
 {
@@ -20,7 +21,17 @@ namespace AppTP.Controllers
                 from u in db.Usuario
                 select u;
 
+            var listAvatars =
+                from a in db.Avatar
+                select a;
+
+            var listRoles =
+                from r in db.Rules
+                select r;
+
             ViewBag.usuarios = listUsers;
+            ViewBag.avatars = listAvatars;
+            ViewBag.roles = listRoles;
             cantidades();
 
             return View();
@@ -58,6 +69,8 @@ namespace AppTP.Controllers
                     Response.Cookies["UserNombre"].Expires = DateTime.Now.AddDays(1);
                     Response.Cookies["UserApellido"].Value = user[0].apellido;
                     Response.Cookies["UserApellido"].Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies["UserRules"].Value = user[0].id_rules.ToString();
+                    Response.Cookies["UserRules"].Expires = DateTime.Now.AddDays(1);
 
                     // Otro método para crear Cookies
                     HttpCookie idUser = new HttpCookie("idUsuario");
@@ -86,6 +99,50 @@ namespace AppTP.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("index", "Index");
+        }
+
+        [HttpPost, Authorize]
+        public ActionResult crear_usuario(Usuario usuario /*string foto_perfil*/)
+        {
+            if (System.Web.HttpContext.Current.Request.Files != null)
+            {
+                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
+                {
+                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
+                        file.SaveAs(path);
+                    }
+                }
+            }
+
+            Usuario user = new Usuario();
+            user.username = usuario.username;
+            user.nombre = usuario.nombre;
+            user.apellido = usuario.apellido;
+            user.mail = usuario.mail;
+            user.telefono = usuario.telefono;
+            user.pass = encriptar(usuario.pass);
+            if (usuario.Foto.foto1 != null)
+                user.Foto.foto1 = usuario.Foto.foto1;
+
+            user.id_avatar = usuario.id_avatar;
+            user.id_rules = usuario.id_rules;
+
+            db.Usuario.InsertOnSubmit(user);
+            try
+            {
+                db.SubmitChanges();
+                TempData["UserSucceed"] = "El usuario ha sido creado correctamente.";
+            }
+            catch (Exception e)
+            {
+                TempData["UserFail"] = "No se ha podido crear el usuario. Exception: " + e;
+            }
+            
+            return RedirectToAction("Index", "Usuario");
         }
 
         public static string encriptar(string password)

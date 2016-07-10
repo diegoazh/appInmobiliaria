@@ -20,8 +20,14 @@ namespace AppTP.Controllers
             {
                 consulta.pass = UsuarioController.encriptar(consulta.pass);
                 db.SubmitChanges();
-                db.Dispose();
             }
+
+            var publis =
+                from p in db.Publicacion
+                where p.fecha_baja == null && p.id_estado == 1
+                select p;
+
+            ViewBag.publicaciones = publis.ToArray();
 
             return View();
         }

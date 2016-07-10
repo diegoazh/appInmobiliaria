@@ -1,28 +1,50 @@
-﻿<div id="body_page" class="row">
-    @RenderPage("~/Views/Shared/Front_end/Errors/error_danger.cshtml")
-    <div class="col-xs-hidden col-sm-hidden col-md-4 col-lg-4">
-        <div id="producto_individual" class="panel panel-success panelAlinear">
-            <div class="panel-heading">Título de la publicación</div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <img src="~/images/lacasa.jpg" class="img-responsive img-thumbnail" alt="Responsive image">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <p class="text-justify">Descri mkasdmask jndakj najslbda njsd ksla anjsnaslkn salnsl cnaj de la Propiedad </p>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
-                        <a href="#" type="button" class="btn btn-lg">
-                            <span class="badge">7</span> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                        </a>
-                        <button type="button" class="btn btn-info btn-sm" data-loading-text="Cargando">Ver más...</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+﻿<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        @RenderPage("~/Views/Shared/Front_end/Errors/error_danger.cshtml")
     </div>
-    <div class="col-xs-hidden col-sm-hidden col-md-4 col-lg-4"></div>
-    <div class="col-xs-hidden col-sm-hidden col-md-4 col-lg-4"></div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
 </div>
+@for (int i = 0; i < ViewBag.publicaciones.Length;)
+{
+    <div id="body_page" class="row">
+        @for (int cols = 0; cols < 3; cols++)
+        {
+            if (ViewBag.publicaciones.Length > i)
+            {
+                <div class="col-xs-hidden col-sm-hidden col-md-4 col-lg-4">
+                    <div id="producto_individual" class="panel panel-success panelAlinear">
+                        <div class="panel-heading">@ViewBag.publicaciones[i].titulo</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    @{
+                                        string[] fotos = @ViewBag.publicaciones[i].fotos.Split(',');
+                                    }
+                                    <img src="~/images/uploads/@fotos[0]" class="img-responsive img-thumbnail" alt="Responsive image">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <p class="text-justify">@ViewBag.publicaciones[i].descripcion.Substring(0, 200)...</p>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                                    <a href="#" type="button" class="btn btn-lg">
+                                        <span class="badge">@if(@ViewBag.publicaciones[i].valoracion != null){@ViewBag.publicaciones[i].valoracion}</span><i class="fa fa-star-o" aria-hidden="true" id="star_1"></i><i class="fa fa-star-o" aria-hidden="true" id="star_2"></i><i class="fa fa-star-o" aria-hidden="true" id="star_3"></i><i class="fa fa-star-o" aria-hidden="true" id="star_4"></i><i class="fa fa-star-o" aria-hidden="true" id="star_5"></i>
+                                    </a>
+                                    @Html.ActionLink("Ver más...", "Index", "Productos", new { @ViewBag.publicaciones[i].id_publicacion }, new { @class = "btn btn-info btn-sm" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                i++;
+            }
+            else
+            {
+                <div class="col-xs-hidden col-sm-hidden col-md-4 col-lg-4"></div>
+                i++;
+            }
+        }
+    </div>
+}

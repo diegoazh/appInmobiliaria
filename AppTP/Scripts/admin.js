@@ -121,7 +121,9 @@
             event.preventDefault();
             var stringFotos = "";
             for (var i = 1; i <= numFotos; i++) {
-                stringFotos += $('#imagen_' + i).val() + '*';
+                var f = $('#imagen_' + i).val().split('\\');
+                f = f[f.length - 1];
+                stringFotos += (f + '*');
             }
             $('#fotos').val(stringFotos);
 

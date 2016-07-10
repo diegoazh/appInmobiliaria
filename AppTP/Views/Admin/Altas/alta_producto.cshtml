@@ -10,14 +10,14 @@
                 <label for="" class="sr-only"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Titulo:</label>
                 <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;Titulo: </div>
-                    @Html.TextBoxFor(x => x.titulo, new { id = "titulo", name = "titulo", @class = "form-control", placeholder = "Ingrese el titulo de la publicación" })
+                    @Html.TextBoxFor(x => x.titulo, new { id = "titulo", name = "titulo", @class = "form-control", placeholder = "Ingrese el titulo de la publicación", maxlength = "70" })
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="sr-only"><i class="fa fa-keyboard-o" aria-hidden="true"></i> Descripción:</label>
                 <div class="input-group">
                     <div class="input-group-addon">Descripción:<br /><br /><i class="fa fa-keyboard-o" aria-hidden="true"></i></div>
-                    @Html.TextAreaFor(x => x.descripcion, new { rows = "8", id = "descripcion", name = "descripcion", @class = "form-control", placeholder = "Ingrese la descripción de la publicación..." })
+                    @Html.TextAreaFor(x => x.descripcion, new { rows = "8", id = "descripcion", name = "descripcion", @class = "form-control", placeholder = "Ingrese la descripción de la publicación...", maxlength = "1000" })
                 </div>
             </div>
             <div class="row">

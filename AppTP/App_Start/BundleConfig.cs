@@ -22,6 +22,7 @@ namespace AppTP
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/script/require").Include("~/Scripts/require.js"));
             bundles.Add(new ScriptBundle("~/script/bootstrap").Include("~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include("~/Content/bootstrap.css", "~/Content/bootstrap-theme.css"));

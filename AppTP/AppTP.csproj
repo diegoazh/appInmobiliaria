@@ -310,6 +310,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\adminRequire.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
@@ -326,6 +327,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\MisScriptsJs.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\require.js" />
     <Content Include="Scripts\users.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -369,7 +371,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\foto\" />
+    <Folder Include="images\foto_usuarios\" />
     <Folder Include="images\uploads\" />
     <Folder Include="Views\Shared\Front_end\Alerts\" />
   </ItemGroup>

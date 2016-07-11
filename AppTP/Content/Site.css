@@ -64,9 +64,13 @@ body #container_main_menu div nav#main_menu div div.navbar-header a .logo-chico 
   position: relative;
   top: -5px;
 }
-body #container_main_menu div nav#main_menu div div.collapse ul.nav li a img {
+body #container_main_menu div nav#main_menu div div.collapse ul.nav li a.user-menu {
+  padding: 5px;
+}
+body #container_main_menu div nav#main_menu div div.collapse ul.nav li a.user-menu img {
   display: inline-block;
-  width: 9%;
+  width: 40px;
+  height: 40px;
 }
 body #body_page {
   min-height: 980px;

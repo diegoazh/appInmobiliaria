@@ -71,6 +71,13 @@ namespace AppTP.Controllers
                     Response.Cookies["UserApellido"].Expires = DateTime.Now.AddDays(1);
                     Response.Cookies["UserRules"].Value = user[0].id_rules.ToString();
                     Response.Cookies["UserRules"].Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies["UserAvatar"].Value = user[0].Avatar.avatar1;
+                    Response.Cookies["UserAvatar"].Expires = DateTime.Now.AddDays(1);
+                    if (user[0].id_foto != null)
+                    {
+                        Response.Cookies["UserFoto"].Value = user[0].Foto.foto1;
+                        Response.Cookies["UserFoto"].Expires = DateTime.Now.AddDays(1);
+                    }
 
                     // Otro método para crear Cookies
                     HttpCookie idUser = new HttpCookie("idUsuario");
@@ -98,6 +105,12 @@ namespace AppTP.Controllers
         public ActionResult logoutUsuario()
         {
             FormsAuthentication.SignOut();
+            Response.Cookies["UserNombre"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["UserApellido"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["UserRules"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["UserAvatar"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["UserFoto"].Expires = DateTime.Now.AddDays(-1);
+
             return RedirectToAction("index", "Index");
         }
 
@@ -112,7 +125,7 @@ namespace AppTP.Controllers
                     if (file != null && file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
-                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
+                        var path = Path.Combine(Server.MapPath("~/images/foto_usuarios"), fileName);
                         file.SaveAs(path);
                     }
                 }

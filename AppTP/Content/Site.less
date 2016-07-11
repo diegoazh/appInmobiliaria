@@ -53,11 +53,11 @@ body {
         }
     }
 
-    #main_menu {
+    #container_main_menu {
         div {
             padding: 0;
 
-            nav {
+            nav#main_menu {
                 border-radius: 0;
                 margin-bottom: 0;
 
@@ -70,6 +70,18 @@ body {
                                 background-color: @blanco;
                                 position: relative;
                                 top: -5px;
+                            }
+                        }
+                    }
+                    div.collapse {
+                        ul.nav {
+                            li {
+                                a {
+                                    img {
+                                        display: inline-block;
+                                        width: 9%;
+                                    }
+                                }
                             }
                         }
                     }

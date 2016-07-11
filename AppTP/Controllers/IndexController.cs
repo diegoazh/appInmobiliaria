@@ -27,7 +27,13 @@ namespace AppTP.Controllers
                 where p.fecha_baja == null && p.id_estado == 1
                 select p;
 
+            var coment =
+                from c in db.Comentario
+                where c.respuesta == null
+                select c;
+
             ViewBag.publicaciones = publis.ToArray();
+            ViewBag.cantComent = coment.Count();
 
             return View();
         }

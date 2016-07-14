@@ -260,7 +260,7 @@
 
     @if (ViewBag.publiEditar != null)
     {
-        string cadena = ViewBag.publiEditar[0].descripcion.Replace(Environment.NewLine, ".*");
+        string cadena = ViewBag.publiEditar[0].descripcion.Replace(Environment.NewLine, "*");
         decimal precio = ViewBag.publiEditar[0].precio;
         string barrio = ViewBag.publiEditar[0].barrio;
         string titulo = ViewBag.publiEditar[0].titulo;
@@ -272,8 +272,9 @@
             $('#enviar_publicacion').val('Editar publicacion');
 
             var text = '@(cadena)';
-            text = text.split('.*');
+            text = text.split('*');
             text = text.join('\n');
+            text = $('<textarea />').html(text).text();
             $('#descripcion').val(text);
 
             var pre = '@(precio)';

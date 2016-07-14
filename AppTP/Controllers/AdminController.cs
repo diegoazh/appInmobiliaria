@@ -32,36 +32,7 @@ namespace AppTP.Controllers
         [HttpGet, Authorize]
         public ActionResult alta_producto()
         {
-            var neg =
-                from n in db.TipoNegocio
-                orderby n.tipo
-                select n;
-
-            var fpago = 
-                from f in db.FormaPago
-                orderby f.formaPago1
-                select f;
-
-            var est =
-                from e in db.Estado
-                orderby e.estado1
-                select e;
-
-            var prov = 
-                from p in db.Provincia
-                orderby p.Nombre
-                select p;
-
-            var prod =
-                from pr in db.Producto
-                orderby pr.nombre
-                select pr;
-
-            ViewBag.tipoNegocio = neg;
-            ViewBag.formaPagos = fpago;
-            ViewBag.estados = est;
-            ViewBag.provincias = prov;
-            ViewBag.productos = prod;
+            selectsAltaEditar();
             cantidades();
 
             return View("alta_producto");
@@ -70,36 +41,7 @@ namespace AppTP.Controllers
         [HttpPost, Authorize]
         public ActionResult alta_producto(Publicacion publicacion, string precio, string id_admin, string fotos)
         {
-            int count = 0;
-            if (System.Web.HttpContext.Current.Request.Files != null)
-            {
-                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
-                {
-                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        var fileName = Path.GetFileName(file.FileName);
-                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
-                        file.SaveAs(path);
-                        count++;
-                    }
-                }
-            }
-
-            string[] f = fotos.Split('*');
-            f = f.Except(new string[] { "" }).ToArray();
-
-            string nombreFotos = "";
-
-            for (int i = 0; i < f.Length; i++)
-            {
-                nombreFotos += f[i];
-                if (i != (f.Length - 1))
-                {
-                    nombreFotos += ",";
-                }
-                
-            }
+            string nombreFotos = AltaEditar(fotos);
 
             Publicacion p = new Publicacion();
             p.titulo = publicacion.titulo;
@@ -118,8 +60,6 @@ namespace AppTP.Controllers
             db.Publicacion.InsertOnSubmit(p);
             db.SubmitChanges();
 
-            TempData["uploads"] = "Subidas correctamente " + count + " imagenes.";
-
             return RedirectToAction("alta_producto", "admin");
         }
 
@@ -130,36 +70,7 @@ namespace AppTP.Controllers
                 where p.id_publicacion == id_publicacion
                 select p;
 
-            var neg =
-                from n in db.TipoNegocio
-                orderby n.tipo
-                select n;
-
-            var fpago =
-                from f in db.FormaPago
-                orderby f.formaPago1
-                select f;
-
-            var est =
-                from e in db.Estado
-                orderby e.estado1
-                select e;
-
-            var prov =
-                from p in db.Provincia
-                orderby p.Nombre
-                select p;
-
-            var prod =
-                from pr in db.Producto
-                orderby pr.nombre
-                select pr;
-
-            ViewBag.tipoNegocio = neg;
-            ViewBag.formaPagos = fpago;
-            ViewBag.estados = est;
-            ViewBag.provincias = prov;
-            ViewBag.productos = prod;
+            selectsAltaEditar();
             cantidades();
 
             ViewBag.publiEditar = editProd.ToArray();
@@ -168,43 +79,17 @@ namespace AppTP.Controllers
         }
 
         [HttpPost, Authorize]
-        public ActionResult editar_producto(Publicacion publicacion, string precio, string id_admin, string fotos, int id_publicacion)
+        public ActionResult editar_producto(Publicacion publicacion, string precio, string id_admin, string fotos, int id_publicacion/*, string eliminar*/)
         {
-            int count = 0;
-            if (System.Web.HttpContext.Current.Request.Files != null)
-            {
-                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
-                {
-                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        var fileName = Path.GetFileName(file.FileName);
-                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
-                        file.SaveAs(path);
-                        count++;
-                    }
-                }
-            }
-
-            string[] f = fotos.Split('*');
-            f = f.Except(new string[] { "" }).ToArray();
-
-            string nombreFotos = "";
-
-            for (int i = 0; i < f.Length; i++)
-            {
-                nombreFotos += f[i];
-                if (i != (f.Length - 1))
-                {
-                    nombreFotos += ",";
-                }
-
-            }
+            string nombreFotos = AltaEditar(fotos);
 
             var publi = from pub in db.Publicacion where pub.id_publicacion == id_publicacion select pub;
             var p = publi.ToArray();
             p[0].titulo = publicacion.titulo;
-            p[0].fotos = nombreFotos;
+            if (!String.IsNullOrEmpty(nombreFotos))
+            {
+                p[0].fotos = nombreFotos;
+            }
             p[0].precio = Convert.ToDecimal(precio.Replace(".", ","));
             p[0].descripcion = publicacion.descripcion;
             p[0].barrio = publicacion.barrio;
@@ -217,8 +102,6 @@ namespace AppTP.Controllers
             p[0].id_localidad = publicacion.id_localidad;
 
             db.SubmitChanges();
-
-            TempData["uploads"] = "Subidas correctamente " + count + " imagenes.";
 
             return RedirectToAction("index", "admin");
         }
@@ -341,6 +224,80 @@ namespace AppTP.Controllers
             ViewBag.cantComent = coment.Count();
             ViewBag.cantUsers = users.Count();
             ViewBag.cantClosed = closed.Count();
+        }
+
+        public void selectsAltaEditar()
+        {
+            var neg =
+                from n in db.TipoNegocio
+                orderby n.tipo
+                select n;
+
+            var fpago =
+                from f in db.FormaPago
+                orderby f.formaPago1
+                select f;
+
+            var est =
+                from e in db.Estado
+                orderby e.estado1
+                select e;
+
+            var prov =
+                from p in db.Provincia
+                orderby p.Nombre
+                select p;
+
+            var prod =
+                from pr in db.Producto
+                orderby pr.nombre
+                select pr;
+
+            ViewBag.tipoNegocio = neg;
+            ViewBag.formaPagos = fpago;
+            ViewBag.estados = est;
+            ViewBag.provincias = prov;
+            ViewBag.productos = prod;
+        }
+
+        public string AltaEditar(string fotos)
+        {
+            int count = 0;
+            if (System.Web.HttpContext.Current.Request.Files != null)
+            {
+                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
+                {
+                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
+                        file.SaveAs(path);
+                        count++;
+                    }
+                }
+            }
+
+            TempData["uploads"] = "Subidas correctamente " + count + " imagen(es).";
+            string nombreFotos = "";
+
+            if (!String.IsNullOrEmpty(fotos))
+            {
+                string[] f = fotos.Split('*');
+                f = f.Except(new string[] { "" }).ToArray();
+
+                for (int i = 0; i < f.Length; i++)
+                {
+                    nombreFotos += f[i];
+                    if (i != (f.Length - 1))
+                    {
+                        nombreFotos += ",";
+                    }
+
+                }
+            }
+
+            return nombreFotos;
         }
     }
 }

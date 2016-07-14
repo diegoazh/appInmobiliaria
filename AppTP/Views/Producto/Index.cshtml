@@ -82,7 +82,7 @@
                 </tr>
             </tfoot>
         </table>
-        <p>@ViewBag.publicacion[0].descripcion</p>
+        <p id="descripcion_publi"></p>
         <div class="row">
             <div class="hidden-xs hidden-sm col-md-4 col-lg-4"></div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
@@ -95,5 +95,16 @@
 </div>
 
 @section scripts {
-    @RenderPage("~/Views/Shared/Front_end/Sections/misScriptsJs.cshtml")    
+    @RenderPage("~/Views/Shared/Front_end/Sections/misScriptsJs.cshtml")
+    @{string cadena = ViewBag.publicacion[0].descripcion.Replace(Environment.NewLine, "*");}
+    <script type="text/javascript">
+        var text = '@(cadena)';
+        console.log(text);
+        console.log(text);
+        text = text.split('*');
+        console.log(text);
+        text = text.join('</p><p>');
+        console.log(text);
+        $('#descripcion_publi').html(text);
+    </script>
 }

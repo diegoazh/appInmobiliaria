@@ -138,17 +138,26 @@
 
         $('#enviar_publicacion').on('click', function (event) {
             event.preventDefault();
-            var stringFotos = "";
-            for (var i = 1; i <= numFotos; i++) {
-                var f = $('#imagen_' + i).val().split('\\');
-                f = f[f.length - 1];
-                stringFotos += (f + '*');
+
+            if (window.location.pathname === '/admin/alta_producto' && $('#imagen_1').val() === "") {
+                $('#alert_backend_usuario').removeClass('alert-default alert-warning alert-success alert-info hidden').addClass('alert-danger', 'text-center');
+                $('#texto_alert_usuarios').text('El campo de foto principal no puede quedar vacio, la publicación debe tener al menos UNA foto.');
+                $('#imagen_1').attr('style', 'border: 2px solid #FF0000;');
+            } else {
+                var stringFotos = "";
+                for (var i = 1; i <= numFotos; i++) {
+                    if ($('#imagen_' + i).val() !== "") {
+                        var f = $('#imagen_' + i).val().split('\\');
+                        f = f[f.length - 1];
+                        stringFotos += (f + '*');
+                    }
+                }
+                $('#fotos').val(stringFotos);
+
+                //cargarImagenes();
+
+                $('#frm_alta_producto').submit();
             }
-            $('#fotos').val(stringFotos);
-
-            //cargarImagenes();
-
-            $('#frm_alta_producto').submit();
         });
     }
 });

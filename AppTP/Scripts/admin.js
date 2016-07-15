@@ -120,9 +120,6 @@
         $(window).on('load', function () {
             cargarSelect('departamentos', 'provincia', 'departamento');
             setTimeout(actualizaLocalidad, 350);
-            clonarFormGroup();
-            eliminarFormGroup();
-            eliminarFormGroup();
         });
 
         $('#provincia').on('change', function () {

@@ -41,7 +41,7 @@ namespace AppTP.Controllers
         [HttpPost, Authorize]
         public ActionResult alta_producto(Publicacion publicacion, string precio, string id_admin, string fotos)
         {
-            string nombreFotos = AltaEditar(fotos);
+            string nombreFotos = fotosAgregarEliminar(fotos);
 
             Publicacion p = new Publicacion();
             p.titulo = publicacion.titulo;
@@ -79,17 +79,18 @@ namespace AppTP.Controllers
         }
 
         [HttpPost, Authorize]
-        public ActionResult editar_producto(Publicacion publicacion, string precio, string id_admin, string fotos, int id_publicacion/*, string eliminar*/)
+        public ActionResult editar_producto(Publicacion publicacion, string precio, string id_admin, string fotos, int id_publicacion, string eliminar)
         {
-            string nombreFotos = AltaEditar(fotos);
-
             var publi = from pub in db.Publicacion where pub.id_publicacion == id_publicacion select pub;
             var p = publi.ToArray();
-            p[0].titulo = publicacion.titulo;
+
+            string nombreFotos = fotosAgregarEliminar(fotos, p[0].fotos, eliminar);
+
             if (!String.IsNullOrEmpty(nombreFotos))
             {
                 p[0].fotos = nombreFotos;
             }
+            p[0].titulo = publicacion.titulo;
             p[0].precio = Convert.ToDecimal(precio.Replace(".", ","));
             p[0].descripcion = publicacion.descripcion;
             p[0].barrio = publicacion.barrio;
@@ -260,36 +261,78 @@ namespace AppTP.Controllers
             ViewBag.productos = prod;
         }
 
-        public string AltaEditar(string fotos)
+        public string fotosAgregarEliminar(string fotos, string fotosActuales = "", string eliminar = "")
         {
-            int count = 0;
-            if (System.Web.HttpContext.Current.Request.Files != null)
+            string nombreFotos = "";
+            if (!String.IsNullOrEmpty(fotosActuales))
             {
-                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
-                {
-                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        var fileName = Path.GetFileName(file.FileName);
-                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
-                        file.SaveAs(path);
-                        count++;
-                    }
-                }
+                nombreFotos = fotosActuales;
             }
 
-            TempData["uploads"] = "Subidas correctamente " + count + " imagen(es).";
-            string nombreFotos = "";
+            if (!String.IsNullOrEmpty(eliminar))
+            {
+                string[] elim = eliminar.Split('*');
+                elim = elim.Except(new string[] { "" }).ToArray();
+                string[] actuals = fotosActuales.Split(',');
+                var fotAct = actuals.ToList();
+                TempData["ErrorOnDelet"] = "";
+
+                for (int i = 0; i < elim.Length; i++)
+                {
+                    var physicalPath = System.IO.Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/images/uploads/"), elim[i]);
+                    if (System.IO.File.Exists(physicalPath))
+                    {
+                        try
+                        {
+                            System.IO.File.Delete(physicalPath);
+                        }
+                        catch (System.IO.IOException ex)
+                        {
+                            TempData["ErrorOnDelet"] += ex.Message + " / ";
+                        }
+                    }
+                    for (int x = 0; x < actuals.Length; x++) {
+                        if (elim[i] == actuals[x])
+                        {
+                            fotAct.Remove(elim[i]);
+                        }
+                    }
+                }
+                nombreFotos = String.Join(",", fotAct);
+            }
 
             if (!String.IsNullOrEmpty(fotos))
             {
-                string[] f = fotos.Split('*');
-                f = f.Except(new string[] { "" }).ToArray();
-
-                for (int i = 0; i < f.Length; i++)
+                if(!String.IsNullOrEmpty(nombreFotos))
                 {
-                    nombreFotos += f[i];
-                    if (i != (f.Length - 1))
+                    nombreFotos += ",";
+                }
+
+                int count = 0;
+                if (System.Web.HttpContext.Current.Request.Files != null)
+                {
+                    for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
+                    {
+                        HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName);
+                            var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
+                            file.SaveAs(path);
+                            count++;
+                        }
+                    }
+                }
+
+                TempData["uploads"] = "Subidas correctamente " + count + " imagen(es).";
+
+                string[] fot = fotos.Split('*');
+                fot = fot.Except(new string[] { "" }).ToArray();
+
+                for (int i = 0; i < fot.Length; i++)
+                {
+                    nombreFotos += fot[i];
+                    if (i != (fot.Length - 1))
                     {
                         nombreFotos += ",";
                     }

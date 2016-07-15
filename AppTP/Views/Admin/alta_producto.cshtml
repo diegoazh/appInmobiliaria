@@ -200,6 +200,7 @@
                                 @if (ViewBag.publiEditar != null)
                                 {
                                     @Html.Hidden("id_publicacion", "ViewBag.publiEditar[0].id_publicacion");
+                                    @Html.Hidden("eliminar", "");
                                 }
                                 <div class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i> Imagen principal: </div>
                                 <input type="file" value="" id="imagen_1" name="imagen_1" class="form-control" />
@@ -227,7 +228,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <input type="checkbox" value="" />Eliminar
+                                        <input type="checkbox" value="@fotos[i]" />Eliminar
                                     </td>
                                     <td>
                                         <img class="img-responsive img-thumbnail" src="~/images/uploads/@fotos[i]" alt="@fotos[i]" id="img_@fotos[i]" />
@@ -257,7 +258,6 @@
 </div>
 @section scripts_admin {
     @RenderPage("~/Views/Shared/Back_end/Sections/adminScripts.cshtml")
-
     @if (ViewBag.publiEditar != null)
     {
         string cadena = ViewBag.publiEditar[0].descripcion.Replace(Environment.NewLine, "*");
@@ -268,15 +268,18 @@
         int ldad = ViewBag.publiEditar[0].Localidad.ID;
 
         <script type="text/javascript">
+            /* Cambia el action del form y el value del submit */
             $('#frm_alta_producto').attr('action', '/admin/editar_producto');
             $('#enviar_publicacion').val('Editar publicacion');
 
+            /* Rellena el text area de la descripción */
             var text = '@(cadena)';
             text = text.split('*');
             text = text.join('\n');
             text = $('<textarea />').html(text).text();
             $('#descripcion').val(text);
 
+            /* Cambia la coma del precio por el punto y elimina los dos ceros finales */
             var pre = '@(precio)';
             pre = pre.split(',');
             pre = pre.join('.');
@@ -286,23 +289,51 @@
             pre = pre.join('');
             $('#precio').val(pre);
 
+            /* Carga el input del barrio */
             var bar = '@barrio';
             $('#barrio').val(bar);
 
+            /* Carga el titulo sin entidades html */
             var tit = '@titulo';
             tit = $('<textarea />').html(tit).text();
             $('#titulo').val(tit);
 
+            /* Funcion que carga el value de input hidden de imagenes a eliminar */
+            function checkboxDeleted(bool, checkbox) {
+                if (bool) {
+                    var deletes = $('#eliminar').val();
+                    var check = checkbox.val();
+                    deletes += check + '*';
+                    $('#eliminar').val(deletes);
+                } else {
+                    var deletes = $('#eliminar').val();
+                    deletes = deletes.split('*');
+                    var pos = deletes.indexOf(checkbox.val());
+                    deletes.splice(pos, 1);
+                    deletes = deletes.join('*');
+                    $('#eliminar').val(deletes);
+                }
+            }
+            /* Asocia al evento click de los checkbox una función anónima que ejecuta la funcion anterior */
+            $('input[type=checkbox]').on('click', function () {
+                checkboxDeleted($(this).prop('checked'), $(this));
+            });
+
+            /* Selecciona el departamento en el selected departamentos y lanza el evento change para que el select de localidades se actualice */
             function selectedDpto() {
                 var value = '@dpto';
                 $('#departamento option[value=' + value + ']').attr('selected', 'selected');
                 $('#departamento').change();
                 setTimeout(selectedLdad, 1000);
             }
+
+            /* Selecciona la localidad en el select localidades */
             function selectedLdad() {
                 var value2 = '@ldad';
                 $('#localidad option[value=' + value2 + ']').attr('selected', 'selected');
             }
+
+            /* Establece que la funcion selectedDpto se ejecutará 2,5 segundos después de leer esta linea. Es para darle tiempo al DOM de terminar de generarse. */
             setTimeout(selectedDpto, 2500);
 
         </script>

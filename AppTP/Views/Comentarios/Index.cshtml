@@ -8,7 +8,7 @@
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th scope="col">Id comentario</th>
+                <th scope="col">Publicacion</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Tel&eacute;fono</th>
@@ -23,15 +23,14 @@
                 foreach (var comentario in ViewBag.comentarios)
                 {
                     <tr>
-                        <td>@comentario.id_publicacion</td>
+                        <td>@comentario.Publicacion.titulo</td>
                         <td id="nombre_usuario">@comentario.nombre</td>
                         <td>@comentario.apellido</td>
                         <td>@comentario.telefono<br />@comentario.celular</td>
                         <td>@comentario.mail</td>
                         <td>@comentario.fecha_pregunta</td>
                         <td>
-                            <a href="@Url.Action("Index", "Producto", new { id_publicacion = @comentario.id_publicacion })" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>
-                            <a href="" class="btn btn-warning">Estado</a><a href="" class="btn btn-info">Responder</a><a href="" id="btn_eliminar_@comentario.id_publicacion" class="btn btn-danger eliminar_prod">Eliminar</a>
+                            <a href="@Url.Action("Index", "Producto", new { id_publicacion = @comentario.id_publicacion })" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a><a href="" class="btn btn-primary"><i class="fa fa-commenting" aria-hidden="true"></i> Responder</a><a href="" id="btn_eliminar_@comentario.id_publicacion" class="btn btn-danger eliminar_prod"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
                         </td>
                     </tr>
                 }

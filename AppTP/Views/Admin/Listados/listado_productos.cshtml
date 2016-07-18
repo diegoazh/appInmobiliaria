@@ -27,7 +27,7 @@
                     <td>@publicacion.TipoNegocio.tipo</td>
                     <td id="estado_publi_@publicacion.id_publicacion">@publicacion.Estado.estado1</td>
                     <td>
-                        <a href="@Url.Action("Index", "Producto", new { id_publicacion = @publicacion.id_publicacion })" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a><a href="" id="btn_estado_@publicacion.id_publicacion" class="btn btn-warning est-publi"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Estados</a><a href="@Url.Action("editar_producto", "admin", new{ id_publicacion = @publicacion.id_publicacion })" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a><a href="" id="btn_cerrar_@publicacion.id_publicacion" class="btn btn-danger cerrar-publi"><i class="fa fa-trash" aria-hidden="true"></i> Cerrar publicaci&oacute;n</a>
+                        <a href="@Url.Action("Index", "Producto", new { id_publicacion = @publicacion.id_publicacion })" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a><a href="" id="btn_estado_@publicacion.id_publicacion" class="btn btn-warning est-publi"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Estados</a><a href="@Url.Action("editar_producto", "admin", new{ id_publicacion = @publicacion.id_publicacion })" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a><a href="" id="btn_cerrar_@publicacion.id_publicacion" class="btn btn-danger cerrar-publi"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Cerrar</a>
                     </td>
                 </tr>
             }

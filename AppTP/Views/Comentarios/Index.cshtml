@@ -30,8 +30,8 @@
                         <td>@comentario.mail</td>
                         <td>@comentario.fecha_pregunta</td>
                         <td>
-                            <a href="@Url.Action("Index", "Producto", new { id_publicacion = @comentario.id_publicacion })" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>&nbsp;
-                            <a href="" class="btn btn-warning">Estado</a>&nbsp;<a href="" class="btn btn-info">Responder</a>&nbsp;<a href="" id="btn_eliminar_@comentario.id_publicacion" class="btn btn-danger eliminar_prod">Eliminar</a>
+                            <a href="@Url.Action("Index", "Producto", new { id_publicacion = @comentario.id_publicacion })" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>
+                            <a href="" class="btn btn-warning">Estado</a><a href="" class="btn btn-info">Responder</a><a href="" id="btn_eliminar_@comentario.id_publicacion" class="btn btn-danger eliminar_prod">Eliminar</a>
                         </td>
                     </tr>
                 }

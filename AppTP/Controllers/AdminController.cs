@@ -63,6 +63,7 @@ namespace AppTP.Controllers
             return RedirectToAction("alta_producto", "admin");
         }
 
+        [HttpGet, Authorize]
         public ActionResult editar_producto(int id_publicacion)
         {
             var editProd =
@@ -108,14 +109,47 @@ namespace AppTP.Controllers
         }
 
         [HttpPost, Authorize]
-        public ActionResult eliminar_producto(int id_publicacion)
+        public ActionResult cerrar_publicacion(int id_publi_cerrar, string comentario_cierre)
         {
-            var registro = from r in db.Publicacion where r.id_publicacion == id_publicacion select r;
+            var registro = from r in db.Publicacion where r.id_publicacion == id_publi_cerrar select r;
             var reg = registro.ToArray();
             reg[0].fecha_baja = DateTime.UtcNow;
+            reg[0].motivo_baja = comentario_cierre;
             db.SubmitChanges();
 
             return RedirectToAction("index", "admin");
+        }
+
+        [HttpGet, Authorize]
+        public JsonResult estados_publicacion(string tabla)
+        {
+            List<object> est = new List<object>();
+            var estados = from e in db.Estado select e;
+            foreach(var estado in estados)
+            {
+                Estado es = new Estado();
+                es.id_estado = estado.id_estado;
+                es.estado1 = estado.estado1;
+                est.Add(es);
+            }
+            var json = JsonConvert.SerializeObject(est);
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost, Authorize]
+        public ActionResult estados_publicacion(int est_publi, int id_publi_est)
+        {
+            var publi = db.Publicacion.Single(x => x.id_publicacion == id_publi_est);
+            publi.id_estado = est_publi;
+            try
+            {
+                db.SubmitChanges();
+                return RedirectToAction("Index", "admin");
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Index", "admin");
+            }
         }
 
         [HttpPost, Authorize]

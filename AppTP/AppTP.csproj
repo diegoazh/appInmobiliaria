@@ -360,9 +360,6 @@
     <Content Include="Views\Shared\Back_end\Menus\menu_lateral_back.cshtml" />
     <Content Include="Views\Admin\Listados\listado_productos.cshtml" />
     <Content Include="Views\Admin\alta_producto.cshtml" />
-    <Content Include="Views\Productos\Carrusel\carrusel.cshtml" />
-    <Content Include="Views\Productos\Comentario\modalComentario.cshtml" />
-    <Content Include="Views\Productos\Index.cshtml" />
     <Content Include="Views\Index\ListadoProductos\listadoProductos.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Admin\Listados\negocios_cerrados.cshtml" />
@@ -373,9 +370,11 @@
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Shared\Front_end\Alerts\alert_producto.cshtml" />
     <Content Include="Views\Producto\Comentario\comentario.cshtml" />
-    <Content Include="Views\Admin\Listados\Eliminar\modal_eliminar.cshtml" />
+    <Content Include="Views\Admin\Listados\Cerrar\modal_cerrar_publicacion.cshtml" />
     <Content Include="Views\Shared\Front_end\Alerts\alert_comentario.cshtml" />
     <Content Include="Views\Comentarios\Index.cshtml" />
+    <Content Include="Views\Admin\Listados\Estados\modal_estados_publicacion.cshtml" />
+    <Content Include="Views\Producto\Carousel\carousel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

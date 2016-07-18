@@ -1,5 +1,8 @@
 ﻿$(document).ready(function () {
     'use strict';
+    /***************************************
+     * Sección de definición de funciones
+     ***************************************/
     function cargarSelect(tabla, selection, objetivo) {
         var select = document.getElementById(selection);
         var id = select.options[select.selectedIndex].value;
@@ -15,9 +18,29 @@
                 options += '<option value="' + resJson[i].ID + '">' + resJson[i].Nombre + '</option>';
             }
             $('#' + objetivo).html(options);
-        }).error(function (jqXHR, textStatus, errorThrown) {
+        }).fail(function (jqXHR, textStatus, errorThrown) {
             $('#alert_backend_usuario').removeClass('alert-default alert-warning alert-success alert-info hidden').addClass('alert-danger', 'text-center');
             $('#texto_alert_usuarios').text('Ha ocurrido un error, no se pudo obtener la información del servidor. Mensaje del servidor: ' + textStatus + ' - ' + errorThrown);
+        });
+    }
+
+    function consultaAjax(uri, method, dtType, dt, chData, ctType, prData, callback) {
+        $.ajax({
+            url: 'http://' + window.location.host + uri,
+            type: method,
+            dataType: dtType,
+            data: dt,
+            cache: chData,
+            contentType: ctType,
+            processData: prData,
+        }).done(function (data, textStatus, jqXHR) {
+            callback(data);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            $('#alert_backend_usuario').removeClass('alert-default alert-warning alert-success alert-info hidden').addClass('alert-danger', 'text-center');
+            $('#texto_alert_usuarios').text('Algo no salió bien, el servidor a respondido con un error. Mensaje del servidor: ' + textStatus + ' - ' + errorThrown);
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         });
     }
 
@@ -72,14 +95,12 @@
 
     function cargarImagenes() {
         var formData = new FormData();
-
         for (var i = 1; i <= numFotos; i++) {
             var inputElement = document.getElementById('imagen_' + i);
             var key = inputElement.getAttribute('id');
             var value = inputElement.files[0];
             formData.append(key, value);
         }
-
         $.ajax({
             url: 'http://' + window.location.host + '/admin/carga_imagenes',
             type: 'POST',
@@ -88,31 +109,80 @@
             cache: false,
             contentType: false,
             processData: false
-        }).done(function (data) {
+        }).done(function (data, textStatus, jqXHR) {
             $('#alert_backend_usuario').removeClass('alert-default alert-warning alert-danger alert-info hidden').addClass('alert-success', 'text-center');
             $('#texto_alert_usuarios').text(data);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            $('#alert_backend_usuario').removeClass('alert-default alert-warning alert-success alert-info hidden').addClass('alert-danger', 'text-center');
+            $('#texto_alert_usuarios').text(textStatus + ': ' + errorThrown);
         });
     }
 
+    function setearModal(button, tipoModal) {
+        var id = button.attr('id');
+        id = id.split('_');
+        id = id[id.length - 1];
+        if (tipoModal === 'Cerrar') {
+            $('#modal_cerrar_publicacion').modal('show');
+            $('h4.tt-cerrar').html('<i class="fa fa-times-circle" aria-hidden="true"></i>' + ' ' + tipoModal + ' publicación: ' + $('#tt_publi_' + id).text());
+            $('#id_publi_cerrar').attr('value', parseInt(id));
+            $('#titulo_publicacion').attr('value', $('#tt_publi_' + id).text());
+        } else if (tipoModal === 'Estado') {
+            $('#modal_estados_productos').modal('show');
+            $('h4.tt-estado').html('<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>' + ' ' + tipoModal + ' publicación: ' + $('#tt_publi_' + id).text());
+            $('#id_publi_est').attr('value', parseInt(id));
+            $('#id_est_publi').attr('value', parseInt(id));
+        }
+    }
+
+    /**************************
+     * Sección del Admin
+     **************************/
     if (window.location.pathname === '/admin' || window.location.pathname === '/Admin') {
-        $('a.eliminar_prod').on('click', function (event) {
+        $('a.cerrar-publi').on('click', function (event) {
             event.preventDefault();
-            var id = $(this).attr('id');
-            id = id.split('_');
-            id = id[id.length - 1];
-            $('#modal_eliminar_producto').modal('show');
+            setearModal($(this), 'Cerrar');
+            $('#btn_cerrar_publicacion').on('click', function () {
+                $('#frm_cerrar_publicacion').submit();
+            });
+        });
 
-            var tt = $('h4.modal-title').html();
-            $('h4.modal-title').html(tt + ' Eliminar producto: ' + $('#tt_publi').text());
-            $('#titulo_publicacion').attr('value', $('#tt_publi').text());
-            $('#id_publicacion').attr('value', parseInt(id));
-
-            $('#btn_eliminar_producto').on('click', function () {
-                $('#frm_eliminar_producto').submit();
+        $('a.est-publi').on('click', function (event) {
+            event.preventDefault();
+            setearModal($(this), 'Estado');
+            function callback(data) {
+                var response = JSON.parse(data);
+                var options = '';
+                for (var i = 0; i < response.length; i++) {
+                    options += '<option value="' + response[i].id_estado + '">' + response[i].estado1 + '</option>';
+                }
+                $('#est_publi').html(options);
+                if ($('#estado_publi_' + $('#id_publi_est').val()).text().toLowerCase() === 'publicado') {
+                    $('#est_publi option[value=1]').attr('selected', 'selected');
+                    $('div.input-group-addon i.icon-change').removeClass('fa-toggle-off').addClass('fa-toggle-on')
+                } else {
+                    $('#est_publi option[value=2]').attr('selected', 'selected');
+                    $('div.input-group-addon i.icon-change').removeClass('fa-toggle-on').addClass('fa-toggle-off')
+                }
+                $('#est_publi').on('change', function () {
+                    if ($('#est_publi option[value=1]').is(':selected')) {
+                        $('i.icon-change').removeClass('fa-toggle-off').addClass('fa-toggle-on')
+                    } else {
+                        $('i.icon-change').removeClass('fa-toggle-on').addClass('fa-toggle-off')
+                    }
+                });
+            }
+            consultaAjax('/Admin/estados_publicacion', 'GET', 'json', { tabla: 'Estado' }, false, false, true, callback);
+            $('#btn_estado_publicacion').on('click', function () {
+                $('#frm_estado_publicacion').submit();
+                $('#modal_estados_productos').modal('hide');
             });
         });
     }
     
+    /***************************
+     * Sección de productos
+     ***************************/
     if (window.location.pathname === '/admin/alta_producto' || window.location.pathname === '/admin/editar_producto') {
         var numFotos = 1;
         posicionBtns();

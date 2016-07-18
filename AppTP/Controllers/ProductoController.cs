@@ -29,9 +29,9 @@ namespace AppTP.Controllers
             coment.nombre = comentario.nombre;
             coment.apellido = comentario.apellido;
             coment.mail = comentario.mail;
-            if (comentario.telefono != null)
+            if (comentario.telefono != 0)
                 coment.telefono = comentario.telefono;
-            if (comentario.celular != null)
+            if (comentario.celular != 0)
                 coment.celular = comentario.celular;
             coment.fecha_pregunta = DateTime.UtcNow;
             coment.comentario1 = comentario.comentario1;

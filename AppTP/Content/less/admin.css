@@ -66,6 +66,9 @@ body .container-fluid div.row #content_admin div.row div form div.row div div di
 body .container-fluid div.row #content_admin div.row div form div.row div div div.clonar-inputs-fotos button:hover {
   opacity: 1;
 }
+body .container-fluid div.row #content_admin table tbody tr td a.btn {
+  margin-right: 5px;
+}
 body .container-fluid div.row #content_admin table tbody tr td img.img-back-user {
   width: 22%;
   display: inline-block;

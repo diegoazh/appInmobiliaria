@@ -261,7 +261,7 @@
     @if (ViewBag.publiEditar != null)
     {
         string cadena = ViewBag.publiEditar[0].descripcion.Replace(Environment.NewLine, "*");
-        decimal precio = ViewBag.publiEditar[0].precio;
+        decimal precio = Decimal.Round(ViewBag.publiEditar[0].precio, 2);
         string barrio = ViewBag.publiEditar[0].barrio;
         string titulo = ViewBag.publiEditar[0].titulo;
         int dpto = ViewBag.publiEditar[0].Localidad.Departamento.ID;
@@ -283,10 +283,6 @@
             var pre = '@(precio)';
             pre = pre.split(',');
             pre = pre.join('.');
-            pre = pre.split('');
-            pre.pop();
-            pre.pop();
-            pre = pre.join('');
             $('#precio').val(pre);
 
             /* Carga el input del barrio */

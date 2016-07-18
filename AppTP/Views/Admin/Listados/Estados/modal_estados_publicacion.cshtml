@@ -1,0 +1,28 @@
+﻿<div id="modal_estados_productos" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title tt-estado"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="frm_estado_publicacion" name="frm_estado_publicacion" action="@Url.Action("estados_publicacion", "Admin")" method="post">
+                    <div class="form-group">
+                        <label for="est_publi" class="sr-only"><i class="fa fa-toggle-on icon-change" aria-hidden="true"></i> Estado publicaci&oacute;n: </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-toggle-on icon-change" aria-hidden="true"></i> Estado publicaci&oacute;n</div>
+                            <select id="est_publi" name="est_publi" class="form-control">
+                            </select>
+                        </div>
+                        @Html.Hidden("id_publi_est", "")
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button id="btn_estado_publicacion" type="button" class="btn btn-primary">Cambiar estado <i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

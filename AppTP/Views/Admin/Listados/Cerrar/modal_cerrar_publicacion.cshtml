@@ -1,0 +1,35 @@
+﻿<div id="modal_cerrar_publicacion" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title tt-cerrar"></h4>
+            </div>
+            <div class="modal-body">
+                @using (@Html.BeginForm("cerrar_publicacion", "Admin", FormMethod.Post, new { id = "frm_cerrar_publicacion", name = "frm_cerrar_publicacion" }))
+                {
+                    <div class="form-group">
+                        <label class="sr-only"><i class="fa fa-times-circle" aria-hidden="true"></i> Cerrar publicaci&oacute;n: </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-times-circle" aria-hidden="true"></i> Cerrar publicaci&oacute;n</div>
+                            @Html.TextBox("titulo_publicacion", "", new { @class = "form-control", disabled = "disabled" })
+                            @Html.Hidden("id_publi_cerrar", "")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comentario_cierre" class="sr-only"><i class="fa fa-commenting-o" aria-hidden="true"></i> Motivo de cierre: </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-commenting-o" aria-hidden="true"></i> Motivo de cierre:</div>
+                            @Html.TextArea("comentario_cierre", new { @class="form-control", rows="5", maxlength="300" })
+                        </div>
+                        <small>Caracteres restantes: <span id="cant_letras">300</span></small>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button id="btn_cerrar_publicacion" type="button" class="btn btn-danger">Cerrar publicaci&oacute;n <i class="fa fa-trash" aria-hidden="true"></i></button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

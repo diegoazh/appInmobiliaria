@@ -33,9 +33,9 @@
       <Column Name="mail" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="telefono" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="celular" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="fecha_pregunta" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_pregunta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="comentario" Member="comentario1" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="fecha_respuesta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="fecha_respuesta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="respuesta" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Column Name="id_publicacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="id_usuario" Type="System.Int32" DbType="Int" CanBeNull="true" />

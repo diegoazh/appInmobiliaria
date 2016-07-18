@@ -940,7 +940,7 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_pregunta", DbType="Date NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_pregunta", DbType="DateTime NOT NULL")]
 		public System.DateTime fecha_pregunta
 		{
 			get
@@ -980,7 +980,7 @@ namespace AppTP.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_respuesta", DbType="Date")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_respuesta", DbType="DateTime")]
 		public System.Nullable<System.DateTime> fecha_respuesta
 		{
 			get

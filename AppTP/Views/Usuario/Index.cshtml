@@ -24,6 +24,8 @@
         <tbody>
             @if (ViewBag.cantUsers > 0)
             {
+                string disabled = "";
+                if (ViewBag.cantUsers == 1) { disabled = "disabled"; }
                 foreach (var usuario in ViewBag.usuarios)
                 {
                     <tr id="user-@usuario.id_usuario">
@@ -48,7 +50,7 @@
                         <td class="text-center">
                             <button id="see-@usuario.id_usuario" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button>
                             <button id="update-@usuario.id_usuario" class="btn btn-warning"><i class="fa fa-lock" aria-hidden="true"></i> Contraseña</button>
-                            <button id="delete-@usuario.id_usuario" class="btn btn-danger"><i class="fa fa-user-times" aria-hidden="true"></i> Eliminar</button>
+                            <button id="delete-@usuario.id_usuario" class="btn btn-danger @disabled"><i class="fa fa-user-times" aria-hidden="true"></i> Eliminar</button>
                         </td>
                     </tr>
                 }

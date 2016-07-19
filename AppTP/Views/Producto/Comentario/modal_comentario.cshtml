@@ -10,6 +10,7 @@
                 @RenderPage("~/Views/Shared/Front_end/Alerts/alert_comentario.cshtml")
                 @using (@Html.BeginForm("comentario", "Producto", FormMethod.Post, new { id = "frm_single_product", name = "frm_single_product" }))
                 {
+                    <small class="text-warning">*Todos los campos son necesarios, salvo tel&eacute;fono o celular donde puede optar por el que prefiera.</small>
                     <div class="form-group">
                         <label class="sr-only" for="nombre"><i class="fa fa-user" aria-hidden="true"></i> Nombre: </label>
                         <div class="input-group">
@@ -51,7 +52,9 @@
                             <div class="input-group-addon"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comentario</div>
                             @Html.TextAreaFor(c => c.comentario1, new { @class = "form-control", maxlength = "500", rows = "8", required = "required" })
                         </div>
-                        <small>Quedan <span id="cant_char">300</span> caracteres sin usar.</small>
+                        <div class="text-right">
+                            <small class="text-info">Quedan <span id="cant_char">500</span> caracteres sin usar.</small>
+                        </div>
                     </div>
                     @Html.HiddenFor(c => c.id_publicacion)
                 }

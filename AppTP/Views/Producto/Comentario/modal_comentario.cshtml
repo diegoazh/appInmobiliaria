@@ -1,0 +1,65 @@
+﻿@model AppTP.Models.Comentario
+<div id="modal_comentario" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comentario: @ViewBag.publicacion[0].titulo</h4>
+            </div>
+            <div class="modal-body">
+                @RenderPage("~/Views/Shared/Front_end/Alerts/alert_comentario.cshtml")
+                @using (@Html.BeginForm("comentario", "Producto", FormMethod.Post, new { id = "frm_single_product", name = "frm_single_product" }))
+                {
+                    <div class="form-group">
+                        <label class="sr-only" for="nombre"><i class="fa fa-user" aria-hidden="true"></i> Nombre: </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i> Nombre</div>
+                            @Html.TextBoxFor(c => c.nombre, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="apellido"><i class="fa fa-user" aria-hidden="true"></i> Apellido: </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i> Apellido</div>
+                            @Html.TextBoxFor(c => c.apellido, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="mail"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email: </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</div>
+                            @Html.TextBoxFor(c => c.mail, new { @class = "form-control", type = "email", required = "required" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="telefono"><i class="fa fa-phone" aria-hidden="true"></i> Tel&eacute;fono: </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i> Tel&eacute;fono</div>
+                            @Html.TextBoxFor(c => c.telefono, new { @class = "form-control", type = "number", max = "11" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="celular"><i class="fa fa-mobile" aria-hidden="true"></i> Celular: </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i> Celular</div>
+                            @Html.TextBoxFor(c => c.celular, new { @class = "form-control", type = "number", max = "11", required = "required" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="comentario1"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comentario:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comentario</div>
+                            @Html.TextAreaFor(c => c.comentario1, new { @class = "form-control", maxlength = "500", rows = "8", required = "required" })
+                        </div>
+                        <small>Quedan <span id="cant_char">300</span> caracteres sin usar.</small>
+                    </div>
+                    @Html.HiddenFor(c => c.id_publicacion)
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button id="btn_single_comment" type="button" class="btn btn-success">Enviar comentario</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -369,7 +369,7 @@
     <Content Include="Views\Shared\Back_end\Alert\alert_usuario.cshtml" />
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Shared\Front_end\Alerts\alert_producto.cshtml" />
-    <Content Include="Views\Producto\Comentario\comentario.cshtml" />
+    <Content Include="Views\Producto\Comentario\modal_comentario.cshtml" />
     <Content Include="Views\Admin\Listados\Cerrar\modal_cerrar_publicacion.cshtml" />
     <Content Include="Views\Shared\Front_end\Alerts\alert_comentario.cshtml" />
     <Content Include="Views\Comentarios\Index.cshtml" />

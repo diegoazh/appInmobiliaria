@@ -18,7 +18,13 @@ namespace AppTP.Controllers
                 where p.id_publicacion == id_publicacion
                 select p;
 
+            var coment =
+                from c in db.Comentario
+                where c.respuesta == null
+                select c;
+
             ViewBag.publicacion = producto.ToArray();
+            ViewBag.cantComent = coment.Count();
 
             return View();
         }

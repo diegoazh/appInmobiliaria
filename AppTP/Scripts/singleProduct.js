@@ -88,11 +88,13 @@
         var div = btn.parent('div.alert');
         div.addClass('hidden');
     });
+    
+    $('#cant_char').html($('#comentario1').attr('maxlength'));
 
     $('#comentario1').on('keyup', function (event) {
-        cuentaCaracteres(500, 'comentario1', 'cant_char');
+        cuentaCaracteres('comentario1', 'cant_char');
     });
     $('#comentario1').on('keypress', function (event) {
-        cuentaCaracteres(500, 'comentario1', 'cant_char');
+        cuentaCaracteres('comentario1', 'cant_char');
     });
 });

@@ -212,11 +212,13 @@
             cargarSelect('localidades', 'departamento', 'localidad');
         });
 
+        $('#cant_char').html($('#descripcion').attr('maxlength'));
+
         $('#descripcion').on('keyup', function (event) {
-            cuentaCaracteres(1000, 'descripcion', 'cant_char');
+            cuentaCaracteres('descripcion', 'cant_char');
         });
         $('#descripcion').on('keypress', function (event) {
-            cuentaCaracteres(1000, 'descripcion', 'cant_char');
+            cuentaCaracteres('descripcion', 'cant_char');
         });
 
         /************ Sección que genera el string de fotos ***********/

@@ -1,9 +1,10 @@
 ﻿/***********************************************************************************
  * Sección de funciones comunes al Front-end y al Back-end
  ***********************************************************************************/
-function cuentaCaracteres(cantChar, idTextarea, idSpan) {
+// Determina la cantidad de caracteres restantes de un textarea, debe convinarse con el atributo maxlength
+function cuentaCaracteres(idTextarea, idSpan) {
     'use strict';
-    var permitidos = parseInt(cantChar);
+    var permitidos = parseInt($('#' + idTextarea).attr('maxlength'));
     var porcien25 = 25 / 100 * permitidos;
     var porcien10 = 10 / 100 * permitidos;
     var restantes = 0;
@@ -20,7 +21,7 @@ function cuentaCaracteres(cantChar, idTextarea, idSpan) {
 }
 
 // Crear Cookie
-var crearCookie = function (key, value) {
+function crearCookie(key, value) {
     'use strict';
     var expires = new Date();
     expires.setTime(expires.getTime() + 120000); // Estableces el tiempo de expiración en 2 minutos despues de crearse.
@@ -29,7 +30,7 @@ var crearCookie = function (key, value) {
 }
 
 // Leer Cookie
-var leerCookie = function (key) {
+function leerCookie(key) {
     'use strict';
     var keyValue = document.cookie.match("(^|;) ?" + key + "=([^;]*)(;|$)");
     if (keyValue) {
@@ -40,7 +41,7 @@ var leerCookie = function (key) {
 }
 
 // Eliminar Cookie
-var eliminarCookie = function (key) {
+function eliminarCookie(key) {
     'use strict';
     return document.cookie = key + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }

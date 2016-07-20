@@ -53,7 +53,7 @@
                             @Html.TextAreaFor(c => c.comentario1, new { @class = "form-control", maxlength = "500", rows = "8", required = "required" })
                         </div>
                         <div class="text-right">
-                            <small class="text-info">Quedan <span id="cant_char">500</span> caracteres sin usar.</small>
+                            <small class="text-info">Quedan <span id="cant_char"></span> caracteres sin usar.</small>
                         </div>
                     </div>
                     @Html.HiddenFor(c => c.id_publicacion)

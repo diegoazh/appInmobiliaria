@@ -64,6 +64,10 @@
     }
 
     if (window.location.href === 'http://' + window.location.host + '/Usuario') {
+        if (leerCookie('crear')) {
+            crearUsuarios();
+            eliminarCookie('crear');
+        }
 
         $('#crear_usuario_lateral').on('click', function (event) {
             event.preventDefault();
@@ -102,8 +106,10 @@
     } else {
         $('#crear_usuario_lateral').click(function (event) {
             event.preventDefault();
-            $('#alert_backend_usuario').removeClass('alert-default alert-warning alert-success alert-info hidden').addClass('alert-danger', 'text-center');
-            $('#texto_alert_usuarios').text('Debe acceder a la sección de usuarios para dar de alta un usuario.');
+            window.location.href = 'http://' + window.location.host + '/Usuario';
+            crearCookie('crear', true);
+            //$('#alert_backend_usuario').removeClass('alert-default alert-warning alert-success alert-info hidden').addClass('alert-danger', 'text-center');
+            //$('#texto_alert_usuarios').text('Debe acceder a la sección de usuarios para dar de alta un usuario.');
         });
     }
 });

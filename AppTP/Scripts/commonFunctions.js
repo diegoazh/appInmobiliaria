@@ -18,3 +18,29 @@ function cuentaCaracteres(cantChar, idTextarea, idSpan) {
         small.removeClass('text-danger text-warning').addClass('text-info');
     }
 }
+
+// Crear Cookie
+var crearCookie = function (key, value) {
+    'use strict';
+    var expires = new Date();
+    expires.setTime(expires.getTime() + 120000); // Estableces el tiempo de expiración en 2 minutos despues de crearse.
+    var cookie = key + "=" + value + ";expires=" + expires.toUTCString();
+    return document.cookie = cookie;
+}
+
+// Leer Cookie
+var leerCookie = function (key) {
+    'use strict';
+    var keyValue = document.cookie.match("(^|;) ?" + key + "=([^;]*)(;|$)");
+    if (keyValue) {
+        return keyValue[2];
+    } else {
+        return null;
+    }
+}
+
+// Eliminar Cookie
+var eliminarCookie = function (key) {
+    'use strict';
+    return document.cookie = key + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}

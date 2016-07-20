@@ -135,6 +135,9 @@
         }
     }
 
+    /***************************************************
+     * Sección eventos JQuery (JavaScript)
+     ***************************************************/
     $('div.alert button.close').click(function (event) {
         event.stopPropagation();
         var span = $(event.target);
@@ -207,6 +210,13 @@
 
         $('#departamento').on('change', function () {
             cargarSelect('localidades', 'departamento', 'localidad');
+        });
+
+        $('#descripcion').on('keyup', function (event) {
+            cuentaCaracteres(1000, 'descripcion', 'cant_char');
+        });
+        $('#descripcion').on('keypress', function (event) {
+            cuentaCaracteres(1000, 'descripcion', 'cant_char');
         });
 
         /************ Sección que genera el string de fotos ***********/

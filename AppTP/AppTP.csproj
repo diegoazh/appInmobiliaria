@@ -312,6 +312,7 @@
     </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\adminRequire.js" />
+    <Content Include="Scripts\commonFunctions.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
@@ -349,7 +350,7 @@
     <Content Include="Views\Shared\Front_end\Footers\footer.cshtml" />
     <Content Include="Views\Index\index.cshtml" />
     <Content Include="Views\Shared\Front_end\Modals\LoginForm.cshtml" />
-    <Content Include="Views\Shared\Front_end\Sections\MisScriptsJs.cshtml" />
+    <Content Include="Views\Shared\Front_end\Sections\frontendScripts.cshtml" />
     <Content Include="Views\Shared\_Admin_Layout.cshtml" />
     <Content Include="Views\Admin\index.cshtml" />
     <Content Include="Views\Shared\Back_end\Headers\Header_admin.cshtml" />

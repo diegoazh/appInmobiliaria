@@ -1,6 +1,21 @@
 ﻿$(document).ready(function () {
     'use strict';
+    /******************************************
+     * Sección de funciones
+     ******************************************/
+    function validarMail(idCampo) {
+        var campo = document.getElementById(idCampo);
+        var emailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if (emailRegEx.test(campo.value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    /**************************************************************
+     * Sección de Eventos JQuery (JavaScript)
+     **************************************************************/
     var idPubli = "";
 
     $('.btn-lg').on('click', function () {
@@ -74,28 +89,10 @@
         div.addClass('hidden');
     });
 
-    function validarMail(idCampo) {
-        var campo = document.getElementById(idCampo);
-        var emailRegEx = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        if (emailRegEx.test(campo.value)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     $('#comentario1').on('keyup', function (event) {
-        var permitidos = 500;
-        var restantes = 0;
-        restantes = permitidos - $('#comentario1').val().length;
-        $('#cant_char').html(restantes);
-        var small = $('#cant_char').parent('small');
-        if (restantes < 50 && restantes || restantes == 0) {
-            small.removeClass('text-info text-warning').addClass('text-danger');
-        } else if (restantes > 50 && restantes < 100) {
-            small.removeClass('text-info text-danger').addClass('text-warning');
-        } else {
-            small.removeClass('text-danger text-warning').addClass('text-info');
-        }
+        cuentaCaracteres(500, 'comentario1', 'cant_char');
+    });
+    $('#comentario1').on('keypress', function (event) {
+        cuentaCaracteres(500, 'comentario1', 'cant_char');
     });
 });

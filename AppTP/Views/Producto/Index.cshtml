@@ -58,7 +58,7 @@
 </div>
 
 @section scripts {
-    @RenderPage("~/Views/Shared/Front_end/Sections/misScriptsJs.cshtml")
+    @RenderPage("~/Views/Shared/Front_end/Sections/frontendScripts.cshtml")
     @{string cadena = ViewBag.publicacion[0].descripcion.Replace(Environment.NewLine, "*");}
     <script type="text/javascript">
         var text = '@(cadena)';

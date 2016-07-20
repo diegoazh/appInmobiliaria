@@ -24,7 +24,9 @@
                         <div class="input-group-addon">Descripción:<br /><br /><i class="fa fa-keyboard-o" aria-hidden="true"></i></div>
                         @Html.TextAreaFor(x => x.descripcion, new { rows = "8", id = "descripcion", name = "descripcion", @class = "form-control", placeholder = "Ingrese la descripción de la publicación...", maxlength = "1000" })
                     </div>
-                    <small class="text-info">Quedan <span id="cant_char">1000</span> caracteres sin usar.</small>
+                    <div class="text-right">
+                        <small class="text-info">Quedan <span id="cant_char">1000</span> caracteres sin usar.</small>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">

@@ -26,8 +26,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <p class="text-justify">
                                         @if (ViewBag.publicaciones[i].descripcion.Length > 200)
-                                        { @ViewBag.publicaciones[i].descripcion.Substring(0, 200)WriteLiteral("...");
-                                        }
+                                        { @ViewBag.publicaciones[i].descripcion.Substring(0, 200)WriteLiteral("..."); }
                                         else
                                         { @ViewBag.publicaciones[i].descripcion }
                                     </p>

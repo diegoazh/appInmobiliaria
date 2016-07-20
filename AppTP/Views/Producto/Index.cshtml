@@ -23,8 +23,20 @@
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row"><i class="fa fa-building-o" aria-hidden="true"></i> Tipo de producto</th>
-                    <td><span class="label label-success"><i class="fa fa-home" aria-hidden="true"></i> @ViewBag.publicacion[0].Producto.nombre</span></td>
+                    <th scope="row"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Tipo de producto</th>
+                    <td>
+                        <span class="label label-success">
+                            @{
+                                string faName = "";
+                                if (ViewBag.publicacion[0].Producto.nombre == "Casa") { faName = "fa-home"; } else if (ViewBag.publicacion[0].Producto.nombre == "Departamento") { faName = "fa-building-o"; } else { faName = "fa-shopping-cart"; }
+                            }
+                            <i class="fa @faName" aria-hidden="true"></i> @ViewBag.publicacion[0].Producto.nombre
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class="fa fa-suitcase" aria-hidden="true"></i> Negocio</th>
+                    <td><span class="label label-danger"><i class="fa fa-shopping-bag" aria-hidden="true"></i> @ViewBag.publicacion[0].TipoNegocio.tipo</span></td>
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-money" aria-hidden="true"></i> Forma de pago</th>
@@ -36,7 +48,20 @@
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-map-o" aria-hidden="true"></i> Ubicaci&oacute;n</th>
-                    <td><span class="label label-info"><i class="fa fa-map-marker" aria-hidden="true"></i> @ViewBag.publicacion[0].barrio</span>&nbsp;<span class="label label-info"><i class="fa fa-map-marker" aria-hidden="true"></i> @ViewBag.publicacion[0].Localidad.Nombre</span>&nbsp;<span class="label label-info"><i class="fa fa-map-marker" aria-hidden="true"></i> @ViewBag.publicacion[0].Localidad.Departamento.Nombre</span>&nbsp;<span class="label label-info"><i class="fa fa-map-marker" aria-hidden="true"></i> @ViewBag.publicacion[0].Localidad.Departamento.Provincia.Nombre</span></td>
+                    <td>
+                        <span class="label label-info">
+                            Bº: @ViewBag.publicacion[0].barrio <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </span>
+                        <span class="label label-info">
+                            Ldad: @ViewBag.publicacion[0].Localidad.Nombre <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </span>
+                        <span class="label label-info">
+                            Dpto: @ViewBag.publicacion[0].Localidad.Departamento.Nombre <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </span>
+                        <span class="label label-info">
+                            Prov: @ViewBag.publicacion[0].Localidad.Departamento.Provincia.Nombre <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </span>
+                    </td>
                 </tr>
             </tbody>
             <tfoot>

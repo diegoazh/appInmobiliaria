@@ -22,13 +22,15 @@
                             <div class="input-group-addon"><i class="fa fa-commenting-o" aria-hidden="true"></i> Motivo de cierre:</div>
                             @Html.TextArea("comentario_cierre", new { @class="form-control", rows="5", maxlength="300" })
                         </div>
-                        <small>Caracteres restantes: <span id="cant_letras">300</span></small>
+                        <div class="text-right">
+                            <small class="text-info">Quedan <span id="cant_char"></span> caracteres sin usar.</small>
+                        </div>
                     </div>
                 }
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button id="btn_cerrar_publicacion" type="button" class="btn btn-danger">Cerrar publicaci&oacute;n <i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button id="btn_cerrar_publicacion" type="button" class="btn btn-danger">Cerrar publicaci&oacute;n <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

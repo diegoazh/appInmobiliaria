@@ -32,7 +32,7 @@ function crearCookie(key, value) {
 // Leer Cookie
 function leerCookie(key) {
     'use strict';
-    var keyValue = document.cookie.match("(^|;) ?" + key + "=([^;]*)(;|$)");
+    var keyValue = document.cookie.match("(^|;)?" + key + "=([^;]*)(;|$)");
     if (keyValue) {
         return keyValue[2];
     } else {

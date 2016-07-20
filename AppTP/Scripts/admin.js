@@ -156,6 +156,14 @@
             $('#btn_cerrar_publicacion').on('click', function () {
                 $('#frm_cerrar_publicacion').submit();
             });
+
+            $('#cant_char').html($('#comentario_cierre').attr('maxlength'));
+            $('#comentario_cierre').on('keyup', function (event) {
+                cuentaCaracteres('comentario_cierre', 'cant_char');
+            });
+            $('#comentario_cierre').on('keypress', function (event) {
+                cuentaCaracteres('comentario_cierre', 'cant_char');
+            });
         });
 
         $('a.est-publi').on('click', function (event) {

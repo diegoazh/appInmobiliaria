@@ -10,11 +10,11 @@
         <thead>
             <tr>
                 <th scope="col">Publicacion</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Tel&eacute;fono</th>
-                <th scope="col">Email</th>
-                <th scope="col">Fecha de comentario</th>
+                <th scope="col"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comentario</th>
+                <th scope="col"><i class="fa fa-user-secret" aria-hidden="true"></i> Remitente</th>
+                <th scope="col"><i class="fa fa-phone-square" aria-hidden="true"></i> Tel&eacute;fono</th>
+                <th scope="col"><i class="fa fa-envelope" aria-hidden="true"></i> Email</th>
+                <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha de comentario</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -24,14 +24,28 @@
                 foreach (var comentario in ViewBag.comentarios)
                 {
                     <tr>
-                        <td>@comentario.Publicacion.titulo</td>
-                        <td id="nombre_usuario">@comentario.nombre</td>
-                        <td>@comentario.apellido</td>
-                        <td>@comentario.telefono<br />@comentario.celular</td>
+                        <td>
+                            <a href="@Url.Action("Index", "Producto", new { id_publicacion = @comentario.id_publicacion })" class="btn btn-link">
+                                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                @if(comentario.Publicacion.titulo.Length > 30)
+                                { @comentario.Publicacion.titulo.Substring(0, 30)WriteLiteral("..."); }
+                                else { @comentario.Publicacion.titulo }
+                            </a>
+                        </td>
+                        <td>
+                            @if(comentario.comentario1.Length > 30)
+                            { @comentario.comentario1.Substring(0, 30)WriteLiteral("..."); }
+                            else { @comentario.comentario1 }
+                        </td>
+                        <td>@comentario.apellido, @comentario.nombre</td>
+                        <td>
+                            <i class="fa fa-phone" aria-hidden="true"></i> @comentario.telefono<br />
+                            <i class="fa fa-mobile" aria-hidden="true"></i> @comentario.celular
+                        </td>
                         <td>@comentario.mail</td>
                         <td>@comentario.fecha_pregunta</td>
                         <td>
-                            <a href="@Url.Action("Index", "Producto", new { id_publicacion = @comentario.id_publicacion })" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a><a href="" class="btn btn-primary"><i class="fa fa-commenting" aria-hidden="true"></i> Responder</a><a href="" id="btn_eliminar_@comentario.id_publicacion" class="btn btn-danger eliminar_prod"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
+                            <a href="" class="btn btn-primary"><i class="fa fa-commenting" aria-hidden="true"></i> Ver y cerrar</a>
                         </td>
                     </tr>
                 }

@@ -21,10 +21,16 @@ body h6 {
 body p,
 body ul,
 body ol,
-body li {
+body li,
+body table,
+body tr,
+body th,
+body td,
+body span {
   font-family: 'Michroma', sans-serif;
 }
-body a {
+body a,
+body button {
   font-family: 'Allerta Stencil', sans-serif;
 }
 body .container-fluid #header_admin {

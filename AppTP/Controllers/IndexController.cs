@@ -1,9 +1,10 @@
-﻿using System;
+﻿using AppTP.Commons;
+using AppTP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AppTP.Models;
 
 namespace AppTP.Controllers
 {
@@ -27,13 +28,8 @@ namespace AppTP.Controllers
                 where p.fecha_baja == null && p.id_estado == 1
                 select p;
 
-            var coment =
-                from c in db.Comentario
-                where c.respuesta == null
-                select c;
-
             ViewBag.publicaciones = publis.ToArray();
-            ViewBag.cantComent = coment.Count();
+            ViewBag.cantComent = DatosComunes.cantComent();
 
             return View();
         }
@@ -55,13 +51,5 @@ namespace AppTP.Controllers
             ViewBag.id = id;
             return View("Index");
         }
-
-        [HttpPost]
-        public ActionResult comentario(string id)
-        {
-            ViewBag.id = id;
-            return View("Index");
-        }
-
     }
 }

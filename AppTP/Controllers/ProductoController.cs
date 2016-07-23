@@ -1,9 +1,10 @@
-﻿using System;
+﻿using AppTP.Commons;
+using AppTP.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AppTP.Models;
 
 namespace AppTP.Controllers
 {
@@ -24,7 +25,7 @@ namespace AppTP.Controllers
                 select c;
 
             ViewBag.publicacion = producto.ToArray();
-            ViewBag.cantComent = coment.Count();
+            ViewBag.cantComent = DatosComunes.cantComent();
 
             return View();
         }

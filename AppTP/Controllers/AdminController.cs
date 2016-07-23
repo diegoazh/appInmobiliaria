@@ -1,4 +1,5 @@
-﻿using AppTP.Models;
+﻿using AppTP.Commons;
+using AppTP.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,10 @@ namespace AppTP.Controllers
                 select pub;
             
             ViewBag.publicaciones = publi;
-            cantidades();
+            ViewBag.cantPubli = DatosComunes.cantPubli();
+            ViewBag.cantComent = DatosComunes.cantComent();
+            ViewBag.cantUsers = DatosComunes.cantUsers();
+            ViewBag.cantClosed = DatosComunes.cantClosed();
 
             return View();
         }
@@ -33,7 +37,10 @@ namespace AppTP.Controllers
         public ActionResult alta_producto()
         {
             selectsAltaEditar();
-            cantidades();
+            ViewBag.cantPubli = DatosComunes.cantPubli();
+            ViewBag.cantComent = DatosComunes.cantComent();
+            ViewBag.cantUsers = DatosComunes.cantUsers();
+            ViewBag.cantClosed = DatosComunes.cantClosed();
 
             return View("alta_producto");
         }
@@ -72,7 +79,10 @@ namespace AppTP.Controllers
                 select p;
 
             selectsAltaEditar();
-            cantidades();
+            ViewBag.cantPubli = DatosComunes.cantPubli();
+            ViewBag.cantComent = DatosComunes.cantComent();
+            ViewBag.cantUsers = DatosComunes.cantUsers();
+            ViewBag.cantClosed = DatosComunes.cantClosed();
 
             ViewBag.publiEditar = editProd.ToArray();
 
@@ -152,28 +162,6 @@ namespace AppTP.Controllers
             }
         }
 
-        [HttpPost, Authorize]
-        public ActionResult carga_imagenes()
-        {
-            int count = 0;
-            if (System.Web.HttpContext.Current.Request.Files != null)
-            {
-                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
-                {
-                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        var fileName = Path.GetFileName(file.FileName) + Path.GetExtension(file.FileName);
-                        var path = Path.Combine(Server.MapPath("~/images/uploads"), fileName);
-                        file.SaveAs(path);
-                        count++;
-                    }
-                }
-            }
-
-            return new JsonResult { Data = "Se cargaron correctamente " + count + " imagen(es)" };
-        }
-
         [HttpGet, Authorize]
         public ActionResult negocios_cerrados()
         {
@@ -184,7 +172,10 @@ namespace AppTP.Controllers
                 select pub;
 
             ViewBag.negociosCerrados = cerrados;
-            cantidades();
+            ViewBag.cantPubli = DatosComunes.cantPubli();
+            ViewBag.cantComent = DatosComunes.cantComent();
+            ViewBag.cantUsers = DatosComunes.cantUsers();
+            ViewBag.cantClosed = DatosComunes.cantClosed();
 
             return View("Index");
         }
@@ -234,33 +225,6 @@ namespace AppTP.Controllers
         }
 
         //Metodos particulares y útiles
-        public void cantidades()
-        {
-            var publi =
-            from p in db.Publicacion
-            where p.fecha_baja == null
-            select p;
-
-            var coment =
-                from c in db.Comentario
-                where c.respuesta == null
-                select c;
-
-            var users =
-                from u in db.Usuario
-                select u;
-
-            var closed =
-            from p in db.Publicacion
-            where p.fecha_baja != null
-            select p;
-
-            ViewBag.cantPubli = publi.Count();
-            ViewBag.cantComent = coment.Count();
-            ViewBag.cantUsers = users.Count();
-            ViewBag.cantClosed = closed.Count();
-        }
-
         public void selectsAltaEditar()
         {
             var neg =

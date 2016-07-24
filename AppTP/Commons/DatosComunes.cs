@@ -29,6 +29,16 @@ namespace AppTP.Commons
             return coment.Count();
         }
 
+        public static int cantComentFin()
+        {
+            ElTrebolDBDataContext db = new ElTrebolDBDataContext();
+            var coment =
+                from c in db.Comentario
+                where c.fecha_respuesta != null
+                select c;
+            return coment.Count();
+        }
+
         public static int cantUsers()
         {
             ElTrebolDBDataContext db = new ElTrebolDBDataContext();

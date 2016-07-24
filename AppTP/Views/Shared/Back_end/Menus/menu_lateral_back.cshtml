@@ -1,6 +1,7 @@
 ﻿<div class="list-group">
     <div href="" type="button" class="list-group-item active"><h4><i class="fa fa-comments-o" aria-hidden="true"></i> Comentarios:</h4></div>
     <a href="@Url.Action("Index", "Comentarios")" type="button" class="list-group-item"><i class="fa fa-comments" aria-hidden="true"></i> Comentarios <span class="badge">@ViewBag.cantComent</span></a>
+    <a href="@Url.Action("Finalizados", "Comentarios")" type="button" class="list-group-item"><i class="fa fa-comments-o" aria-hidden="true"></i> Finalizados<span class="badge">@ViewBag.cantComentFin</span></a>
 </div>
 <div class="list-group">
     <div type="button" class="list-group-item active"><h4><i class="fa fa-cubes" aria-hidden="true"></i> Productos:</h4></div>

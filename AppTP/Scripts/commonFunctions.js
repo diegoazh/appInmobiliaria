@@ -1,9 +1,25 @@
 ﻿/***********************************************************************************
  * Sección de funciones comunes al Front-end y al Back-end
  ***********************************************************************************/
+// Asigna los eventos keypress y Keyup al text area así como setea la cantidad de caracteres permitidos al span
+function caracteresTextarea(idTextarea, idSpan) {
+    'use strict';
+
+    $('#' + idSpan).html($('#' + idTextarea).attr('maxlength'));
+
+    $('#' + idTextarea).on('keyup', function (event) {
+        cuentaCaracteres(idTextarea, idSpan);
+    });
+
+    $('#' + idTextarea).on('keypress', function (event) {
+        cuentaCaracteres(idTextarea, idSpan);
+    });
+}
+
 // Determina la cantidad de caracteres restantes de un textarea, debe convinarse con el atributo maxlength
 function cuentaCaracteres(idTextarea, idSpan) {
     'use strict';
+
     var permitidos = parseInt($('#' + idTextarea).attr('maxlength'));
     var porcien25 = 25 / 100 * permitidos;
     var porcien10 = 10 / 100 * permitidos;
@@ -44,4 +60,36 @@ function leerCookie(key) {
 function eliminarCookie(key) {
     'use strict';
     return document.cookie = key + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+// Consulta Ajax
+function consultaAjax(ControllerAction, method, dtType, dt, chData, ctType, prData, callback) {
+    $.ajax({
+        url: 'http://' + window.location.host + ControllerAction,
+        type: method,
+        dataType: dtType,
+        data: dt,
+        cache: chData,
+        contentType: ctType,
+        processData: prData,
+    }).done(function (data, textStatus, jqXHR) {
+        callback(data);
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        $('#alert_backend_usuario').removeClass('alert-default alert-warning alert-success alert-info hidden').addClass('alert-danger', 'text-center');
+        $('#texto_alert_usuarios').text('Algo no salió bien, el servidor a respondido con un error. Mensaje del servidor: ' + textStatus + ' - ' + errorThrown);
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+    });
+}
+
+// Hace que el alert pueda aparecer y desaparecer las veces que se necesite
+function alertToogle() {
+    $('div.alert button.close').click(function (event) {
+        event.stopPropagation();
+        var span = $(event.target);
+        var btn = span.parent('button.close');
+        var div = btn.parent('div.alert');
+        div.addClass('hidden');
+    });
 }

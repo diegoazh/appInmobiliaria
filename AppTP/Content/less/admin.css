@@ -44,6 +44,14 @@ body .container-fluid #header_admin div nav div div.navbar-header a .logo-chico 
   position: relative;
   top: -5px;
 }
+body .container-fluid #header_admin div nav div div.collapse ul.nav li a.user-menu {
+  padding: 5px;
+}
+body .container-fluid #header_admin div nav div div.collapse ul.nav li a.user-menu img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
 body .container-fluid div.row #menu_lateral_admin {
   background-color: #e4e4e4;
   min-height: 855px;

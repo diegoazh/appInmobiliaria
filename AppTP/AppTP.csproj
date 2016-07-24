@@ -313,6 +313,7 @@
     </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\adminRequire.js" />
+    <Content Include="Scripts\comentarios.js" />
     <Content Include="Scripts\commonFunctions.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -378,6 +379,9 @@
     <Content Include="Views\Admin\Listados\Estados\modal_estados_publicacion.cshtml" />
     <Content Include="Views\Producto\Carousel\carousel.cshtml" />
     <Content Include="Views\Comentarios\Cerrar\modal_cerrar.cshtml" />
+    <Content Include="Views\Comentarios\finalizados.cshtml" />
+    <Content Include="Views\Comentarios\Cerrar\modal_ver_cerrados.cshtml" />
+    <Content Include="Views\Comentarios\Eliminar\modal_confirmar_eliminar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

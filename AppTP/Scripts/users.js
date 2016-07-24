@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
     'use strict';
-    
+
+    alertToogle();
+
     function alertCrearUsuarios(textAlert, tipeAlert) {
         var add, remove = "";
         if (tipeAlert === 'success') {

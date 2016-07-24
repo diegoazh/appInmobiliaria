@@ -35,6 +35,7 @@ namespace AppTP.Controllers
             ViewBag.roles = listRoles;
             ViewBag.cantPubli = DatosComunes.cantPubli();
             ViewBag.cantComent = DatosComunes.cantComent();
+            ViewBag.cantComentFin = DatosComunes.cantComentFin();
             ViewBag.cantUsers = DatosComunes.cantUsers();
             ViewBag.cantClosed = DatosComunes.cantClosed();
 
@@ -84,7 +85,7 @@ namespace AppTP.Controllers
                     }
 
                     // Otro método para crear Cookies
-                    HttpCookie idUser = new HttpCookie("idUsuario");
+                    HttpCookie idUser = new HttpCookie("UserId");
                     idUser.Value = user[0].id_usuario.ToString();
                     idUser.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(idUser);

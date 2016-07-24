@@ -5,6 +5,7 @@
 
 <div id="content_admin" class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
     @RenderPage("~/Views/Shared/Back_end/Alert/alert_usuario.cshtml")
+    @RenderPage("~/Views/Comentarios/Cerrar/modal_cerrar.cshtml")
     <h1 class="element-inline-block"><i class="fa fa-comments-o" aria-hidden="true"></i> Comentarios publicados</h1>
     <table class="table table-striped table-bordered">
         <thead>
@@ -13,13 +14,14 @@
                 <th scope="col"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comentario</th>
                 <th scope="col"><i class="fa fa-user-secret" aria-hidden="true"></i> Remitente</th>
                 <th scope="col"><i class="fa fa-phone-square" aria-hidden="true"></i> Tel&eacute;fono</th>
+                <th scope="col"><i class="fa fa-mobile" aria-hidden="true"></i> Celular</th>
                 <th scope="col"><i class="fa fa-envelope" aria-hidden="true"></i> Email</th>
                 <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha de comentario</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @if (ViewBag.cantPubli > 0)
+            @if (ViewBag.cantComent > 0)
             {
                 foreach (var comentario in ViewBag.comentarios)
                 {
@@ -37,15 +39,13 @@
                             { @comentario.comentario1.Substring(0, 30)WriteLiteral("..."); }
                             else { @comentario.comentario1 }
                         </td>
-                        <td>@comentario.apellido, @comentario.nombre</td>
+                        <td id="nombre_@comentario.id_comentario">@comentario.apellido, @comentario.nombre</td>
+                        <td>@comentario.telefono</td>
+                        <td>@comentario.celular</td>
+                        <td id="mail_@comentario.id_comentario">@comentario.mail</td>
+                        <td id="fecha_@comentario.id_comentario">@comentario.fecha_pregunta</td>
                         <td>
-                            <i class="fa fa-phone" aria-hidden="true"></i> @comentario.telefono<br />
-                            <i class="fa fa-mobile" aria-hidden="true"></i> @comentario.celular
-                        </td>
-                        <td>@comentario.mail</td>
-                        <td>@comentario.fecha_pregunta</td>
-                        <td>
-                            <a href="" class="btn btn-primary"><i class="fa fa-commenting" aria-hidden="true"></i> Ver y cerrar</a>
+                            <a id="comentario_@comentario.id_comentario" href="" class="btn btn-primary cerrar-comentario"><i class="fa fa-commenting" aria-hidden="true"></i> Ver y cerrar</a>
                         </td>
                     </tr>
                 }
@@ -53,14 +53,14 @@
             else
             {
                 <tr>
-                    <td colspan="7" class="text-center">No hay comentarios publicados a la fecha</td>
+                    <td colspan="8" class="text-center">No hay comentarios publicados a la fecha</td>
                 </tr>
             }
         </tbody>
 
         <tfoot>
             <tr>
-                <td colspan="7" class="text-right">Comentarios de el Tr&eacute;bol.</td>
+                <td colspan="8" class="text-right">Comentarios de el Tr&eacute;bol.</td>
             </tr>
         </tfoot>
     </table>

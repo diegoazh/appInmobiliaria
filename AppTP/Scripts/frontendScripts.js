@@ -14,11 +14,5 @@
         $('#modal_login_form').modal("show");
     });
 
-    $('div.alert button.close').click(function (event) {
-        event.stopPropagation();
-        var span = $(event.target);
-        var btn = span.parent('button.close');
-        var div = btn.parent('div.alert');
-        div.addClass('hidden');
-    });
+    alertToogle();
 });

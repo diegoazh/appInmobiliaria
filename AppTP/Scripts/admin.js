@@ -24,26 +24,6 @@
         });
     }
 
-    function consultaAjax(uri, method, dtType, dt, chData, ctType, prData, callback) {
-        $.ajax({
-            url: 'http://' + window.location.host + uri,
-            type: method,
-            dataType: dtType,
-            data: dt,
-            cache: chData,
-            contentType: ctType,
-            processData: prData,
-        }).done(function (data, textStatus, jqXHR) {
-            callback(data);
-        }).fail(function (jqXHR, textStatus, errorThrown) {
-            $('#alert_backend_usuario').removeClass('alert-default alert-warning alert-success alert-info hidden').addClass('alert-danger', 'text-center');
-            $('#texto_alert_usuarios').text('Algo no salió bien, el servidor a respondido con un error. Mensaje del servidor: ' + textStatus + ' - ' + errorThrown);
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown);
-        });
-    }
-
     function actualizaLocalidad() {
         cargarSelect('localidades', 'departamento', 'localidad');
     }
@@ -136,15 +116,9 @@
     }
 
     /***************************************************
-     * Sección eventos JQuery (JavaScript)
+     * Alert comportamiento Toogle
      ***************************************************/
-    $('div.alert button.close').click(function (event) {
-        event.stopPropagation();
-        var span = $(event.target);
-        var btn = span.parent('button.close');
-        var div = btn.parent('div.alert');
-        div.addClass('hidden');
-    });
+    alertToogle();
 
     /**************************
      * Sección del Admin
@@ -156,14 +130,7 @@
             $('#btn_cerrar_publicacion').on('click', function () {
                 $('#frm_cerrar_publicacion').submit();
             });
-
-            $('#cant_char').html($('#comentario_cierre').attr('maxlength'));
-            $('#comentario_cierre').on('keyup', function (event) {
-                cuentaCaracteres('comentario_cierre', 'cant_char');
-            });
-            $('#comentario_cierre').on('keypress', function (event) {
-                cuentaCaracteres('comentario_cierre', 'cant_char');
-            });
+            caracteresTextarea('comentario_cierre', 'cant_char');
         });
 
         $('a.est-publi').on('click', function (event) {
@@ -220,14 +187,7 @@
             cargarSelect('localidades', 'departamento', 'localidad');
         });
 
-        $('#cant_char').html($('#descripcion').attr('maxlength'));
-
-        $('#descripcion').on('keyup', function (event) {
-            cuentaCaracteres('descripcion', 'cant_char');
-        });
-        $('#descripcion').on('keypress', function (event) {
-            cuentaCaracteres('descripcion', 'cant_char');
-        });
+        caracteresTextarea('descripcion', 'cant_char');
 
         /************ Sección que genera el string de fotos ***********/
 

@@ -27,6 +27,7 @@ namespace AppTP.Controllers
             ViewBag.publicaciones = publi;
             ViewBag.cantPubli = DatosComunes.cantPubli();
             ViewBag.cantComent = DatosComunes.cantComent();
+            ViewBag.cantComentFin = DatosComunes.cantComentFin();
             ViewBag.cantUsers = DatosComunes.cantUsers();
             ViewBag.cantClosed = DatosComunes.cantClosed();
 
@@ -39,6 +40,7 @@ namespace AppTP.Controllers
             selectsAltaEditar();
             ViewBag.cantPubli = DatosComunes.cantPubli();
             ViewBag.cantComent = DatosComunes.cantComent();
+            ViewBag.cantComentFin = DatosComunes.cantComentFin();
             ViewBag.cantUsers = DatosComunes.cantUsers();
             ViewBag.cantClosed = DatosComunes.cantClosed();
 
@@ -81,6 +83,7 @@ namespace AppTP.Controllers
             selectsAltaEditar();
             ViewBag.cantPubli = DatosComunes.cantPubli();
             ViewBag.cantComent = DatosComunes.cantComent();
+            ViewBag.cantComentFin = DatosComunes.cantComentFin();
             ViewBag.cantUsers = DatosComunes.cantUsers();
             ViewBag.cantClosed = DatosComunes.cantClosed();
 
@@ -174,6 +177,7 @@ namespace AppTP.Controllers
             ViewBag.negociosCerrados = cerrados;
             ViewBag.cantPubli = DatosComunes.cantPubli();
             ViewBag.cantComent = DatosComunes.cantComent();
+            ViewBag.cantComentFin = DatosComunes.cantComentFin();
             ViewBag.cantUsers = DatosComunes.cantUsers();
             ViewBag.cantClosed = DatosComunes.cantClosed();
 

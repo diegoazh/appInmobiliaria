@@ -81,20 +81,7 @@
         });
     });
 
-    $('div.alert button.close').click(function (event) {
-        event.stopPropagation();
-        var span = $(event.target);
-        var btn = span.parent('button.close');
-        var div = btn.parent('div.alert');
-        div.addClass('hidden');
-    });
-    
-    $('#cant_char').html($('#comentario1').attr('maxlength'));
+    alertToogle();
 
-    $('#comentario1').on('keyup', function (event) {
-        cuentaCaracteres('comentario1', 'cant_char');
-    });
-    $('#comentario1').on('keypress', function (event) {
-        cuentaCaracteres('comentario1', 'cant_char');
-    });
+    caracteresTextarea('comentario1', 'cant_char');
 });

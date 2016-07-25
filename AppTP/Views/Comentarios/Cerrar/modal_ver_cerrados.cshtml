@@ -1,15 +1,48 @@
-﻿<div id="modal_cerrar_comentario" class="modal fade" tabindex="-1" role="dialog">
+﻿<div id="ver_cerrados" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title cerrar-comentario-tt"></h4>
+                <h4 class="modal-title ver-cerrados-tt"></h4>
             </div>
             <div class="modal-body">
-                <h5>Coment&oacute;: </h5>
-                <p id="contenido_comentario"></p>
+                <h4>Coment&oacute;: </h4>
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="row">Nombre: </th>
+                        <td id="nombre"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Mail: </th>
+                        <td id="mail"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Teléfono: </th>
+                        <td id="phone"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Celular: </th>
+                        <td id="cel"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Fecha del comentario: </th>
+                        <td id="fecha_com"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Comentario: </th>
+                        <td id="com"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Fecha de respuesta: </th>
+                        <td id="fecha_resp"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Respuesta: </th>
+                        <td id="resp"></td>
+                    </tr>
+                </table>
                 <hr />
-                <form>
+                <form id="frm_actualizar_respuesta" name="frm_actualizar_respuesta" class="hidden">
                     <div class="form-group">
                         <label for="respuesta" class="sr-only"><i class="fa fa-commenting-o" aria-hidden="true"></i> Respuesta: </label>
                         <div class="input-group">
@@ -25,7 +58,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button id="btn_cerrar_comentario" type="button" class="btn btn-primary">Finalizar</button>
+                <button id="btn_cerrar_comentario" type="button" class="btn btn-warning">&iquest;Actualizar?</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

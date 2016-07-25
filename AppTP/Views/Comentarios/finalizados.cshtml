@@ -25,12 +25,14 @@
                 foreach (var comentario in ViewBag.finalizados)
                 {
                     <tr>
-                        <td>
+                        <td id="publi_@comentario.id_comentario">
                             <a href="@Url.Action("Index", "Producto", new { id_publicacion = @comentario.id_publicacion })" class="btn btn-link">
                                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                                @if(comentario.Publicacion.titulo.Length > 20)
-                                { @comentario.Publicacion.titulo.Substring(0, 20)WriteLiteral("..."); }
-                                else { @comentario.Publicacion.titulo }
+                                @if (comentario.Publicacion.titulo.Length > 20)
+                                { @comentario.Publicacion.titulo.Substring(0, 20)WriteLiteral("...");
+                                }
+                                else
+                                { @comentario.Publicacion.titulo }
                             </a>
                         </td>
                         <td>
@@ -48,8 +50,8 @@
                         </td>
                         <td id="usuario_@comentario.id_comentario">@comentario.Usuario.username</td>
                         <td>
-                            <a id="ver_@comentario.id_comentario" href="" class="btn btn-info cerrar-comentario"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>
-                            <a id="eliminar_@comentario.id_comentario" href="" class="btn btn-danger cerrar-comentario"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
+                            <a id="ver_@comentario.id_comentario" href="" class="btn btn-info ver-cerrado"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>
+                            <a id="eliminar_@comentario.id_comentario" href="" class="btn btn-danger eliminar-cerrado"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
                         </td>
                     </tr>
                 }

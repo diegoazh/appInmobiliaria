@@ -6,11 +6,11 @@
                 <h4 class="modal-title ver-cerrados-tt"></h4>
             </div>
             <div class="modal-body">
-                <h4>Coment&oacute;: </h4>
+                <h4>Detalles: </h4>
                 <table class="table table-striped">
                     <tr>
                         <th scope="row">Nombre: </th>
-                        <td id="nombre"></td>
+                        <td id="nom"></td>
                     </tr>
                     <tr>
                         <th scope="row">Mail: </th>
@@ -53,12 +53,13 @@
                             <small class="text-info">Quedan <span id="cant_char"></span> caracteres sin usar.</small>
                         </div>
                     </div>
-                    @Html.Hidden("id_comentario", "");
+                    @Html.Hidden("id_comentario", "")
+                    @Html.Hidden("id_usuario", "")
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button id="btn_cerrar_comentario" type="button" class="btn btn-warning">&iquest;Actualizar?</button>
+                <button id="btn_cerrar_comentario" type="button" class="btn btn-warning">&iquest;Actualizar? <i class="fa fa-refresh" aria-hidden="true"></i></button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

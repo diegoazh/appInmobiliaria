@@ -6306,7 +6306,7 @@ go
  fecha_pregunta datetime not null,
  comentario varchar (500) not null,
  fecha_respuesta datetime,
- respuesta varchar (500),
+ respuesta varchar (MAX),
  id_publicacion int,
  id_usuario int,
  constraint pk_comentario primary key (id_comentario),
@@ -6316,18 +6316,4 @@ go
  references Usuario(id_usuario)
  )
 
---update Usuario
---set pass = 'admin'
-
--- alter table Usuario
--- alter column pass varchar (64) not null
---select * from Publicacion
-
---update Publicacion
---set fecha_baja = null
---where id_publicacion = 2
-
--- delete from Publicacion;
 --DBCC CHECKIDENT (Publicacion, RESEED, 1)
--- insert into Publicacion( titulo,fotos,precio,descripcion,barrio,fecha_publicacion)
--- values('añlksdjfñlasjdfñlkajsdf','C\\:fackas\inmobiliaria.jpg,C\\:fackas\javascript.js',865486.85,'sfajsdkfja jlkasjf lñkasjfskdjf lkasjdflkjaslkdjfñlka sdlajsdlfka slkfjlaks jfas jdfklajs dfjasfj asjdfñlk asjd flkaj lñkfjalksd jflkñajs dl fkj aslk fjlkasjfñlkasjf klaj sdfjalksjf lkasj f jlk fjlka ajflk jlfjasñlk fjlasj faslk fasd flkasjflkj asdlk','S/N','2016-07-08 17:16:15');

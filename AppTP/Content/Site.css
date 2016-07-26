@@ -81,9 +81,6 @@ body #container_main_menu div nav#main_menu div div.collapse ul.nav li a.user-me
 body div#row_alert {
   padding: 10px 0;
 }
-body .body-page {
-  min-height: 980px;
-}
 body .body-page div .panelAlinear {
   border: 2px solid #b7b7b7;
   box-shadow: 1px 2px 5px #808080;

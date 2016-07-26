@@ -277,7 +277,7 @@ namespace AppTP.Controllers
                 elim = elim.Except(new string[] { "" }).ToArray();
                 string[] actuals = fotosActuales.Split(',');
                 var fotAct = actuals.ToList();
-                TempData["ErrorOnDelet"] = "";
+                TempData["ErrorOnDelete"] = "";
 
                 for (int i = 0; i < elim.Length; i++)
                 {
@@ -290,7 +290,7 @@ namespace AppTP.Controllers
                         }
                         catch (System.IO.IOException ex)
                         {
-                            TempData["ErrorOnDelet"] += ex.Message + " / ";
+                            TempData["ErrorOnDelete"] += ex.Message + " / ";
                         }
                     }
                     for (int x = 0; x < actuals.Length; x++) {

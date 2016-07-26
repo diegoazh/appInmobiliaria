@@ -11,7 +11,7 @@
             @using (@Html.BeginForm("alta_producto", "admin", FormMethod.Post, new { id = "frm_alta_producto", name = "frm_alta_producto", enctype = "multipart/form-data" }))
             {
                 <div class="form-group">
-                    @Html.Hidden("id_admin", Request.Cookies["idUsuario"].Value)
+                    @Html.Hidden("id_admin", Request.Cookies["UserId"].Value)
                     <label for="" class="sr-only"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Titulo:</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;Titulo: </div>

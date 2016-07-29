@@ -27,7 +27,16 @@ namespace AppTP.Controllers
                 from p in db.Publicacion
                 where p.fecha_baja == null && p.id_estado == 1
                 select p;
-
+            int posts = publis.Count();
+            if (posts <= 9)
+            {
+                ViewBag.pages = 1;
+            }
+            else
+            {
+                double pages = posts / 9;
+                ViewBag.pages = Convert.ToInt32(pages);
+            }
             ViewBag.publicaciones = publis.ToArray();
             ViewBag.cantComent = DatosComunes.cantComent();
 

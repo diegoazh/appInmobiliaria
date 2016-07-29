@@ -6316,4 +6316,16 @@ go
  references Usuario(id_usuario)
  )
 
+ /*************************************************************
+  * Procedimientos almacenados 
+  *************************************************************/
+create procedure paginacion_publicaciones
+@indice int = 1,
+@cantidad int = 9,
+@total int = 0 out
+as
+set @total = (select count(1) from Publicacion) / @cantidad
+select * from (select ROW_NUMBER() over(order by id_publicacion) idFilas, * from Publicacion) Publicacion where idFilas between (@cantidad * (@indice - 1) + 1) and (@cantidad * @indice)
+
 --DBCC CHECKIDENT (Publicacion, RESEED, 1)
+--exec paginacion_publicaciones 1, 9

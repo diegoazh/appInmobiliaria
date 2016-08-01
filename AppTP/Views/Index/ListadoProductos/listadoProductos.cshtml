@@ -1,75 +1,58 @@
-﻿<div id="row_alert" class="row">
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        @RenderPage("~/Views/Shared/Front_end/Errors/error_danger.cshtml")
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
-</div>
-@for (int i = 0; i < ViewBag.publicaciones.Length; )
-{
-    <div class="row body-page">
-        @for (int cols = 0; cols < 3; cols++)
-        {
-            if (ViewBag.publicaciones.Length > i)
+﻿<div id="target_ajax">
+    @for (int i = 0; i < ViewBag.publicaciones.Length; )
+    {
+        <div class="row body-page">
+            @for (int cols = 0; cols < 3; cols++)
             {
-                <div class="col-xs-hidden col-sm-hidden col-md-4 col-lg-4">
-                    <div id="producto_individual" class="panel panel-primary panelAlinear">
-                        <div class="panel-heading"><h4>@ViewBag.publicaciones[i].titulo</h4></div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    @{string[] fotos = @ViewBag.publicaciones[i].fotos.Split(',');}
-                                    <img src="~/images/uploads/@fotos[0]" class="img-responsive img-thumbnail" alt="Responsive image">
+                if (ViewBag.publicaciones.Length > i)
+                {
+                    <div class="col-xs-hidden col-sm-hidden col-md-4 col-lg-4">
+                        <div id="producto_individual" class="panel panel-primary panelAlinear">
+                            <div class="panel-heading"><h4>@ViewBag.publicaciones[i].titulo</h4></div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        @{string[] fotos = @ViewBag.publicaciones[i].fotos.Split(',');}
+                                        <img src="~/images/uploads/@fotos[0]" class="img-responsive img-thumbnail" alt="Responsive image">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <p class="text-justify">
-                                        @if (ViewBag.publicaciones[i].descripcion.Length > 200)
-                                        { @ViewBag.publicaciones[i].descripcion.Substring(0, 200)WriteLiteral("..."); }
-                                        else
-                                        { @ViewBag.publicaciones[i].descripcion }
-                                    </p>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
-                                    <a href="#" type="button" class="btn btn-lg">
-                                        <i class="fa fa-star-o" aria-hidden="true" id="star_1"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true" id="star_2"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true" id="star_3"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true" id="star_4"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true" id="star_5"></i>
-                                        <span class="badge">
-                                            @if (@ViewBag.publicaciones[i].valoracion != null)
-                                            { @ViewBag.publicaciones[i].valoracion }
-                                            else { WriteLiteral("0"); }
-                                        </span>
-                                    </a>
-                                    @Html.ActionLink("Ver más...", "Index", "Producto", new { @ViewBag.publicaciones[i].id_publicacion }, new { @class = "btn btn-info btn-sm" })
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <p class="text-justify">
+                                            @if (ViewBag.publicaciones[i].descripcion.Length > 200)
+                                            { @ViewBag.publicaciones[i].descripcion.Substring(0, 200)WriteLiteral("...");
+                                            }
+                                            else
+                                            { @ViewBag.publicaciones[i].descripcion }
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+                                        <a href="#" type="button" class="btn btn-lg">
+                                            <i class="fa fa-star-o" aria-hidden="true" id="star_1"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true" id="star_2"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true" id="star_3"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true" id="star_4"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true" id="star_5"></i>
+                                            <span class="badge">
+                                                @if (@ViewBag.publicaciones[i].valoracion != null)
+                                                { @ViewBag.publicaciones[i].valoracion }
+                                                else { WriteLiteral("0"); }
+                                            </span>
+                                        </a>
+                                        @Html.ActionLink("Ver más...", "Index", "Producto", new { @ViewBag.publicaciones[i].id_publicacion }, new { @class = "btn btn-info btn-sm" })
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                                            i++;
+                                                i++;
+                }
+                else
+                {
+                    <div class="col-xs-hidden col-sm-hidden col-md-4 col-lg-4"></div>
+                    i++;
+                }
             }
-            else
-            {
-                <div class="col-xs-hidden col-sm-hidden col-md-4 col-lg-4"></div>
-                i++;
-            }
-        }
-    </div>
-}
-<div class="row">
-    <div class="hidden-xs hidden-sm col-md-4 col-lg-4"></div>
-    <div class="hidden-xs hidden-sm col-md-4 col-lg-4">
-        <nav aria-label="...">
-            <ul class="pagination">
-                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                <li class="active"><a href="#">1 <span class="sr-only"></span></a></li>
-                ...
-            </ul>
-        </nav>
-    </div>
-    <div class="hidden-xs hidden-sm col-md-4 col-lg-4"></div>
+        </div>
+    }
 </div>

@@ -137,4 +137,54 @@
       <Association Name="TipoNegocio_Publicacion" Member="Publicacion" ThisKey="id_tipoNegocio" OtherKey="id_tipoNegocio" Type="Publicacion" />
     </Type>
   </Table>
+  <Function Name="dbo.paginacion_antiguosPrimero" Method="paginacion_antiguosPrimero">
+    <Parameter Name="indice" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantidad" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="total" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="paginacion_antiguosPrimeroResult">
+      <Column Name="idFilas" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="id_publicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="titulo" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="fotos" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="barrio" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_publicacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_baja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="motivo_baja" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="votantes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="valoracion" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="id_producto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_estado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_formaPago" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_tipoNegocio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_admin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_localidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.paginacion_nuevosPrimero" Method="paginacion_nuevosPrimero">
+    <Parameter Name="indice" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantidad" Type="System.Decimal" DbType="Decimal(20,2)" />
+    <Parameter Name="total" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="paginacion_nuevosPrimeroResult">
+      <Column Name="idFilas" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="id_publicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="titulo" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="fotos" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="precio" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="descripcion" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="barrio" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_publicacion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_baja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="motivo_baja" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="votantes" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="valoracion" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="id_producto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_estado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_formaPago" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_tipoNegocio" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_admin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_localidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

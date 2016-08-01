@@ -13,7 +13,7 @@ namespace AppTP.Controllers
         private ElTrebolDBDataContext db = new ElTrebolDBDataContext();
 
         [HttpGet , AllowAnonymous]
-        public ActionResult index()
+        public ActionResult index(int id = 1, int cantidad = 9)
         {
             
             var consulta = db.Usuario.Single(x=>x.id_usuario == 1);
@@ -23,24 +23,16 @@ namespace AppTP.Controllers
                 db.SubmitChanges();
             }
 
-            var publis =
-                from p in db.Publicacion
-                where p.fecha_baja == null && p.id_estado == 1
-                select p;
-            int posts = publis.Count();
-            if (posts <= 9)
-            {
-                ViewBag.pages = 1;
-            }
-            else
-            {
-                double pages = posts / 9;
-                ViewBag.pages = Convert.ToInt32(pages);
-            }
-            ViewBag.publicaciones = publis.ToArray();
             ViewBag.cantComent = DatosComunes.cantComent();
-
+            BuscarPublicaciones(id, cantidad);
             return View();
+        }
+
+        [HttpGet, AllowAnonymous]
+        public ActionResult listadoProductos(int id = 1, int cantidad = 9)
+        {
+            BuscarPublicaciones(id, cantidad);
+            return PartialView("~/Views/Index/listadoProductos/listadoProductos.cshtml");
         }
 
         public ActionResult casas(string id)
@@ -59,6 +51,15 @@ namespace AppTP.Controllers
         {
             ViewBag.id = id;
             return View("Index");
+        }
+
+        public void BuscarPublicaciones(int id = 1, int cantidad = 9)
+        {
+            int? totalPublis = 0;
+            var publis = db.paginacion_nuevosPrimero(id, cantidad, ref totalPublis);
+            ViewBag.pagina = id;
+            ViewBag.totalPaginas = (totalPublis < 1) ? 1 : totalPublis;
+            ViewBag.publicaciones = publis.ToArray();
         }
     }
 }

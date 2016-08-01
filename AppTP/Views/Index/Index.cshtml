@@ -3,7 +3,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div id="row_alert" class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        @RenderPage("~/Views/Shared/Front_end/Errors/error_danger.cshtml")
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+</div>
 @RenderPage("~/Views/Index/ListadoProductos/listadoProductos.cshtml")
+<div class="row">
+    <div class="hidden-xs hidden-sm col-md-4 col-lg-4"></div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li>
+                    @Ajax.ActionLink("Primera", "listadoProductos", "Index", new { id = 1 }, new AjaxOptions { UpdateTargetId = "target_ajax", InsertionMode = InsertionMode.Replace }, new { @class = "first" })
+                </li>
+                <li>
+                    @Ajax.ActionLink("Recientes", "listadoProductos", "Index", new { id = (ViewBag.pagina - 1 < 1) ? 1 : ViewBag.pagina - 1 }, new AjaxOptions { UpdateTargetId = "target_ajax", InsertionMode = InsertionMode.Replace }, new { @class = "izq" })
+                </li>
+                <li class="disabled">
+                    <a class="disabled">
+                        <span aria-hidden="true">
+                            P&aacute;gina @ViewBag.pagina de
+                            @if (ViewBag.totalPaginas < 1)
+                            { WriteLiteral("1"); }
+                            else
+                            { @ViewBag.totalPaginas }
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    @Ajax.ActionLink("Anteriores", "listadoProductos", "Index", new { id = (ViewBag.pagina + 1 > ViewBag.totalPaginas) ? ViewBag.totalPaginas : ViewBag.pagina + 1 }, new AjaxOptions { UpdateTargetId = "target_ajax", InsertionMode = InsertionMode.Replace }, new { @class = "der" })
+                </li>
+                <li>
+                    @Ajax.ActionLink("Última", "listadoProductos", "Index", new { id = @ViewBag.totalPaginas }, new AjaxOptions { UpdateTargetId = "target_ajax", InsertionMode = InsertionMode.Replace }, new { @class = "last" })
+                </li>
+            </ul>
+
+        </nav>
+    </div>
+    <div class="hidden-xs hidden-sm col-md-4 col-lg-4"></div>
+</div>
 
 @section scripts{
     @RenderPage("~/Views/Shared/Front_end/Sections/frontendScripts.cshtml")

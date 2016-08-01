@@ -119,6 +119,6 @@ C:\Users\AdminFull\Documents\Visual Studio 2013\Projects\MVC\appInmobiliaria\App
 C:\Users\AdminFull\Documents\Visual Studio 2013\Projects\MVC\appInmobiliaria\AppTP\bin\ru-ru\BundleTransformer.Core.resources.dll
 C:\Users\AdminFull\Documents\Visual Studio 2013\Projects\MVC\appInmobiliaria\AppTP\bin\ru-ru\BundleTransformer.Less.resources.dll
 C:\Users\AdminFull\Documents\Visual Studio 2013\Projects\MVC\appInmobiliaria\AppTP\bin\ru-ru\JavaScriptEngineSwitcher.Core.resources.dll
-C:\Users\AdminFull\Documents\Visual Studio 2013\Projects\MVC\appInmobiliaria\AppTP\obj\Debug\AppTP.csprojResolveAssemblyReference.cache
 C:\Users\AdminFull\Documents\Visual Studio 2013\Projects\MVC\appInmobiliaria\AppTP\obj\Debug\AppTP.dll
 C:\Users\AdminFull\Documents\Visual Studio 2013\Projects\MVC\appInmobiliaria\AppTP\obj\Debug\AppTP.pdb
+C:\Users\AdminFull\Documents\Visual Studio 2013\Projects\MVC\appInmobiliaria\AppTP\obj\Debug\AppTP.csprojResolveAssemblyReference.cache

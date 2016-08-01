@@ -6315,17 +6315,29 @@ go
  constraint fk_usuario foreign key (id_usuario)
  references Usuario(id_usuario)
  )
-
+go 
  /*************************************************************
   * Procedimientos almacenados 
   *************************************************************/
-create procedure paginacion_publicaciones
+--Las publicaciones más recientes se muestran priemro
+create procedure paginacion_nuevosPrimero
 @indice int = 1,
-@cantidad int = 9,
-@total int = 0 out
+@cantidad decimal(20,2) = 9,
+@total int = 0 OUTPUT
 as
-set @total = (select count(1) from Publicacion) / @cantidad
-select * from (select ROW_NUMBER() over(order by id_publicacion) idFilas, * from Publicacion) Publicacion where idFilas between (@cantidad * (@indice - 1) + 1) and (@cantidad * @indice)
+set @total = ceiling((select count(1) from Publicacion where fecha_baja is null) / @cantidad)
+select * from (select ROW_NUMBER() over(order by id_publicacion desc) idFilas, * from Publicacion) Publicacion where (idFilas between (@cantidad * (@indice - 1) + 1) and (@cantidad * @indice)) and (id_estado = 1) and (fecha_baja is null);
+go
+--Las publicaciones más antiguas se muestran priemro
+create procedure paginacion_antiguosPrimero
+@indice int = 1,
+@cantidad decimal(20,2) = 9,
+@total int = 0 OUTPUT
+as
+set @total = ceiling((select count(1) from Publicacion where fecha_baja is null) / @cantidad)
+select * from (select ROW_NUMBER() over(order by id_publicacion asc) idFilas, * from Publicacion) Publicacion where (idFilas between (@cantidad * (@indice - 1) + 1) and (@cantidad * @indice)) and (id_estado = 1) and (fecha_baja is null);
+
+--exec paginacion_nuevosPrimero 1, 9
+--exec paginacion_antiguosPrimero 1, 9
 
 --DBCC CHECKIDENT (Publicacion, RESEED, 1)
---exec paginacion_publicaciones 1, 9

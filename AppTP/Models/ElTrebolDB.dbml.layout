@@ -80,84 +80,84 @@
         <elementListCompartment Id="9c7ef30f-6908-4509-8c2a-5bf39d0c3e1a" absoluteBounds="6.2650000005960464, 11.33500000089407, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.25 : 14.0969962565104); (10 : 14.0969962565104); (10 : 14.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 14.0969962565104); (10 : 14.0969962565104); (10 : 14.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Avatar/Avatar_Usuario" />
       <nodes>
         <classShapeMoniker Id="e70e6104-445c-4ff9-9ff0-27faec91fbdf" />
         <classShapeMoniker Id="2d9968fa-b0ed-4dc7-aa9e-3ef358f92216" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 16.1162019856771); (12.75 : 16.1162019856771); (12.75 : 4.6170068359375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 16.1162019856771); (12.75 : 16.1162019856771); (12.75 : 4.6170068359375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Usuario/Usuario_Comentario" />
       <nodes>
         <classShapeMoniker Id="2d9968fa-b0ed-4dc7-aa9e-3ef358f92216" />
         <classShapeMoniker Id="78dafb82-ba61-41b5-b28d-c4f3a856e023" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 16.0969962565104); (9 : 16.0969962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 16.0969962565104); (9 : 16.0969962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Foto/Foto_Usuario" />
       <nodes>
         <classShapeMoniker Id="4dd172e5-eecd-4097-a2d2-6a283e6fbd3f" />
         <classShapeMoniker Id="2d9968fa-b0ed-4dc7-aa9e-3ef358f92216" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 3.06814697265625); (6.25 : 3.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 3.06814697265625); (6.25 : 3.06814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Departamento/Departamento_Localidad" />
       <nodes>
         <classShapeMoniker Id="4b3424ca-3fff-4d40-994e-3e4ace60c7d7" />
         <classShapeMoniker Id="c688e20d-9588-4d86-9c39-1136327ccfc8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.09699625651042); (3.5 : 3.09699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 3.09699625651042); (3.5 : 3.09699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Provincia/Provincia_Departamento" />
       <nodes>
         <classShapeMoniker Id="7a1ba40a-694c-4f82-a42a-c885af7b67d1" />
         <classShapeMoniker Id="4b3424ca-3fff-4d40-994e-3e4ace60c7d7" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 3.05850341796875); (11.75 : 3.05850341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 3.05850341796875); (11.75 : 3.05850341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Publicacion/Publicacion_Comentario" />
       <nodes>
         <classShapeMoniker Id="dcffc76b-be94-4bc9-99ea-758de5b6da7f" />
         <classShapeMoniker Id="78dafb82-ba61-41b5-b28d-c4f3a856e023" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 5.63625375484822); (9.11978791666666 : 5.63625375484822 : JumpStart); (9.28645458333333 : 5.63625375484822 : JumpEnd); (9.38541416666667 : 5.63625375484822 : JumpStart); (9.55208083333333 : 5.63625375484822 : JumpEnd); (10 : 5.63625375484822); (10 : 5.07851399739583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 5.63625375484822); (9.11978791666667 : 5.63625375484822 : JumpStart); (9.28645458333333 : 5.63625375484822 : JumpEnd); (10 : 5.63625375484822); (10 : 5.07851399739583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Estado/Estado_Publicacion" />
       <nodes>
         <classShapeMoniker Id="b362eaf1-e6fe-4188-9943-b330d621e32c" />
         <classShapeMoniker Id="dcffc76b-be94-4bc9-99ea-758de5b6da7f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 7.59699625651042); (9.11978791666666 : 7.59699625651042 : JumpStart); (9.28645458333333 : 7.59699625651042 : JumpEnd); (9.4687475 : 7.59699625651042); (9.4687475 : 5.07851399739583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 7.59699625651042); (9.11978791666667 : 7.59699625651042 : JumpStart); (9.28645458333333 : 7.59699625651042 : JumpEnd); (9.4687475 : 7.59699625651042); (9.4687475 : 5.07851399739583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/FormaPago/FormaPago_Publicacion" />
       <nodes>
         <classShapeMoniker Id="145efa6a-0e1f-4dc9-acae-17df03f78e0b" />
         <classShapeMoniker Id="dcffc76b-be94-4bc9-99ea-758de5b6da7f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 3.06814697265625); (9 : 3.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 3.06814697265625); (9 : 3.06814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Localidad/Localidad_Publicacion" />
       <nodes>
         <classShapeMoniker Id="c688e20d-9588-4d86-9c39-1136327ccfc8" />
         <classShapeMoniker Id="dcffc76b-be94-4bc9-99ea-758de5b6da7f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 9.47199625651042); (9.11978791666666 : 9.47199625651042 : JumpStart); (9.28645458333333 : 9.47199625651042 : JumpEnd); (10.5312525 : 9.47199625651042); (10.5312525 : 5.07851399739583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 9.47199625651042); (9.11978791666667 : 9.47199625651042 : JumpStart); (9.28645458333333 : 9.47199625651042 : JumpEnd); (10.5312525 : 9.47199625651042); (10.5312525 : 5.07851399739583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Producto/Producto_Publicacion" />
       <nodes>
         <classShapeMoniker Id="31b1bea9-2e4b-44fd-8493-0aa6105950ac" />
         <classShapeMoniker Id="dcffc76b-be94-4bc9-99ea-758de5b6da7f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 18.0969962565104); (10 : 18.0969962565104); (10 : 17.4824039713542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 18.0969962565104); (10 : 18.0969962565104); (10 : 17.4824039713542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/Rules/Rules_Usuario" />
       <nodes>
         <classShapeMoniker Id="65bbdd2f-a268-4f71-98ba-f7f67408626a" />
         <classShapeMoniker Id="2d9968fa-b0ed-4dc7-aa9e-3ef358f92216" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 11.4719962565104); (9.20312125 : 11.4719962565104); (9.20312125 : 5.07851399739583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 11.4719962565104); (9.20312125 : 11.4719962565104); (9.20312125 : 5.07851399739583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ElTrebolDBDataContext/TipoNegocio/TipoNegocio_Publicacion" />
       <nodes>
         <classShapeMoniker Id="f20cb3a6-6bf1-47a1-9a4c-8019da351d6f" />

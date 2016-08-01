@@ -81,11 +81,11 @@ body #container_main_menu div nav#main_menu div div.collapse ul.nav li a.user-me
 body div#row_alert {
   padding: 10px 0;
 }
-body .body-page div .panelAlinear {
+body div#target_ajax .body-page div .panelAlinear {
   border: 2px solid #b7b7b7;
   box-shadow: 1px 2px 5px #808080;
 }
-body .body-page div .panelAlinear div.panel-heading {
+body div#target_ajax .body-page div .panelAlinear div.panel-heading {
   color: #FFFFFF;
   background: rgba(73, 155, 234, 0.4);
   background: -moz-linear-gradient(top, rgba(73, 155, 234, 0.4) 0.4% rgba(32, 124, 229, 0.4) 100%);
@@ -96,21 +96,21 @@ body .body-page div .panelAlinear div.panel-heading {
   background: linear-gradient(to bottom, rgba(73, 155, 234, 0.4) 0.4% rgba(32, 124, 229, 0.4) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#499bea', endColorstr='#207ce5', GradientType=0);
 }
-body .body-page div .panelAlinear div.panel-body div.row div img {
+body div#target_ajax .body-page div .panelAlinear div.panel-body div.row div img {
   width: 100%;
   height: 350px;
   margin-bottom: 10px;
 }
-body .body-page div div.row {
+body div#target_ajax .body-page div div.row {
   margin-bottom: 15px;
 }
-body .body-page div div.row div #carousel_example_generic {
+body div#target_ajax .body-page div div.row div #carousel_example_generic {
   margin-bottom: 15px;
 }
-body .body-page div div.row div #carousel_example_generic div div img {
+body div#target_ajax .body-page div div.row div #carousel_example_generic div div img {
   width: 100%;
 }
-body .body-page div div.row div p {
+body div#target_ajax .body-page div div.row div p {
   text-align: justify;
 }
 body #single_product div div#carousel-example-generic div.carousel-inner div.item img {

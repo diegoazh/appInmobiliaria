@@ -178,6 +178,7 @@
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\ValoracionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -334,6 +335,7 @@
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\singleProduct.js" />
     <Content Include="Scripts\users.js" />
+    <Content Include="Scripts\valoracion.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

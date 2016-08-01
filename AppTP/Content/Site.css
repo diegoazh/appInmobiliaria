@@ -7,6 +7,9 @@
 .element-inline-block {
   display: inline-block;
 }
+.fondo-amarillo {
+  background-color: #eaf22b;
+}
 /*
     Estilos del front-end
 */

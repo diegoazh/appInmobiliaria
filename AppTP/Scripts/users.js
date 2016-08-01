@@ -65,10 +65,45 @@
         });
     }
 
-    if (window.location.href === 'http://' + window.location.host + '/Usuario') {
+    if (window.location.pathname === '/Usuario') {
         if (leerCookie('crear')) {
             crearUsuarios();
             eliminarCookie('crear');
+        }
+        else if (leerCookie('IdEdit')) {
+            function editUserInfo(data) {
+                var user = JSON.parse(data);
+                $('#username').val(user.username);
+                $('#nombre').val(user.nombre);
+                $('#apellido').val(user.apellido);
+                $('#mail').val(user.mail);
+                $('#telefono').val(user.telefono);
+                $('#id_avatar option[value=' + user.id_avatar + ']').attr('selected', 'selected');
+                $('#id_rules option[value=' + user.id_rules + ']').attr('selected', 'selected');
+                $('#password').attr('disabled', 'disabled');
+                $('#pass').attr('disabled', 'disabled');
+                $('#frm_crear_usuario').append($('input[type=hidden]').attr('id', 'id_usuario').attr('name', 'id_usuario').val(user.id_usuario));
+                $('#crear').html('Editar').removeClass('btn-primary').addClass('btn-warning').on('click', function () {
+                    $('#frm_crear_usuario').submit();
+                });
+                $('#frm_crear_usuario').attr('action', '/Usuario/editar_usuario').attr('method', 'POST');
+                $('#modal_create_user').on('hide.bs.modal', function () {
+                    $('#username').val('');
+                    $('#nombre').val('');
+                    $('#apellido').val('');
+                    $('#mail').val('');
+                    $('#telefono').val('');
+                    $('#id_avatar option[value=1]').attr('selected', 'selected');
+                    $('#id_rules option[value=1]').attr('selected', 'selected');
+                    $('#password').removeAttr('disabled');
+                    $('#pass').removeAttr('disabled');
+                    $('#crear').html('Crear').removeClass('btn-warning').addClass('btn-primary');
+                    $('#frm_crear_usuario').attr('action', '/Usuario/crear_usuario');
+                });
+            }
+            crearUsuarios();
+            consultaAjax('/Usuario/editar_usuario', 'GET', 'json', { id: leerCookie('IdEdit') }, false, 'application/x-www-form-urlencoded; charset=UTF-8', true, editUserInfo);
+            eliminarCookie('IdEdit');
         }
 
         $('#crear_usuario_lateral').on('click', function (event) {
@@ -112,6 +147,18 @@
             crearCookie('crear', true);
             //$('#alert_backend_usuario').removeClass('alert-default alert-warning alert-success alert-info hidden').addClass('alert-danger', 'text-center');
             //$('#texto_alert_usuarios').text('Debe acceder a la sección de usuarios para dar de alta un usuario.');
+        });
+    }
+
+    // Perfil de usuario
+    if (window.location.pathname.match(/Usuario\/perfil/)) {
+        $('#edit_user').on('click', function (event) {
+            event.preventDefault();
+            var id = window.location.pathname;
+            id = id.split('/');
+            id = id[id.length - 1];
+            window.location.href = 'http://' + window.location.host + '/Usuario';
+            crearCookie('IdEdit', id);
         });
     }
 });

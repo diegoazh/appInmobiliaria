@@ -37,11 +37,12 @@ function cuentaCaracteres(idTextarea, idSpan) {
 }
 
 // Crear Cookie
-function crearCookie(key, value) {
+function crearCookie(key, value, path) {
+    path = typeof path !== 'undefined' ? path : '/';
     'use strict';
     var expires = new Date();
     expires.setTime(expires.getTime() + 120000); // Estableces el tiempo de expiración en 2 minutos despues de crearse.
-    var cookie = key + "=" + value + ";expires=" + expires.toUTCString();
+    var cookie = key + "=" + value + ";expires=" + expires.toUTCString() + ";path=" + path;
     return document.cookie = cookie;
 }
 
@@ -63,12 +64,12 @@ function eliminarCookie(key) {
 }
 
 // Consulta Ajax
-function consultaAjax(ControllerAction, method, dtType, dt, chData, ctType, prData, callback) {
+function consultaAjax(ControllerAction, HttpMethod, dtType, data, chData, ctType, prData, callback) {
     $.ajax({
         url: 'http://' + window.location.host + ControllerAction,
-        type: method,
+        type: HttpMethod,
         dataType: dtType,
-        data: dt,
+        data: data,
         cache: chData,
         contentType: ctType,
         processData: prData,

@@ -41,16 +41,16 @@
                             }
                             else
                             {
-                                <img src="~/images/fotos/@usuario.Foto.foto1" class="img-responsive img-circle img-back-user" />
+                                <img src="~/images/foto_usuarios/@usuario.Foto.foto1" class="img-responsive img-circle img-back-user" />
                             }
                         </td>
                         <td class="text-center">
                             <span class="label label-success">@usuario.Rules.nombre</span>
                         </td>
                         <td class="text-center">
-                            <button id="see-@usuario.id_usuario" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button>
+                            <a href="@Url.Action("perfil", "Usuario", new { id = @usuario.id_usuario })" type="button" id="see-@usuario.id_usuario" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Ver</a>
                             <button id="update-@usuario.id_usuario" class="btn btn-warning"><i class="fa fa-lock" aria-hidden="true"></i> Contraseña</button>
-                            <button id="delete-@usuario.id_usuario" class="btn btn-danger @disabled"><i class="fa fa-user-times" aria-hidden="true"></i> Eliminar</button>
+                            <button id="delete-@usuario.id_usuario" class="btn btn-danger margen-superior-15 @disabled"><i class="fa fa-user-times" aria-hidden="true"></i> Eliminar</button>
                         </td>
                     </tr>
                 }

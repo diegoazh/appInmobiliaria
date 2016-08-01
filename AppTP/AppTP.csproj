@@ -382,6 +382,7 @@
     <Content Include="Views\Comentarios\finalizados.cshtml" />
     <Content Include="Views\Comentarios\Cerrar\modal_ver_cerrados.cshtml" />
     <Content Include="Views\Comentarios\Eliminar\modal_confirmar_eliminar.cshtml" />
+    <Content Include="Views\Usuario\perfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

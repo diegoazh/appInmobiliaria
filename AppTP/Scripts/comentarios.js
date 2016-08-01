@@ -31,7 +31,7 @@
             $('#btn_cerrar_comentario').on('click', function () {
                 function mensajeServidor(data) {
                     var response = JSON.parse(data);
-                    crearCookie('cerrado', response.Data);
+                    crearCookie('cerrado', response.Data, '/');
                     window.location.href = 'http://' + window.location.host + '/Comentarios';
                 }
                 consultaAjax('/Comentarios/cerrar_comentario', 'POST', 'json', { id_comentario: $('#id_comentario').val(), respuesta: $('#respuesta').val(), id_usuario: $('#id_usuario').val() }, false, 'application/x-www-form-urlencoded; charset=UTF-8', true, mensajeServidor);
@@ -77,7 +77,7 @@
                 $(this).html('¡Actualizar! <i class="fa fa-refresh" aria-hidden="true"></i>').removeClass('btn-warning').addClass('btn-info').click(function () {
                     function mensajeServidor(data) {
                         var response = JSON.parse(data);
-                        crearCookie('actualizado', response.Data);
+                        crearCookie('actualizado', response.Data, '/');
                         window.location.href = 'http://' + window.location.host + '/Comentarios/Finalizados';
                     }
                     consultaAjax('/Comentarios/cerrar_comentario', 'POST', 'json', { id_comentario: $('#id_comentario').val(), respuesta: $('#respuesta').val(), id_usuario: $('#id_usuario').val() }, false, 'application/x-www-form-urlencoded; charset=UTF-8', true, mensajeServidor);
@@ -104,7 +104,7 @@
             $('#eliminar_permanentemente').on('click', function () {
                 function mensajeServidor(data) {
                     var response = JSON.parse(data);
-                    crearCookie('eliminado', response.Data);
+                    crearCookie('eliminado', response.Data, '/');
                     window.location.href = 'http://' + window.location.host + '/Comentarios/Finalizados';
                 }
                 consultaAjax('/Comentarios/eliminar_comentario', 'POST', 'json', { id_comentario: parseInt($('#id_eliminar').val()) }, false, 'application/x-www-form-urlencoded; charset=UTF-8', true, mensajeServidor);

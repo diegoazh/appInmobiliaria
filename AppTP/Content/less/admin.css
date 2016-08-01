@@ -7,6 +7,12 @@
 .element-inline-block {
   display: inline-block;
 }
+.margen-superior-15 {
+  margin-top: 15px;
+}
+.margen-izq-5 {
+  margin-left: 5px;
+}
 /*
     Estilos de la pagina
 */

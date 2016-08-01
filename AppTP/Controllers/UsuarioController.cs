@@ -1,5 +1,6 @@
 ﻿using AppTP.Commons;
 using AppTP.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -115,12 +116,13 @@ namespace AppTP.Controllers
             Response.Cookies["UserRules"].Expires = DateTime.Now.AddDays(-1);
             Response.Cookies["UserAvatar"].Expires = DateTime.Now.AddDays(-1);
             Response.Cookies["UserFoto"].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies["UserId"].Expires = DateTime.Now.AddDays(-1);
 
             return RedirectToAction("index", "Index");
         }
 
         [HttpPost, Authorize]
-        public ActionResult crear_usuario(Usuario usuario /*string foto_perfil*/)
+        public ActionResult crear_usuario(Usuario usuario)
         {
             if (System.Web.HttpContext.Current.Request.Files != null)
             {
@@ -132,6 +134,7 @@ namespace AppTP.Controllers
                         var fileName = Path.GetFileName(file.FileName);
                         var path = Path.Combine(Server.MapPath("~/images/foto_usuarios"), fileName);
                         file.SaveAs(path);
+                        usuario.Foto.foto1 = fileName;
                     }
                 }
             }
@@ -145,7 +148,6 @@ namespace AppTP.Controllers
             user.pass = encriptar(usuario.pass);
             if (usuario.Foto.foto1 != null)
                 user.Foto.foto1 = usuario.Foto.foto1;
-
             user.id_avatar = usuario.id_avatar;
             user.id_rules = usuario.id_rules;
 
@@ -161,6 +163,85 @@ namespace AppTP.Controllers
             }
             
             return RedirectToAction("Index", "Usuario");
+        }
+
+        public ActionResult perfil(int id)
+        {
+            return View(buscarUsuario(id));
+        }
+
+        [HttpGet, Authorize]
+        public JsonResult editar_usuario(int id)
+        {
+            Usuario user = new Usuario();
+            var u = buscarUsuario(id);
+            user.id_usuario = u.id_usuario;
+            user.nombre = u.nombre;
+            user.apellido = u.apellido;
+            user.username = u.username;
+            user.mail = u.mail;
+            user.telefono = u.telefono;
+            user.id_avatar = u.id_avatar;
+            user.id_rules = u.id_rules;
+            var json = JsonConvert.SerializeObject(user);
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost, Authorize]
+        public ActionResult editar_usuario(Usuario usuario)
+        {
+            var u = buscarUsuario(usuario.id_usuario);
+            u.username = usuario.username;
+            u.nombre = usuario.nombre;
+            u.apellido = usuario.apellido;
+            u.mail = usuario.mail;
+            u.telefono = usuario.telefono;
+            u.id_avatar = usuario.id_avatar;
+            u.id_rules = usuario.id_rules;
+
+            if (System.Web.HttpContext.Current.Request.Files != null)
+            {
+                if (u.id_foto != null)
+                {
+                    var physicalPath = System.IO.Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/images/foto_usuarios/"), u.Foto.foto1);
+                    if (System.IO.File.Exists(physicalPath))
+                    {
+                        try
+                        {
+                            System.IO.File.Delete(physicalPath);
+                        }
+                        catch (System.IO.IOException ex)
+                        {
+                            TempData["ErrorOnDelete"] += ex.Message;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < System.Web.HttpContext.Current.Request.Files.Keys.Count; i++)
+                {
+                    HttpPostedFile file = System.Web.HttpContext.Current.Request.Files[i];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/images/foto_usuarios"), fileName);
+                        file.SaveAs(path);
+                        Foto f = new Foto();
+                        f.foto1 = fileName;
+                        db.Foto.InsertOnSubmit(f);
+                        db.SubmitChanges();
+                        f = db.Foto.Single(x => x.foto1 == fileName);
+                        u.id_foto = f.id_foto;
+                    }
+                }
+            }
+            db.SubmitChanges();
+            return RedirectToAction("Index", "Usuario");
+        }
+
+        public Usuario buscarUsuario(int id)
+        {
+            var user = db.Usuario.Single(x => x.id_usuario == id);
+            return user;
         }
 
         public static string encriptar(string password)
